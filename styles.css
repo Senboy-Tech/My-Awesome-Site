@@ -119,7 +119,7 @@ main {
     padding: 8px 10px; 
 }
 
-/* Ikon di dalam Sidebar */
+/* Ikon di dalam Daftar Sidebar */
 .sidebar-list ul li a i {
     margin-right: 8px;
     color: #FFD700; 
@@ -130,7 +130,7 @@ main {
 .right-sidebar .fab.fa-discord { color: #5865F2; }
 .right-sidebar .fab.fa-steam { color: #000000; }
 .right-sidebar .fab.fa-twitter { color: #1DA1F2; }
-.right-sidebar .sidebar-list ul li a { color: #444; } /* Teks Sosial Media Gelap */
+.right-sidebar .sidebar-list ul li a { color: #444; } 
 
 /* Efek HOVER SIDEBAR */
 .sidebar-list ul li:hover {
@@ -203,17 +203,17 @@ nav {
 }
 
 /* =================================================== */
-/* 4. GAYA BARU: Featured Content (2 Kolom di index.html) */
+/* 4. GAYA: Featured Content (2 Kolom di index.html) */
 /* =================================================== */
 
 .feature-container {
-    display: flex; /* Menggunakan Flexbox agar berdampingan */
-    gap: 25px;     /* Jarak antara dua kolom */
+    display: flex; 
+    gap: 25px;     
     margin-top: 15px;
 }
 
 .feature-card {
-    flex: 1; /* Memastikan kedua kartu memiliki lebar yang sama */
+    flex: 1; 
     background-color: #fcfcfc;
     border: 1px solid #eee;
     padding: 20px;
@@ -222,8 +222,8 @@ nav {
 }
 
 .feature-card h3 {
-    color: #a32f4c; /* Warna konsisten */
-    border-bottom: 1px dashed #ddd; /* Garis putus-putus */
+    color: #a32f4c; 
+    border-bottom: 1px dashed #ddd; 
     padding-bottom: 10px;
     margin-top: 0;
 }
@@ -239,18 +239,18 @@ nav {
 }
 
 .content-list a {
-    color: #444; /* Teks tautan berwarna gelap */
+    color: #444; 
     text-decoration: none;
     transition: color 0.2s;
 }
 
 .content-list a:hover {
-    color: #6a0d24; /* Teks berubah saat hover */
+    color: #6a0d24; 
 }
 
 .content-list i {
-    margin-right: 8px; /* Jarak antara ikon dan teks */
-    color: #FFD700; /* Warna ikon Emas */
+    margin-right: 8px; 
+    color: #FFD700; 
 }
 /* =================================================== */
 
@@ -385,8 +385,61 @@ footer {
 /* =================================================== */
 
 /* =================================================== */
-/* OVERRIDE GAYA FANCYBOX */
+/* GAYA BARU: Daftar Download (python-files.html) */
 /* =================================================== */
+.code-listing {
+    /* Menggunakan gaya 'section' yang sudah ada */
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.download-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.download-list li {
+    margin-bottom: 10px;
+    border-bottom: 1px dashed #ddd; /* Garis pemisah file */
+    padding-bottom: 10px;
+}
+
+.download-list a {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    color: #a32f4c; /* Menggunakan warna tema Anda */
+    font-weight: 600;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+.download-list a:hover {
+    background-color: #fcebeb; /* Latar belakang terang saat hover */
+    color: #6a0d24; /* Warna sedikit lebih gelap saat hover */
+}
+
+.download-list a i {
+    margin-right: 15px;
+    font-size: 1.2em;
+    color: #6a0d24; /* Icon menggunakan warna tema yang lebih kuat */
+}
+
+.file-size {
+    font-size: 0.9em;
+    color: #6c757d;
+    font-weight: normal;
+    text-align: right;
+}
+/* =================================================== */
+
+
+/* OVERRIDE GAYA FANCYBOX */
 .fancybox__backdrop {
     background: rgba(0, 0, 0, 0.8) !important;
 }
