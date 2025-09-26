@@ -28,7 +28,7 @@ main {
     grid-column: 2; 
     flex-grow: 1; 
     max-width: 1000px;
-    padding: 0 20px; /* Padding di main dikurangi untuk menjaga ruang */
+    padding: 0; /* KOREKSI: Hapus padding yang mengganggu Grid */
     margin: 20px auto;
 }
 
@@ -257,6 +257,15 @@ nav {
 
 /* KOREKSI GAYA SECTION (Card Putih Pembungkus) */
 section {
+    /* Hapus padding/background dari section agar tidak bentrok dengan div.gallery */
+    background-color: transparent; 
+    padding: 0; 
+    border-radius: 0;
+    box-shadow: none;
+    margin-bottom: 25px;
+}
+/* KOREKSI GAYA SECTION INTRO (untuk about.html) */
+.intro-section {
     background-color: rgba(255, 255, 255, 0.95);
     padding: 30px;
     border-radius: 10px;
@@ -351,9 +360,11 @@ footer {
 /* GALERI FOTO (KOREKSI: Dihilangkan padding/background) */
 /* =================================================== */
 .gallery {
-    /* Hapus background dan padding dari .gallery karena sudah ada di section */
-    background-color: transparent; 
-    padding: 0;
+    /* PINDAHKAN GAYA CARD PUTIH KE SINI */
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 30px; 
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     
     /* SETTING GRID */
     display: grid;
