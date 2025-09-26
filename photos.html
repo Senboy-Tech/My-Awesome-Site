@@ -3,13 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Photos</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>My Photos - Modern Pixel Art</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+    <style>
+        /* Definisi Variabel Warna dan Ukuran */
+        :root {
+            --pixel-font: 'Press Start 2P', cursive;
+            --bg-dark: #202c33; /* Background utama */
+            --primary-accent: #ff6e6e; /* Aksen Merah/Pink */
+            --secondary-accent: #61dafb; /* Aksen Cyan/Biru */
+            --text-light: #e0e0e0;
+            --shadow-color: #1a1a1a;
+            --border-width: 3px;
+            --shadow-offset: 6px; /* Jarak bayangan pixel */
+        }
 
-</head>
+        /* BASE & LAYOUT (Menggunakan Grid Modern) */
+        body {
+            font-family: var(--pixel-font);
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: grid;
+            /* Layout: Header di atas, Main di tengah, Footer di bawah */
+            grid-template-areas: 
+                "header header header"
+                "left main right"
+                "footer footer footer";
+            grid-template-columns: 30px 1fr 30px; /* Lebar sidebar sangat kecil/strip */
+            grid-template-rows: auto 1fr auto;
+            gap: 0;
+            box-sizing: border-box;
+            font-size: 14px; /* Ukuran font dasar disesuaikan karena font pixel tebal */
+        }
+
+        /* HEADER & NAV */
+        header {
+            grid-area: header;
+            padding: 20px;
+            text-align: center;
+            background-color: #31404c;
+            border-bottom: var(--border-width) solid var(--primary-accent);
+            box-shadow: 0 var(--border-width) 0 0 var(--shadow-color);
+        }
+
+        .header-content h1 {
+            font-size: 2em;
+            color: var(--secondary-accent);
+            text-shadow: 4px 4px 0px var(--shadow-color);
+            margin: 0 0 10px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 0.8em;
+            padding: 8px 15px;
+            margin: 5px;
+            border: 2px solid #505050;
+            background-color: #25313a;
+            /* Bayangan Pixelated */
+            box-shadow: 3px 3px 0px 0px var(--shadow-color);
+            transition: all 0.1s;
+            display: inline-block;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-accent);
+            border-color: var(--primary-accent);
+            background-color: #384654;
+            transform: translate(-2px, -2px); /* Efek 'angkat' */
+            box-shadow: 5px 5px 0px 0px var(--shadow-color);
+        }
+
+        /* SIDEBARS */
+        .left-sidebar {
+            grid-area: left;
+            background-color: #283742;
+            border-right: 1px dashed var(--primary-accent);
+        }
+
+        .right-sidebar {
+            grid-area: right;
+            background-color: #283742;
+            border-left: 1px dashed var(--primary-accent);
+        }
+
+        /* MAIN CONTENT */
+        main {
+            grid-area: main;
+            padding: 20px;
+            background-color: #283742;
+        }
+        
+        main h2 {
+            font-size: 1.2em;
+            color: var(--primary-accent);
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 10px;
+            border-bottom: 2px dashed var(--secondary-accent);
+            text-shadow: 1px 1px 0px var(--shadow-color);
+        }
+
+        /* GALLERY GRID */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 0 0 30px 0;
+        }
+
+        .photo-container {
+            border: var(--border-width) solid var(--secondary-accent);
+            /* Bayangan Pixelated Khas */
+            box-shadow: var(--shadow-offset) var(--shadow-offset) 0px 0px var(--shadow-color);
+            background-color: #344755;
+            padding: 8px;
+            transition: transform 0.1s ease-out;
+            text-align: center;
+        }
+
+        .photo-container:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: calc(var(--shadow-offset) + 3px) calc(var(--shadow-offset) + 3px) 0px 0px var(--shadow-color);
+        }
+        
+        .gallery-photo {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0;
+            /* PROPERTI KUNCI untuk memaksa efek pixelated pada gambar */
+            image-rendering: pixelated; 
+            image-rendering: -moz-crisp-edges;
+            image-rendering: crisp-edges;
+            border: 1px solid var(--text-light);
+        }
+        
+        .gallery p {
+            font-size: 0.7em;
+            line-height: 1.6;
+            color: #ccc;
+            margin: 0;
+        }
+
+        /* FOOTER */
+        footer {
+            grid-area: footer;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.7em;
+            background-color: #31404c;
+            border-top: var(--border-width) solid var(--primary-accent);
+            color: var(--secondary-accent);
+        }
+        
+        /* RESPONSIF (Hapus sidebar di layar kecil) */
+        @media (max-width: 768px) {
+            body {
+                grid-template-areas: 
+                    "header header header"
+                    "main main main"
+                    "footer footer footer";
+                grid-template-columns: 1fr;
+            }
+            .left-sidebar, .right-sidebar {
+                display: none;
+            }
+            .gallery {
+                grid-template-columns: 1fr; /* Satu kolom di HP */
+            }
+        }
+    </style>
+    </head>
 <body>
 
     <header>
@@ -20,22 +201,20 @@
         </nav>
         <div class="header-content">
             <h1>My Photo Gallery</h1>
-            <p>A collection of my favorite photos and artworks.</p>
+            <p style="font-size: 0.7em; margin: 5px 0 0;">A collection of my favorite photos and artworks.</p>
         </div>
     </header>
 
-    <div class="left-sidebar">
-        </div>
-    
+    <div class="left-sidebar"></div>
     <div class="right-sidebar"></div>
 
     <main>
         <div class="gallery">
             <h2>Foto Terbaru</h2>
-            
+
             <div class="photo-container">
-                <a href="Kana.jpg" data-fancybox="gallery" data-caption="Foto 1: apa lu liat liat">
-                    <img src="Kana.jpg" alt="Pria duduk di beton" class="gallery-photo">
+                <a href="Kana.jpg" data-fancybox="gallery" data-caption="Foto 1: Pria berteduh">
+                    <img src="Kana1.jpg" alt="Pria berteduh" class="gallery-photo">
                 </a>
             </div>
 
@@ -51,15 +230,19 @@
                 </a>
             </div>
 
-        
             <div class="photo-container">
-                <a href="Kana4.jpg" data-fancybox="gallery" data-caption="Foto 4: sebat dulu lah">
+                <a href="Kana3.jpg" data-fancybox="gallery" data-caption="Foto 4: sebat dulu lah">
                     <img src="Kana4.jpg" alt="Pria merokok" class="gallery-photo">
                 </a>
             </div>
+             <div class="photo-container">
+                <a href="Kana3.jpg" data-fancybox="gallery" data-caption="Foto 4: sebat dulu lah">
+                    <img src="Kana3.jpg" alt="Pria merokok" class="gallery-photo">
+                </a>
+            </div>
             
-            <p style="grid-column: 1 / -1; margin-top: 20px; padding: 0 30px 30px;">
-                Ini adalah galeri foto sederhana. Klik foto untuk fitur zoom.
+            <p style="grid-column: 1 / -1; margin-top: 20px; padding: 0 10px;">
+                Ini adalah galeri foto sederhana dengan gaya **Modern Pixel Art**. Klik foto untuk fitur zoom.
             </p>
 
         </div>
@@ -70,16 +253,10 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
-
     <script>
         Fancybox.bind("[data-fancybox]", {
-            // Konfigurasi Tambahan FancyBox
+            // Inisialisasi FancyBox
         });
     </script>
-    
 </body>
 </html>
-
-
-
-
