@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Photos - Modern Pixel Art</title>
+    <title>My Photos - Cyberpunk Pixel Art</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     
@@ -14,13 +14,13 @@
         /* Definisi Variabel Warna dan Ukuran */
         :root {
             --pixel-font: 'Press Start 2P', cursive;
-            --bg-dark: #202c33; /* Background utama */
-            --primary-accent: #ff6e6e; /* Aksen Merah/Pink */
-            --secondary-accent: #61dafb; /* Aksen Cyan/Biru */
-            --text-light: #e0e0e0;
-            --shadow-color: #1a1a1a;
+            --bg-dark: #1e1e2c; /* Background utama (Dark Navy/Ungu) */
+            --primary-accent: #ff005c; /* Aksen Merah/Magenta (Fancy) */
+            --secondary-accent: #00ffff; /* Aksen Cyan/Neon */
+            --text-light: #f0f0f0;
+            --shadow-color: #0d0d14;
             --border-width: 3px;
-            --shadow-offset: 6px; /* Jarak bayangan pixel */
+            --shadow-offset: 6px; 
         }
 
         /* BASE & LAYOUT (Menggunakan Grid Modern) */
@@ -32,40 +32,62 @@
             padding: 0;
             min-height: 100vh;
             display: grid;
-            /* Layout: Header di atas, Main di tengah, Footer di bawah */
             grid-template-areas: 
                 "header header header"
                 "left main right"
                 "footer footer footer";
-            grid-template-columns: 30px 1fr 30px; /* Lebar sidebar sangat kecil/strip */
+            grid-template-columns: 30px 1fr 30px; 
             grid-template-rows: auto 1fr auto;
             gap: 0;
             box-sizing: border-box;
-            font-size: 14px; /* Ukuran font dasar disesuaikan karena font pixel tebal */
+            font-size: 14px;
+        }
+        
+        /* CONTAINER BANNER CYBERPUNK */
+        .banner-container {
+            width: 100%;
+            height: 150px; /* Tinggi banner */
+            background-color: #383850;
+            
+            /* GANTI URL DI BAWAH DENGAN GAMBAR PIXEL ART CYBERPUNK MILIKMU */
+            /* Pastikan gambar berukuran lebar dan berada di folder yang sama */
+            background-image: url('cyberpunk_banner.png'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            border-top: var(--border-width) solid var(--primary-accent);
+            border-bottom: var(--border-width) solid var(--primary-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         /* HEADER & NAV */
         header {
             grid-area: header;
-            padding: 20px;
+            padding: 0 0 20px 0; /* Padding bawah dipindahkan ke banner */
             text-align: center;
-            background-color: #31404c;
-            border-bottom: var(--border-width) solid var(--primary-accent);
-            box-shadow: 0 var(--border-width) 0 0 var(--shadow-color);
+            background-color: #242436; /* Background header */
+        }
+        
+        .header-content {
+            padding: 20px;
         }
 
         .header-content h1 {
             font-size: 2em;
-            color: var(--secondary-accent);
+            color: var(--primary-accent); /* Judul Merah Fancy */
             text-shadow: 4px 4px 0px var(--shadow-color);
-            margin: 0 0 10px 0;
+            margin: 0 0 5px 0;
         }
 
         nav {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            margin-bottom: 20px;
+            padding: 10px 0;
+            background-color: #1a1a27;
         }
 
         .nav-link {
@@ -74,49 +96,47 @@
             font-size: 0.8em;
             padding: 8px 15px;
             margin: 5px;
-            border: 2px solid #505050;
-            background-color: #25313a;
-            /* Bayangan Pixelated */
+            border: 2px solid var(--secondary-accent);
+            background-color: #2e2e46;
             box-shadow: 3px 3px 0px 0px var(--shadow-color);
             transition: all 0.1s;
-            display: inline-block;
         }
 
         .nav-link:hover {
             color: var(--primary-accent);
             border-color: var(--primary-accent);
-            background-color: #384654;
-            transform: translate(-2px, -2px); /* Efek 'angkat' */
+            background-color: #383850;
+            transform: translate(-2px, -2px);
             box-shadow: 5px 5px 0px 0px var(--shadow-color);
         }
 
         /* SIDEBARS */
         .left-sidebar {
             grid-area: left;
-            background-color: #283742;
-            border-right: 1px dashed var(--primary-accent);
+            background-color: #242436;
+            border-right: 1px dashed var(--secondary-accent);
         }
 
         .right-sidebar {
             grid-area: right;
-            background-color: #283742;
-            border-left: 1px dashed var(--primary-accent);
+            background-color: #242436;
+            border-left: 1px dashed var(--secondary-accent);
         }
 
         /* MAIN CONTENT */
         main {
             grid-area: main;
             padding: 20px;
-            background-color: #283742;
+            background-color: #242436;
         }
         
         main h2 {
             font-size: 1.2em;
-            color: var(--primary-accent);
+            color: var(--primary-accent); /* Judul Foto Terbaru Merah */
             text-align: center;
             margin-bottom: 30px;
             padding: 10px;
-            border-bottom: 2px dashed var(--secondary-accent);
+            border-bottom: 2px dashed var(--primary-accent);
             text-shadow: 1px 1px 0px var(--shadow-color);
         }
 
@@ -130,9 +150,8 @@
 
         .photo-container {
             border: var(--border-width) solid var(--secondary-accent);
-            /* Bayangan Pixelated Khas */
             box-shadow: var(--shadow-offset) var(--shadow-offset) 0px 0px var(--shadow-color);
-            background-color: #344755;
+            background-color: #2e2e46;
             padding: 8px;
             transition: transform 0.1s ease-out;
             text-align: center;
@@ -148,18 +167,9 @@
             height: auto;
             display: block;
             margin: 0;
-            /* PROPERTI KUNCI untuk memaksa efek pixelated pada gambar */
             image-rendering: pixelated; 
-            image-rendering: -moz-crisp-edges;
             image-rendering: crisp-edges;
             border: 1px solid var(--text-light);
-        }
-        
-        .gallery p {
-            font-size: 0.7em;
-            line-height: 1.6;
-            color: #ccc;
-            margin: 0;
         }
 
         /* FOOTER */
@@ -168,12 +178,12 @@
             text-align: center;
             padding: 15px;
             font-size: 0.7em;
-            background-color: #31404c;
+            background-color: #1a1a27;
             border-top: var(--border-width) solid var(--primary-accent);
             color: var(--secondary-accent);
         }
         
-        /* RESPONSIF (Hapus sidebar di layar kecil) */
+        /* RESPONSIF */
         @media (max-width: 768px) {
             body {
                 grid-template-areas: 
@@ -186,7 +196,10 @@
                 display: none;
             }
             .gallery {
-                grid-template-columns: 1fr; /* Satu kolom di HP */
+                grid-template-columns: 1fr; 
+            }
+            .banner-container {
+                height: 100px; /* Tinggi banner dikurangi di mobile */
             }
         }
     </style>
@@ -203,6 +216,9 @@
             <h1>My Photo Gallery</h1>
             <p style="font-size: 0.7em; margin: 5px 0 0;">A collection of my favorite photos and artworks.</p>
         </div>
+        
+        <div class="banner-container">
+             </div>
     </header>
 
     <div class="left-sidebar"></div>
@@ -213,8 +229,8 @@
             <h2>Foto Terbaru</h2>
 
             <div class="photo-container">
-                <a href="Kana.jpg" data-fancybox="gallery" data-caption="Foto 1: Pria berteduh">
-                    <img src="Kana.jpg" alt="Pria berteduh" class="gallery-photo">
+                <a href="Kana.jpg" data-fancybox="gallery" data-caption="Foto 1: apa lu liat liat">
+                    <img src="Kana.jpg" alt="Pria duduk di beton" class="gallery-photo">
                 </a>
             </div>
 
@@ -230,13 +246,15 @@
                 </a>
             </div>
 
+        
             <div class="photo-container">
-                <a href="Kana3.jpg" data-fancybox="gallery" data-caption="Foto 4: sebat dulu lah">
-                    <img src="Kana3.jpg" alt="Pria merokok" class="gallery-photo">
+                <a href="Kana4.jpg" data-fancybox="gallery" data-caption="Foto 4: sebat dulu lah">
+                    <img src="Kana4.jpg" alt="Pria merokok" class="gallery-photo">
                 </a>
+            </div>
             
-            <p style="grid-column: 1 / -1; margin-top: 20px; padding: 0 10px;">
-                Ini adalah galeri foto sederhana dengan gaya **Modern Pixel Art**. Klik foto untuk fitur zoom.
+            <p style="grid-column: 1 / -1; font-size: 0.7em; margin-top: 20px; padding: 0 10px;">
+                Galeri ini menggunakan gaya Cyberpunk Pixel Art dengan aksen Merah Neon.
             </p>
 
         </div>
@@ -248,11 +266,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
     <script>
-        Fancybox.bind("[data-fancybox]", {
-            // Inisialisasi FancyBox
-        });
+        Fancybox.bind("[data-fancybox]", {});
     </script>
+    
 </body>
 </html>
-
-
