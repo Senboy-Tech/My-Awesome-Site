@@ -2,12 +2,12 @@
 # Konfigurasi dasar Jekyll
 
 title: My Photo Gallery
-email: shortnametosucces@gmail.com
+email: shortname@success@gmail.com
 description: >-
   Galeri foto keren dengan sentuhan Cyberpunk Pixel Art.
 
 # Konfigurasi Build
 markdown: kramdown
-theme: null # Ini penting untuk memastikan tidak ada tema default yang mengganggu style Pixel Art kita
+theme: null # Pastikan ini ditulis 'null' (huruf kecil)
 exclude:
   - README.md
