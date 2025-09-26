@@ -11,3 +11,13 @@ gallery_items:
   - filename: Kana4.jpg
     caption: Foto 4: sebat dulu lah
   # FOTO BARU HANYA PERLU DITAMBAHKAN DI BAWAH SINI!
+# FILE: _data/photos.yml
+
+gallery_items:
+  # ... (Foto Lama) ...
+  - filename: Kana4.jpg
+    caption: Foto 4: sebat dulu lah
+
+  # TAMBAHKAN FOTO BARU DI SINI:
+  - filename: selfie_keren_baru.jpg  # HARUS SAMA PERSIS DENGAN NAMA FILE FOTO YANG KAMU UPLOAD
+    caption: Foto 5: Selfie keren dari aku! # Deskripsi foto barumu
