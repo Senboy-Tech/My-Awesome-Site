@@ -8,6 +8,6 @@ description: >-
 
 # Konfigurasi Build
 markdown: kramdown
-theme: null # Pastikan ini ditulis 'null' (huruf kecil)
+theme: null 
 exclude:
   - README.md
