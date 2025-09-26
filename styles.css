@@ -401,33 +401,51 @@ footer {
     margin-top: 20px;
 }
 
+/* GAYA HEADER KATEGORI BARU (PYTHON SCRIPTS, SQL, dll) */
+.download-list .category-header {
+    background-color: #f9f9f9; 
+    color: #6a0d24;
+    font-weight: bold;
+    font-size: 0.9em;
+    padding: 10px 10px;
+    margin: 15px 0 5px 0; 
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    letter-spacing: 1px; 
+}
+
 .download-list li {
-    margin-bottom: 10px;
-    border-bottom: 1px dashed #ddd; /* Garis pemisah file */
-    padding-bottom: 10px;
+    margin-bottom: 0;
+    border-bottom: none; 
+    padding-bottom: 0; 
+    transition: background-color 0.2s;
 }
 
 .download-list a {
     display: flex; 
     justify-content: space-between; 
     align-items: center;
-    color: #a32f4c; /* Menggunakan warna tema Anda */
+    color: #a32f4c; 
     font-weight: 600;
     text-decoration: none;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 0; /* Hapus radius agar tampilan memanjang */
     transition: background-color 0.2s;
+    
+    /* Garis pemisah yang rapi */
+    border-bottom: 1px solid #f0f0f0; 
+    margin-bottom: 1px;
 }
 
 .download-list a:hover {
-    background-color: #fcebeb; /* Latar belakang terang saat hover */
-    color: #6a0d24; /* Warna sedikit lebih gelap saat hover */
+    background-color: #fcebeb; 
+    color: #6a0d24; 
 }
 
 .download-list a i {
     margin-right: 15px;
     font-size: 1.2em;
-    color: #6a0d24; /* Icon menggunakan warna tema yang lebih kuat */
+    color: #6a0d24; 
 }
 
 .file-size {
