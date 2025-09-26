@@ -385,10 +385,9 @@ footer {
 /* =================================================== */
 
 /* =================================================== */
-/* GAYA BARU: Daftar Download (python-files.html) */
+/* GAYA BARU: Daftar Download (python-files.html & all-code-list.html) */
 /* =================================================== */
 .code-listing {
-    /* Menggunakan gaya 'section' yang sudah ada */
     padding: 30px;
     background-color: rgba(255, 255, 255, 0.95);
     border-radius: 10px;
@@ -401,7 +400,7 @@ footer {
     margin-top: 20px;
 }
 
-/* GAYA HEADER KATEGORI BARU (PYTHON SCRIPTS, SQL, dll) */
+/* GAYA HEADER KATEGORI BARU */
 .download-list .category-header {
     background-color: #f9f9f9; 
     color: #6a0d24;
@@ -429,10 +428,9 @@ footer {
     font-weight: 600;
     text-decoration: none;
     padding: 10px;
-    border-radius: 0; /* Hapus radius agar tampilan memanjang */
+    border-radius: 0; 
     transition: background-color 0.2s;
     
-    /* Garis pemisah yang rapi */
     border-bottom: 1px solid #f0f0f0; 
     margin-bottom: 1px;
 }
