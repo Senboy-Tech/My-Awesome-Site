@@ -1,7 +1,7 @@
 # FILE: _data/photos.yml
 
 gallery_items:
-  # PASTIKAN NAMA FILE DAN HURUF BESAR/KECIL SAMA DENGAN FOTO ASLI
+  # NAMA FILE HARUS SAMA PERSIS DENGAN YANG ADA DI REPOSITORI UTAMA
   - filename: Kana.jpg
     caption: Foto 1: apa lu liat liat
   - filename: Kana2.jpg
@@ -10,14 +10,6 @@ gallery_items:
     caption: Foto 3: Njirrr
   - filename: Kana4.jpg
     caption: Foto 4: sebat dulu lah
-  # FOTO BARU HANYA PERLU DITAMBAHKAN DI BAWAH SINI!
-# FILE: _data/photos.yml
-
-gallery_items:
-  # ... (Foto Lama) ...
-  - filename: Kana4.jpg
-    caption: Foto 4: sebat dulu lah
-
-  # TAMBAHKAN FOTO BARU DI SINI:
-  - - filename: aaa.png
-    caption: Foto 4: sebat dulu 
+  # TAMBAHKAN FOTO BARU DI SINI
+  - filename: aaa.png
+    caption: Foto 5: gua tau gua ganteng
