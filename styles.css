@@ -1,7 +1,7 @@
 /* Global styles for the entire site */
 body {
     font-family: 'Segoe UI', Arial, sans-serif;
-    background-color: #f0f2f5; 
+    background-color: #f0f2f5;
     color: #333;
     margin: 0;
     line-height: 1.6;
@@ -28,7 +28,7 @@ main {
     grid-column: 2; 
     flex-grow: 1; 
     max-width: 1000px;
-    padding: 0 20px;
+    padding: 0 20px; /* Padding di main dikurangi untuk menjaga ruang */
     margin: 20px auto;
 }
 
@@ -203,113 +203,59 @@ nav {
 }
 
 /* =================================================== */
-/* OVERRIDE FUTURISTIK: Untuk halaman Downloads */
+/* GAYA BARU: Featured Content (2 Kolom di index.html) */
 /* =================================================== */
 
-/* Latar belakang halaman harus gelap */
-body.futuristic-mode {
-    background-color: #12121c; /* Biru sangat gelap / hampir hitam */
-    color: #e0e0e0; /* Teks default terang */
+.feature-container {
+    display: flex; 
+    gap: 25px;     
+    margin-top: 15px;
 }
 
-/* Mengubah style header khusus untuk halaman downloads */
-body.futuristic-mode header {
-    background-image: linear-gradient(rgba(10, 10, 40, 0.9), rgba(10, 10, 40, 0.9));
-    background-color: #1a1a2e; /* Biru tua solid */
-    color: #00FFFF; /* Aksen Cyan/Neon */
-    box-shadow: 0 5px 15px rgba(0, 255, 255, 0.4); /* Efek glow neon */
+.feature-card {
+    flex: 1; 
+    background-color: #fcfcfc;
+    border: 1px solid #eee;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-/* Mengganti warna Judul Header menjadi Neon */
-body.futuristic-mode .header-content h1,
-body.futuristic-mode .header-content p {
-    color: #00FFFF;
-    text-shadow: 0 0 5px rgba(0, 255, 255, 0.7); /* Efek glow yang kuat */
-}
-
-/* Mengubah warna menu navigasi di header */
-body.futuristic-mode .nav-link {
-    color: #80FFFF; /* Biru terang */
-}
-body.futuristic-mode .nav-link:hover {
-    background-color: rgba(0, 255, 255, 0.1);
-}
-
-/* Mengubah warna footer menjadi gelap */
-body.futuristic-mode footer {
-    background-color: #1a1a2e;
-    color: #b0b0b0;
-}
-
-/* Membuat Sidebar lebih menyatu dengan warna gelap */
-body.futuristic-mode .left-sidebar,
-body.futuristic-mode .right-sidebar {
-    background-image: none; /* Hapus gambar knight agar lebih bersih */
-    background-color: #1a1a2e;
-}
-/* Menyembunyikan sidebar list di halaman ini karena tidak ada di html baru */
-body.futuristic-mode .sidebar-list {
-    background-color: transparent;
-    box-shadow: none;
-    border: none;
-}
-
-
-/* GAYA FUTURISTIK UNTUK LIST DOWNLOAD */
-.code-listing {
-    background-color: #212135; /* Background sangat gelap */
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3); /* Shadow Neon */
-    color: #b0b0b0; /* Teks abu-abu terang */
-}
-
-.code-listing h2 {
-    color: #00FFFF; /* Judul Neon Cyan */
-    border-bottom: 2px solid #00FFFF;
-    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5); /* Efek glow */
+.feature-card h3 {
+    color: #a32f4c; 
+    border-bottom: 1px dashed #ddd; 
     padding-bottom: 10px;
+    margin-top: 0;
 }
 
-.code-listing p {
-    color: #b0b0b0;
+.content-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
 }
 
-/* GAYA HEADER KATEGORI BARU (Di dalam download list) */
-.code-listing .category-header {
-    background-color: #31314d; /* Background kategori lebih gelap */
-    color: #00FFFF; /* Teks kategori Neon Cyan */
-    border-top: 1px solid #00FFFF;
-    border-bottom: 1px solid #00FFFF;
-    letter-spacing: 2px;
+.content-list li {
+    margin-bottom: 10px;
 }
 
-/* GAYA LIST ITEM FUTURISTIK */
-.download-list a {
-    color: #e0e0e0; /* Nama file lebih terang */
-    border-bottom: 1px dashed #3a3a5a; /* Garis pemisah putus-putus gelap */
+.content-list a {
+    color: #444; 
+    text-decoration: none;
+    transition: color 0.2s;
 }
 
-.download-list a:hover {
-    background-color: #31314d; /* Hover sangat gelap */
-    color: #FFD700; /* Aksen emas saat hover */
-    border-color: #00FFFF;
+.content-list a:hover {
+    color: #6a0d24; 
 }
 
-.download-list a i {
-    color: #00FFFF; /* Ikon file Neon Cyan */
-}
-
-.file-size {
-    color: #8080ff; /* Detail ukuran biru muda */
+.content-list i {
+    margin-right: 8px; 
+    color: #FFD700; 
 }
 /* =================================================== */
-/* AKHIR OVERRIDE FUTURISTIK */
-/* =================================================== */
 
 
-/* Sections for intro and projects */
-/* ... (Gaya untuk section standar di halaman lain) ... */
+/* KOREKSI GAYA SECTION (Card Putih Pembungkus) */
 section {
     background-color: rgba(255, 255, 255, 0.95);
     padding: 30px;
@@ -402,109 +348,110 @@ footer {
 }
 
 /* =================================================== */
-/* SIDEBAR STYLES (Diulang agar spesifik di halaman lain) */
+/* GALERI FOTO (KOREKSI: Dihilangkan padding/background) */
 /* =================================================== */
-
-.left-sidebar .sidebar-list {
-    background-color: rgba(255, 255, 255, 0.95); 
-    padding: 15px;
-    border-radius: 12px; 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
-    border: 1px solid #ddd;
-}
-.sidebar-list h2 {
-    font-family: 'Georgia', serif; 
-    font-size: 1.8em; 
-    color: #FFD700; 
-    border-bottom: 2px solid #DAA520; 
-    padding-bottom: 8px;
-    margin-top: 0;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); 
-}
-.sidebar-list ul {
-    list-style: none;
+.gallery {
+    /* Hapus background dan padding dari .gallery karena sudah ada di section */
+    background-color: transparent; 
     padding: 0;
+    
+    /* SETTING GRID */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 20px; 
 }
 
-/* Item Daftar Sidebar */
-.sidebar-list ul li {
-    font-family: 'Times New Roman', serif; 
-    font-size: 1.1em;
-    margin-bottom: 15px; 
-    font-weight: bold;
-    color: #6a0d24; 
-    cursor: pointer; 
-    border-radius: 6px;
-    transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease; 
-}
-.sidebar-list ul li a {
-    text-decoration: none; 
-    color: inherit; 
-    display: block; 
-    padding: 8px 10px; 
-}
-.sidebar-list ul li a i {
-    margin-right: 8px;
-    color: #FFD700; 
-}
-.sidebar-list ul li:hover {
-    background-color: #f0f0f0; 
-    transform: translateX(5px) scale(1.02); 
-    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5); 
-}
-.left-sidebar .sidebar-list ul li:hover a { color: #FFD700; }
-.right-sidebar .sidebar-list ul li:hover a { color: #000000; }
-.right-sidebar .sidebar-list ul li:hover a i { color: inherit; }
-
-/* =================================================== */
-/* GAYA BARU: Featured Content (2 Kolom di index.html) */
-/* =================================================== */
-
-.feature-container {
-    display: flex; 
-    gap: 25px;     
-    margin-top: 15px;
-}
-
-.feature-card {
-    flex: 1; 
-    background-color: #fcfcfc;
-    border: 1px solid #eee;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.feature-card h3 {
-    color: #a32f4c; 
-    border-bottom: 1px dashed #ddd; 
-    padding-bottom: 10px;
-    margin-top: 0;
-}
-
-.content-list {
-    list-style: none;
-    padding: 0;
-    margin-top: 15px;
-}
-
-.content-list li {
+.gallery h2 {
+    grid-column: 1 / -1;
     margin-bottom: 10px;
 }
 
-.content-list a {
-    color: #444; 
-    text-decoration: none;
-    transition: color 0.2s;
+.photo-container {
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.content-list a:hover {
+.gallery-photo {
+    width: 100%; 
+    height: 200px; 
+    object-fit: cover; 
+    transition: transform 0.3s ease;
+}
+
+.gallery-photo:hover {
+    transform: scale(1.05); 
+}
+/* =================================================== */
+
+/* =================================================== */
+/* GAYA BARU: Daftar Download (python-files.html & all-code-list.html) */
+/* =================================================== */
+.code-listing {
+    /* Gaya download listing sama dengan gaya section */
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.download-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+/* GAYA HEADER KATEGORI BARU */
+.download-list .category-header {
+    background-color: #f9f9f9; 
+    color: #6a0d24;
+    font-weight: bold;
+    font-size: 0.9em;
+    padding: 10px 10px;
+    margin: 15px 0 5px 0; 
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    letter-spacing: 1px; 
+}
+
+.download-list li {
+    margin-bottom: 0;
+    border-bottom: none; 
+    padding-bottom: 0; 
+    transition: background-color 0.2s;
+}
+
+.download-list a {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    color: #a32f4c; 
+    font-weight: 600;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 0; 
+    transition: background-color 0.2s;
+    
+    border-bottom: 1px solid #f0f0f0; 
+    margin-bottom: 1px;
+}
+
+.download-list a:hover {
+    background-color: #fcebeb; 
     color: #6a0d24; 
 }
 
-.content-list i {
-    margin-right: 8px; 
-    color: #FFD700; 
+.download-list a i {
+    margin-right: 15px;
+    font-size: 1.2em;
+    color: #6a0d24; 
+}
+
+.file-size {
+    font-size: 0.9em;
+    color: #6c757d;
+    font-weight: normal;
+    text-align: right;
 }
 /* =================================================== */
 
@@ -564,7 +511,7 @@ footer {
     .gallery {
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         gap: 10px;
-        padding: 10px;
+        padding: 0;
     }
     .gallery-photo {
         height: 150px;
