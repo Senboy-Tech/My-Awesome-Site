@@ -19,5 +19,5 @@ gallery_items:
     caption: Foto 4: sebat dulu lah
 
   # TAMBAHKAN FOTO BARU DI SINI:
-  - filename: selfie_keren_baru.jpg  # HARUS SAMA PERSIS DENGAN NAMA FILE FOTO YANG KAMU UPLOAD
-    caption: Foto 5: Selfie keren dari aku! # Deskripsi foto barumu
+  - - filename: aaa.png
+    caption: Foto 4: sebat dulu 
