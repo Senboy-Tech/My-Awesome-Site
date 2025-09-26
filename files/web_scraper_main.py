@@ -1,24 +1,29 @@
-# web_scraper_main.py
+# web_scraper_main.py - Python Data Web Scraper
 
 import requests
 from bs4 import BeautifulSoup
 
 def scrape_data(url):
-    """Fungsi sederhana untuk mengambil data dari URL."""
+    """Mengambil dan mengurai data dari URL yang diberikan."""
     try:
-        response = requests.get(url)
-        response.raise_for_status() # Cek error HTTP
+        response = requests.get(url, timeout=10)
+        response.raise_for_status() 
         
         soup = BeautifulSoup(response.text, 'html.parser')
-        # Temukan semua paragraf
-        paragraphs = soup.find_all('p')
-        return [p.get_text() for p in paragraphs]
+        # Contoh: Mengambil semua tautan dari halaman
+        links = [a['href'] for a in soup.find_all('a', href=True)]
+        
+        print(f"Berhasil mengambil {len(links)} tautan dari {url}")
+        return links
         
     except requests.exceptions.RequestException as e:
         print(f"Error saat mengambil data: {e}")
         return []
 
 if __name__ == "__main__":
-    print("Script Web Scraper berhasil dimuat.")
-    # data = scrape_data("https://example.com") 
-    # print(f"Jumlah paragraf yang ditemukan: {len(data)}")
+    target_url = "https://www.example.com" # Ganti dengan URL yang ingin di-scrape
+    data_links = scrape_data(target_url)
+    if data_links:
+        print("Scraper berjalan sukses.")
+    else:
+        print("Scraper gagal dijalankan atau tidak menemukan data.")
