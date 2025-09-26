@@ -1,0 +1,13 @@
+# FILE: _data/photos.yml
+
+gallery_items:
+  # PASTIKAN NAMA FILE DAN HURUF BESAR/KECIL SAMA DENGAN FOTO ASLI
+  - filename: Kana.jpg
+    caption: Foto 1: apa lu liat liat
+  - filename: Kana2.jpg
+    caption: Foto 2: gua tau gua ganteng
+  - filename: Farmasi.jpg
+    caption: Foto 3: Njirrr
+  - filename: Kana4.jpg
+    caption: Foto 4: sebat dulu lah
+  # FOTO BARU HANYA PERLU DITAMBAHKAN DI BAWAH SINI!
