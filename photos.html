@@ -1,20 +1,172 @@
----
-layout: default
-title: My Photos
----
-<main>
-    <div class="gallery">
-        <h2>Foto Terbaru</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Photos - Cyberpunk Pixel Art</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-        {% for photo in site.data.photos.gallery_items %}
-            <div class="photo-container">
-                <a href="{{ photo.filename }}" data-fancybox="gallery" data-caption="{{ photo.caption }}">
-                    <img src="{{ photo.filename }}" alt="{{ photo.caption }}" class="gallery-photo">
-                </a>
-            </div>
-        {% endfor %}
-        <p style="grid-column: 1 / -1; margin-top: 20px; padding: 0 30px 30px;">
-            Galeri ini menggunakan gaya Cyberpunk Pixel Art yang di-generate oleh Jekyll.
-        </p>
-    </div>
-</main>
+    <style>
+        /* Definisi Variabel Warna dan Ukuran */
+        :root {
+            --pixel-font: 'Press Start 2P', cursive;
+            --bg-dark: #1e1e2c; 
+            --primary-accent: #ff005c; /* Aksen Merah/Magenta */
+            --secondary-accent: #00ffff; /* Aksen Cyan/Neon */
+            --text-light: #f0f0f0;
+            --shadow-color: #0d0d14;
+            --border-width: 3px;
+            --shadow-offset: 6px; 
+        }
+
+        /* BASE & LAYOUT */
+        body {
+            font-family: var(--pixel-font);
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: grid;
+            grid-template-areas: 
+                "header header header"
+                "left main right"
+                "footer footer footer";
+            grid-template-columns: 30px 1fr 30px; 
+            grid-template-rows: auto 1fr auto;
+            gap: 0;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        /* HEADER & NAV STYLES (Dipersingkat) */
+        header {
+            grid-area: header;
+            padding: 0 0 20px 0;
+            text-align: center;
+            background-color: #242436;
+        }
+        .header-content h1 {
+            font-size: 2em;
+            color: var(--primary-accent);
+            text-shadow: 4px 4px 0px var(--shadow-color);
+        }
+        .banner-container {
+            width: 100%;
+            height: 150px;
+            background-image: url('cyberpunk_banner.png'); /* Pastikan kamu punya file ini */
+            background-size: cover;
+            border-top: var(--border-width) solid var(--primary-accent);
+            border-bottom: var(--border-width) solid var(--primary-accent);
+        }
+        nav { display: flex; justify-content: center; padding: 10px 0; background-color: #1a1a27; }
+        .nav-link { 
+            text-decoration: none; color: var(--text-light); font-size: 0.8em; padding: 8px 15px; margin: 5px; 
+            border: 2px solid var(--secondary-accent); background-color: #2e2e46; 
+            box-shadow: 3px 3px 0px 0px var(--shadow-color); transition: all 0.1s; display: inline-block;
+        }
+        .nav-link:hover { color: var(--primary-accent); border-color: var(--primary-accent); transform: translate(-2px, -2px); }
+
+        /* SIDEBARS & MAIN */
+        .left-sidebar, .right-sidebar { grid-area: left/right; background-color: #242436; border-color: var(--secondary-accent); }
+        main { grid-area: main; padding: 20px; background-color: #242436; }
+        main h2 { font-size: 1.2em; color: var(--primary-accent); text-align: center; margin-bottom: 30px; border-bottom: 2px dashed var(--primary-accent); }
+
+        /* GALLERY & PHOTO CONTAINER */
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .photo-container {
+            border: var(--border-width) solid var(--secondary-accent);
+            box-shadow: var(--shadow-offset) var(--shadow-offset) 0px 0px var(--shadow-color);
+            background-color: #344755; padding: 8px; transition: transform 0.1s ease-out; text-align: center;
+        }
+        .photo-container:hover { transform: translate(-3px, -3px); }
+        .gallery-photo {
+            width: 100%; height: auto; display: block; margin: 0;
+            image-rendering: pixelated; image-rendering: crisp-edges;
+            border: 1px solid var(--text-light);
+        }
+        
+        /* FOOTER */
+        footer { grid-area: footer; text-align: center; padding: 15px; font-size: 0.7em; background-color: #1a1a27; border-top: var(--border-width) solid var(--primary-accent); color: var(--secondary-accent); }
+
+        /* RESPONSIF */
+        @media (max-width: 768px) { body { grid-template-areas: "header header header" "main main main" "footer footer footer"; grid-template-columns: 1fr; } .left-sidebar, .right-sidebar { display: none; } }
+    </style>
+    
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+            <a href="projects.html" class="nav-link"><i class="fas fa-code"></i> Projects</a>
+            <a href="about.html" class="nav-link"><i class="fas fa-book"></i> About</a>
+        </nav>
+        <div class="header-content">
+            <h1>My Photo Gallery</h1>
+            <p style="font-size: 0.7em; margin: 5px 0 0;">A collection of my favorite photos and artworks.</p>
+        </div>
+        <div class="banner-container"></div>
+    </header>
+
+    <div class="left-sidebar"></div>
+    <div class="right-sidebar"></div>
+
+    <main>
+        <div class="gallery">
+            <h2>Foto Terbaru</h2>
+            
+            <div id="photo-gallery-container">
+                </div>
+            <p style="grid-column: 1 / -1; font-size: 0.7em; margin-top: 20px; padding: 0 10px;">
+                Galeri ini menggunakan gaya Cyberpunk Pixel Art dengan JavaScript.
+            </p>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 My Code & Data Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // --- 1. DATA FOTO BARU ---
+        const photoData = [
+            { filename: 'Kana.jpg', caption: 'Foto 1: apa lu liat liat' },
+            { filename: 'Kana2.jpg', caption: 'Foto 2: gua tau gua ganteng' },
+            { filename: 'Farmasi.jpg', caption: 'Foto 3: Njirrr' },
+            { filename: 'Kana4.jpg', caption: 'Foto 4: sebat dulu lah' },
+            { filename: 'aaa.jpg', caption: 'Foto 5: peliharaan' } 
+            // TAMBAHKAN FOTO BARU DI SINI DALAM FORMAT INI!
+            // Contoh: { filename: 'selfie_pantai.jpg', caption: 'Liburan di Pantai Bali' },
+        ];
+
+        // --- 2. FUNGSI UNTUK MEMBUAT GALERI ---
+        const galleryContainer = document.getElementById('photo-gallery-container');
+        
+        // Buat Div Galeri Baru
+        const galleryGrid = document.createElement('div');
+        galleryGrid.className = 'gallery';
+        
+        photoData.forEach(photo => {
+            const html = `
+                <div class="photo-container">
+                    <a href="${photo.filename}" data-fancybox="gallery" data-caption="${photo.caption}">
+                        <img src="${photo.filename}" alt="${photo.caption}" class="gallery-photo">
+                    </a>
+                </div>
+            `;
+            galleryGrid.innerHTML += html;
+        });
+
+        galleryContainer.appendChild(galleryGrid);
+
+        // --- 3. INISIALISASI FANCYBOX ---
+        Fancybox.bind("[data-fancybox]", {});
+    </script>
+    
+</body>
+</html>
