@@ -1,6 +1,0 @@
-# FILE: _redirects (di root repo)
-
-/admin/* /admin/index.html 200
-
-# Tambahkan baris ini agar link reset password mengarah ke admin page
-/ /admin/index.html 200! Language=en
