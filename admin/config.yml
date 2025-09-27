@@ -1,21 +1,15 @@
-# FILE: admin/config.yml
 backend:
   name: github
-  repo: Senboy-Tech/My-Awesome-Site # ganti dengan repo GitHub kamu
+  repo: Senboy-Tech/My-Awesome-Site
   branch: main
 
-media_folder: "static/images/uploads"   # folder tempat gambar disimpan di repo
-public_folder: "/images/uploads"        # path gambar diakses di website
-
-media_library:
-  name: uploadcare
-  config:
-    publicKey: demopublickey  # bisa dikosongin kalau ga pakai Uploadcare
+media_folder: "images"       # folder di repo tempat file disimpan
+public_folder: "/images"     # path public di website
 
 collections:
   - name: "gallery"
     label: "Galeri Foto Pixel Art"
-    folder: "content/gallery"
+    folder: "_data"
     create: true
     slug: "{{slug}}"
     fields:
