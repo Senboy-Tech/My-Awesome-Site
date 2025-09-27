@@ -42,21 +42,11 @@
             font-size: 14px;
         }
 
-        /* HEADER & NAV STYLES (Dipersingkat) */
-        header {
-            grid-area: header;
-            padding: 0 0 20px 0;
-            text-align: center;
-            background-color: #242436;
-        }
-        .header-content h1 {
-            font-size: 2em;
-            color: var(--primary-accent);
-            text-shadow: 4px 4px 0px var(--shadow-color);
-        }
+        /* HEADER & NAV STYLES */
+        header { grid-area: header; padding: 0 0 20px 0; text-align: center; background-color: #242436; }
+        .header-content h1 { font-size: 2em; color: var(--primary-accent); text-shadow: 4px 4px 0px var(--shadow-color); }
         .banner-container {
-            width: 100%;
-            height: 150px;
+            width: 100%; height: 150px;
             background-image: url('cyberpunk_banner.png'); /* Pastikan kamu punya file ini */
             background-size: cover;
             border-top: var(--border-width) solid var(--primary-accent);
@@ -75,8 +65,15 @@
         main { grid-area: main; padding: 20px; background-color: #242436; }
         main h2 { font-size: 1.2em; color: var(--primary-accent); text-align: center; margin-bottom: 30px; border-bottom: 2px dashed var(--primary-accent); }
 
-        /* GALLERY & PHOTO CONTAINER */
-        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        /* GALLERY GRID BARU - TARGET ID */
+        #photo-gallery-container { 
+            display: grid; /* INI KUNCI UNTUK MENGAKTIFKAN GRID */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 0 0 30px 0;
+        }
+        
+        /* PHOTO CONTAINER */
         .photo-container {
             border: var(--border-width) solid var(--secondary-accent);
             box-shadow: var(--shadow-offset) var(--shadow-offset) 0px 0px var(--shadow-color);
@@ -91,9 +88,6 @@
         
         /* FOOTER */
         footer { grid-area: footer; text-align: center; padding: 15px; font-size: 0.7em; background-color: #1a1a27; border-top: var(--border-width) solid var(--primary-accent); color: var(--secondary-accent); }
-
-        /* RESPONSIF */
-        @media (max-width: 768px) { body { grid-template-areas: "header header header" "main main main" "footer footer footer"; grid-template-columns: 1fr; } .left-sidebar, .right-sidebar { display: none; } }
     </style>
     
 </head>
@@ -116,12 +110,13 @@
     <div class="right-sidebar"></div>
 
     <main>
-        <div class="gallery">
+        <div>
             <h2>Foto Terbaru</h2>
             
             <div id="photo-gallery-container">
                 </div>
-            <p style="grid-column: 1 / -1; font-size: 0.7em; margin-top: 20px; padding: 0 10px;">
+            
+            <p style="font-size: 0.7em; margin-top: 20px; padding: 0 10px;">
                 Galeri ini menggunakan gaya Cyberpunk Pixel Art dengan JavaScript.
             </p>
 
@@ -140,29 +135,25 @@
             { filename: 'Farmasi.jpg', caption: 'Foto 3: Njirrr' },
             { filename: 'Kana4.jpg', caption: 'Foto 4: sebat dulu lah' },
             { filename: 'aaa.jpg', caption: 'Foto 5: peliharaan' } 
-            // TAMBAHKAN FOTO BARU DI SINI DALAM FORMAT INI!
-            // Contoh: { filename: 'selfie_pantai.jpg', caption: 'Liburan di Pantai Bali' },
+            // Tambahkan data foto baru di sini!
         ];
 
         // --- 2. FUNGSI UNTUK MEMBUAT GALERI ---
         const galleryContainer = document.getElementById('photo-gallery-container');
-        
-        // Buat Div Galeri Baru
-        const galleryGrid = document.createElement('div');
-        galleryGrid.className = 'gallery';
-        
+        let htmlContent = ''; // Gunakan string untuk menampung HTML
+
         photoData.forEach(photo => {
-            const html = `
+            htmlContent += `
                 <div class="photo-container">
                     <a href="${photo.filename}" data-fancybox="gallery" data-caption="${photo.caption}">
                         <img src="${photo.filename}" alt="${photo.caption}" class="gallery-photo">
                     </a>
                 </div>
             `;
-            galleryGrid.innerHTML += html;
         });
-
-        galleryContainer.appendChild(galleryGrid);
+        
+        // Langsung masukkan konten HTML ke container yang sudah memiliki CSS Grid
+        galleryContainer.innerHTML = htmlContent; 
 
         // --- 3. INISIALISASI FANCYBOX ---
         Fancybox.bind("[data-fancybox]", {});
