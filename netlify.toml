@@ -1,11 +1,10 @@
 # FILE: netlify.toml (DI ROOT REPO)
 
 [build]
-  # Folder publish harus titik ('.') jika file Anda di root repo
-  publish = "." 
+  publish = "."
   command = ""
 
-# Redirect untuk memastikan admin/index.html selalu ter-serve (menggantikan _redirects)
+# Redirect untuk memastikan admin/index.html selalu ter-serve
 [[redirects]]
   from = "/admin/*"
   to = "/admin/index.html"
@@ -15,4 +14,6 @@
 # Pengaturan Lingkungan untuk Identitas (Fix Reset Password)
 [build.environment]
   # Ini mengatasi masalah tautan reset password
-  GOTRUE_URL = "https://kanaawesome.netlify.app/.netlify/identity"
+  GOTRUE_URL = "https://kanaawesome.netlify.app/.netlify/identity" 
+  # Tambahkan ini: Arahkan ke halaman admin setelah email diklik
+  URL = "https://kanaawesome.netlify.app/admin/"
