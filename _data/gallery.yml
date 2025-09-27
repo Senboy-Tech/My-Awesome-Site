@@ -1,0 +1,5 @@
+# FILE: _data/gallery.yml
+gallery_title: Koleksi Foto Baru
+photos:
+  - image: Kana.jpg
+    caption: Foto lama - akan diganti oleh CMS
