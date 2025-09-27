@@ -1,8 +1,7 @@
 # FILE: admin/config.yml
 
 backend:
-  name: github
-  repo: Senboy-Tech/My-Awesome-Site
+  name: git-gateway   # HARUS MENGGUNAKAN INI UNTUK NETLIFY DEPLOY
   branch: main
 
 media_folder: "images"
