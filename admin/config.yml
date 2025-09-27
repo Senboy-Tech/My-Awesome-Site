@@ -1,25 +1,30 @@
-# FILE: admin/config.yml
+# FILE: admin/config.yml (Sintaks YAML Paling Dasar)
 
 backend:
-  name: git-gateway   # Menggunakan Netlify Git Gateway untuk Auth
-  branch: main        # Ganti jika branch utama Anda bukan 'main'
+  name: github
+  repo: Senboy-Tech/My-Awesome-Site
+  branch: main
 
-# Pengaturan Media
-media_folder: "images"          # Folder di repo GitHub tempat file gambar diupload (Wajib ada!)
-public_folder: "/images"        # Path publik untuk mengakses gambar di website
+media_folder: "images"
+public_folder: "/images"
 
-# Definisi Koleksi (Menu CMS)
 collections:
   - name: "gallery"
     label: "Galeri Foto Pixel Art"
-    folder: "_data" # Folder di repo tempat file data koleksi disimpan
+    folder: "_data"
     create: true
     slug: "{{slug}}"
     fields:
-      - { label: "Nama Galeri (Internal)", name: "gallery_title", widget: "string" }
+      - label: "Nama Galeri (Internal)"
+        name: "gallery_title"
+        widget: "string"
       - label: "Foto-foto"
         name: "photos"
         widget: "list"
         fields:
-          - { label: "Foto (Upload)", name: "image", widget: "image" }
-          - { label: "Caption Foto", name: "caption", widget: "string" }
+          - label: "Foto (Upload)"
+            name: "image"
+            widget: "image"
+          - label: "Caption Foto"
+            name: "caption"
+            widget: "string"
