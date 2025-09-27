@@ -1,0 +1,31 @@
+# FILE: admin/config.yml
+backend:
+  name: github
+  repo: Senboy-Tech/My-Awesome-Site # Ganti dengan repo GitHub-mu
+  branch: main # Atau nama branch utamamu
+
+media_folder: "images" # Tempat foto akan diupload di GitHub
+public_folder: "/images" # Path foto di website
+
+collections:
+  - name: "gallery"
+    label: "Galeri Foto Pixel Art"
+    folder: "_data"
+    create: true
+    slug: "gallery"
+    fields:
+      - label: "Nama Galeri (Internal)"
+        name: "gallery_title"
+        widget: "string"
+      - label: "Foto-foto"
+        name: "photos"
+        widget: "list"
+        fields:
+          - label: "Foto (Upload)"
+            name: "image"
+            widget: "image"
+            allow_null: false # Wajib upload gambar
+            media_folder: "images" # Upload ke folder 'images'
+          - label: "Caption Foto"
+            name: "caption"
+            widget: "string"
