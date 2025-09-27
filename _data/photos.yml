@@ -1,12 +1,14 @@
 # FILE: _data/photos.yml
+# Baris 1
 
-gallery_items:
-  - filename: Kana.jpg
-    caption: Foto 1: apa lu liat liat
-  - filename: Kana2.jpg
-    caption: Foto 2: gua tau gua ganteng
-  - filename: Farmasi.jpg
-    caption: Foto 3: Njirrr
-  # BARIS 6 PASTI ADA DI SEKITAR BARIS BERIKUT (KANA4.JPG)
-  - filename: Kana4.jpg
-    caption: Foto 4: sebat dulu lah
+gallery_items: # Baris 3
+  - filename: Kana.jpg # Baris 4
+    caption: Foto 1: apa lu liat liat # Baris 5
+  - filename: Kana2.jpg # Baris 6
+    caption: Foto 2: gua tau gua ganteng # Baris 7
+  - filename: Farmasi.jpg # Baris 8
+    caption: Foto 3: Njirrr # Baris 9
+  - filename: Kana4.jpg # Baris 10
+    caption: Foto 4: sebat dulu lah # Baris 11
+  - filename: aaa.jpg # Baris 12 (Foto Baru)
+    caption: Foto 5: peliharaan # Baris 13 (Caption Baru)
