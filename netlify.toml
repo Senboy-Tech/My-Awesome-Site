@@ -1,3 +1,5 @@
+# FILE: netlify.toml (DI ROOT REPO)
+
 [build]
   publish = "."
   command = ""
@@ -7,3 +9,11 @@
   to = "/admin/index.html"
   status = 200
   force = true
+
+# BAGIAN INI UNTUK MEMPERBAIKI MASALAH RESET PASSWORD
+[build.environment]
+  # Mengatur base URL untuk Identity (Reset Password/Login)
+  GOTRUE_URL = "https://kanaawesome.netlify.app/.netlify/identity"
+  
+# Optional: Jika kamu menggunakan custom domain, gunakan itu di sini
+# URL = "https://your-custom-domain.com"
