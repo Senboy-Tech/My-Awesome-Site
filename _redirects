@@ -1,0 +1,3 @@
+# FILE: _redirects (DI ROOT REPO)
+
+/admin/* /admin/index.html 200
