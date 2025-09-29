@@ -15,63 +15,97 @@
             --bg-dark: #1e1e2c; 
             --accent-cyan: #00ffff; /* Warna utama, Cyan Neon */
             --grid-line: #003333; /* Warna garis grid/latar */
-            --box-bg: #111e25; /* Latar belakang kotak file */
             --text-neon: var(--accent-cyan);
             --border-width: 2px;
+            --header-yellow: #CCCC00; /* Warna kuning banner */
         }
 
-        /* OVERWRITE FONT & BACKGROUND */
+        /* OVERWRITE BODY/MAIN (Hapus background grid dari body) */
         body { 
             font-family: var(--pixel-font);
             background-color: var(--bg-dark); 
             color: var(--text-neon);
-            /* Latar belakang grid (opsional, bisa diganti dengan gambar) */
-            background-image: linear-gradient(0deg, var(--grid-line) 1px, transparent 1px),
-                              linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-            background-size: 50px 50px;
-        }
-
-        header, footer, .left-sidebar, .right-sidebar, nav {
-            /* Pastikan elemen lain menyesuaikan tema gelap */
-            background-color: transparent !important;
-            color: var(--text-neon);
+            background-image: none; /* Hapus grid dari body */
         }
         
         main { background-color: transparent; }
-        
-        /* HEADER & BANNER TEXT */
+
+        /* PERBAIKAN HEADER */
+        header {
+            background-color: var(--header-yellow); 
+            height: auto; 
+            padding-bottom: 0;
+            border-bottom: var(--border-width) solid var(--accent-cyan);
+            box-shadow: 0 0 10px var(--accent-cyan);
+            position: relative; /* Penting untuk mengontrol tata letak di sini */
+        }
+
+        /* Teks Blueprint di Header */
+        .header-content {
+            padding: 20px;
+            text-align: center;
+            /* Tambahkan background agar teks blueprint terbaca di atas gambar banner */
+            background-color: rgba(0, 0, 0, 0.4); 
+        }
+
         .header-content h1 {
             font-size: 1.5em;
             text-shadow: 0 0 10px var(--accent-cyan);
             color: var(--text-neon);
-            margin-bottom: 0.5em;
             border-bottom: var(--border-width) solid var(--accent-cyan);
             padding-bottom: 5px;
+            display: inline-block;
         }
-        .header-content p {
-            font-size: 0.7em;
-            color: var(--text-neon);
-            text-shadow: 0 0 5px var(--accent-cyan);
+
+        /* PERBAIKAN SIDEBAR: Membuatnya transparan agar gambar ksatria terlihat */
+        /* Asumsi di styles.css: .left-sidebar dan .right-sidebar memiliki gambar ksatria */
+        .left-sidebar, .right-sidebar {
+            background-color: transparent !important; /* Timpa latar belakang solid */
+            padding: 0 !important; /* Hapus padding yang mendorong gambar */
+            border: none !important; /* Hapus border */
+        }
+
+        /* PERBAIKAN TATA LETAK GRID UTAMA */
+        /* Menggunakan tata letak grid 3 kolom: Sidebar Ksatria | Konten Blueprint | Sidebar Ksatria */
+        body {
+            display: grid;
+            grid-template-areas:  "header header header"
+                                  "left main right"
+                                  "footer footer footer";
+            grid-template-columns: 200px 1fr 200px; /* Lebar ksatria kiri/kanan sekitar 200px */
+            grid-template-rows: auto 1fr auto;
+            gap: 0;
         }
         
-        /* GRID UTAMA KONTEN */
+        /* KONTEN UTAMA (Tempat blueprint berada) */
+        main { 
+            background-color: transparent; 
+            padding: 20px 0; /* Padding vertikal saja */
+        }
+
+        /* GRID Blueprint (File Browser) */
         .file-browser-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr; /* Dua kolom utama */
-            gap: 20px;
-            padding: 40px 0;
-            border-top: var(--border-width) solid var(--accent-cyan);
-            border-bottom: var(--border-width) solid var(--accent-cyan);
-            box-shadow: 0 0 10px var(--accent-cyan), inset 0 0 10px var(--accent-cyan);
-            background-color: #11222e; /* Latar belakang untuk memisahkan dari grid body */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 30px;
+            margin: 0 auto; /* Tengah di dalam main */
+            max-width: 900px; 
+            border: var(--border-width) solid var(--accent-cyan);
+            box-shadow: 0 0 15px var(--accent-cyan), inset 0 0 8px var(--accent-cyan);
+            background-color: #11222e; /* Latar belakang blueprint */
+            /* Tambahkan background grid hanya di sini */
+            background-image: linear-gradient(0deg, var(--grid-line) 1px, transparent 1px),
+                              linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 50px 50px;
         }
         
-        /* KOTAK DIREKTORI */
+        /* Tambahan styling untuk DIRECTORY BOX (dipertahankan) */
         .directory-box {
             padding: 15px;
-            margin-bottom: 20px;
-            border: 1px solid var(--accent-cyan);
+            border: 1px dashed var(--accent-cyan);
             box-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+            background-color: #0b1a20;
         }
 
         .directory-box h3 {
@@ -79,55 +113,46 @@
             color: var(--accent-cyan);
             margin-top: 0;
             padding-bottom: 5px;
-            border-bottom: 1px dashed var(--accent-cyan);
+            border-bottom: 1px solid #005555;
             text-transform: uppercase;
-        }
-
-        /* DAFTAR FILE */
-        .file-list {
-            list-style: none;
-            padding: 0;
-            font-size: 0.7em;
-        }
-
-        .file-list li {
-            padding: 5px 0;
-        }
-        
-        .file-list a {
-            color: var(--text-neon);
-            text-decoration: none;
-            transition: color 0.2s, text-shadow 0.2s;
-        }
-
-        .file-list a:hover {
-            color: #fff;
-            text-shadow: 0 0 8px #fff;
-        }
-
-        .file-list .fas {
-            margin-right: 8px;
-            color: var(--accent-cyan);
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
         }
 
         /* LOG BOX BAWAH */
         .log-box {
-            grid-column: 2 / 3; /* Hanya di kolom kanan */
+            grid-column: span 2; 
             padding: 10px;
-            border: 1px solid var(--accent-cyan);
+            border: 1px dashed var(--accent-cyan);
             background-color: #0d1a21;
             font-size: 0.6em;
-            align-self: end; /* Tetap di bawah grid */
+            margin-top: 10px;
+            text-align: center;
         }
 
-        /* RESPONSIF */
-        @media (max-width: 800px) {
-            .file-browser-grid {
-                grid-template-columns: 1fr; /* Satu kolom di layar kecil */
+        /* Tautan di list */
+        .file-list { list-style: none; padding: 0; font-size: 0.7em; }
+        .file-list a { color: var(--text-neon); text-decoration: none; transition: color 0.2s, text-shadow 0.2s; }
+        .file-list a:hover { color: #fff; text-shadow: 0 0 8px #fff; }
+        .file-list .fas { margin-right: 8px; color: var(--accent-cyan); }
+        .file-list li { padding: 5px 0; }
+
+        /* Responsif untuk layar kecil */
+        @media (max-width: 900px) {
+            body {
+                grid-template-columns: 1fr 1fr 1fr; /* Ksatria tetap ada, tapi main lebih besar */
+                grid-template-columns: 100px 1fr 100px; /* Ksatria menyempit */
             }
-            .log-box {
-                grid-column: 1 / 2; /* Log box kembali ke satu kolom */
-                margin-top: 20px;
+        }
+        @media (max-width: 600px) {
+            body {
+                grid-template-columns: 0 1fr 0; /* Sembunyikan Ksatria di mobile */
+            }
+            .left-sidebar, .right-sidebar {
+                display: none;
+            }
+            .file-browser-grid {
+                grid-template-columns: 1fr;
+                padding: 15px;
             }
         }
     </style>
@@ -146,7 +171,6 @@
             <h1>PROJECT SCHEMATICS / FILE BROWSER</h1>
             <p>ACCESSING DIGITAL ARCHIVES // USER: KANA // LOCATION: SECTOR-01</p>
         </div>
-        <div class="banner-container"></div>
     </header>
 
     <div class="left-sidebar"></div>
@@ -157,44 +181,36 @@
         <section class="code-list-section">
             <div class="file-browser-grid">
                 
-                <div class="left-column">
-                    
-                    <div class="directory-box">
-                        <h3>&lt; DIRECTRY: PYTHON_SCRPT &gt;</h3>
-                        <ul class="file-list">
-                            <li><i class="fas fa-file-code"></i> <a href="./files/data_processor.py" download>data_processor.py</a></li>
-                            <li><i class="fas fa-file-code"></i> <a href="./files/api_interface.py" download>api_interface.py</a></li>
-                            <li><i class="fas fa-file-code"></i> <a href="./files/script_runner.py" download>script_runner.py</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="directory-box">
-                        <h3>&lt; DIRECTORY: JS_MODULES &gt;</h3>
-                        <ul class="file-list">
-                            <li><i class="fas fa-file-code"></i> <a href="./files/chart_module.js" download>chart_module.js</a></li>
-                            <li><i class="fas fa-file-code"></i> <a href="./files/animation_core.js" download>animation_core.js</a></li>
-                            <li><i class="fas fa-file-code"></i> <a href="./files/utility_funcs.js" download>utility_funcs.js</a></li>
-                        </ul>
-                    </div>
-
+                <div class="directory-box">
+                    <h3>&lt; DIRECTRY: PYTHON_SCRPT &gt;</h3>
+                    <ul class="file-list">
+                        <li><i class="fas fa-file-code"></i> <a href="./files/data_processor.py" download>data_processor.py</a></li>
+                        <li><i class="fas fa-file-code"></i> <a href="./files/api_interface.py" download>api_interface.py</a></li>
+                        <li><i class="fas fa-file-code"></i> <a href="./files/script_runner.py" download>script_runner.py</a></li>
+                    </ul>
+                </div>
+                
+                <div class="directory-box">
+                    <h3>&lt; DIRECTORY: JS_MODULES &gt;</h3>
+                    <ul class="file-list">
+                        <li><i class="fas fa-file-code"></i> <a href="./files/chart_module.js" download>chart_module.js</a></li>
+                        <li><i class="fas fa-file-code"></i> <a href="./files/animation_core.js" download>animation_core.js</a></li>
+                        <li><i class="fas fa-file-code"></i> <a href="./files/utility_funcs.js" download>utility_funcs.js</a></li>
+                    </ul>
                 </div>
 
-                <div class="right-column">
-                    
-                    <div class="directory-box">
-                        <h3>&lt; CONFIG: SYSTEM_UTILITIES &gt;</h3>
-                        <ul class="file-list">
-                            <li><i class="fas fa-cogs"></i> <a href="./files/config.yml" download>config.yml</a></li>
-                            <li><i class="fas fa-file-alt"></i> <a href="./files/keybinds.json" download>keybinds.json</a></li>
-                            <li><i class="fas fa-terminal"></i> <a href="./files/setup_alias.sh" download>setup_alias.sh</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="log-box">
-                        LOG &gt; FILES_LOADED_SUCCESSFULLY<br>
-                        LOG &gt; RENDER_COMPLETE
-                    </div>
-
+                <div class="directory-box">
+                    <h3>&lt; CONFIG: SYSTEM_UTILITIES &gt;</h3>
+                    <ul class="file-list">
+                        <li><i class="fas fa-cogs"></i> <a href="./files/config.yml" download>config.yml</a></li>
+                        <li><i class="fas fa-file-alt"></i> <a href="./files/keybinds.json" download>keybinds.json</a></li>
+                        <li><i class="fas fa-terminal"></i> <a href="./files/setup_alias.sh" download>setup_alias.sh</a></li>
+                    </ul>
+                </div>
+                
+                <div class="log-box">
+                    LOG &gt; FILES_LOADED_SUCCESSFULLY<br>
+                    LOG &gt; RENDER_COMPLETE
                 </div>
 
             </div>
