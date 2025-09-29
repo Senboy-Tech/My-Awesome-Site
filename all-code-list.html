@@ -20,31 +20,56 @@
             --header-yellow: #CCCC00; /* Warna kuning banner */
         }
 
-        /* OVERWRITE BODY/MAIN (Hapus background grid dari body) */
-        body { 
-            font-family: var(--pixel-font);
+        /* PERBAIKAN TATA LETAK UTAMA: Memastikan ksatria dan konten di tempatnya */
+        body {
+            display: grid;
+            grid-template-areas:  "header header header"
+                                  "left main right"
+                                  "footer footer footer";
+            /* Atur lebar sidebar kiri/kanan. Ubah 200px jika gambar ksatria Anda lebih kecil/besar */
+            grid-template-columns: 200px 1fr 200px; 
+            grid-template-rows: auto 1fr auto;
+            gap: 0;
             background-color: var(--bg-dark); 
             color: var(--text-neon);
-            background-image: none; /* Hapus grid dari body */
+            background-image: none;
+            /* Pola Latar Belakang Global di area kiri/kanan */
+            position: relative;
         }
-        
-        main { background-color: transparent; }
 
-        /* PERBAIKAN HEADER */
+        /* Pola Latar Belakang Data Glitch */
+        body::before {
+            content: "";
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; 
+            background-image: repeating-linear-gradient(
+                135deg, 
+                rgba(0, 255, 255, 0.03) 0px, 
+                rgba(0, 255, 255, 0.03) 2px, 
+                transparent 2px, 
+                transparent 10px
+            );
+            background-size: 50px 50px;
+        }
+
+        /* PERBAIKAN HEADER (Mempertahankan Banner) */
         header {
             background-color: var(--header-yellow); 
             height: auto; 
             padding-bottom: 0;
             border-bottom: var(--border-width) solid var(--accent-cyan);
             box-shadow: 0 0 10px var(--accent-cyan);
-            position: relative; /* Penting untuk mengontrol tata letak di sini */
+            position: relative;
         }
 
-        /* Teks Blueprint di Header */
+        /* Teks Blueprint di Header agar terbaca di atas Banner */
         .header-content {
             padding: 20px;
             text-align: center;
-            /* Tambahkan background agar teks blueprint terbaca di atas gambar banner */
             background-color: rgba(0, 0, 0, 0.4); 
         }
 
@@ -56,51 +81,46 @@
             padding-bottom: 5px;
             display: inline-block;
         }
-
-        /* PERBAIKAN SIDEBAR: Membuatnya transparan agar gambar ksatria terlihat */
-        /* Asumsi di styles.css: .left-sidebar dan .right-sidebar memiliki gambar ksatria */
-        .left-sidebar, .right-sidebar {
-            background-color: transparent !important; /* Timpa latar belakang solid */
-            padding: 0 !important; /* Hapus padding yang mendorong gambar */
-            border: none !important; /* Hapus border */
+        .header-content p {
+             font-size: 0.7em;
+            color: var(--text-neon);
+            text-shadow: 0 0 5px var(--accent-cyan);
+            margin-top: 10px;
         }
 
-        /* PERBAIKAN TATA LETAK GRID UTAMA */
-        /* Menggunakan tata letak grid 3 kolom: Sidebar Ksatria | Konten Blueprint | Sidebar Ksatria */
-        body {
-            display: grid;
-            grid-template-areas:  "header header header"
-                                  "left main right"
-                                  "footer footer footer";
-            grid-template-columns: 200px 1fr 200px; /* Lebar ksatria kiri/kanan sekitar 200px */
-            grid-template-rows: auto 1fr auto;
-            gap: 0;
+        /* PERBAIKAN SIDEBAR: Transparan agar pola terlihat */
+        .left-sidebar, .right-sidebar {
+            background-color: transparent !important; 
+            padding: 0 !important; 
+            border: none !important; 
+            z-index: 5; /* Agar ksatria di atas pola */
         }
         
-        /* KONTEN UTAMA (Tempat blueprint berada) */
+        /* KONTEN UTAMA (Blueprint) */
         main { 
             background-color: transparent; 
-            padding: 20px 0; /* Padding vertikal saja */
+            padding: 20px 0; 
+            box-shadow: 0 0 80px rgba(0, 255, 255, 0.2); /* Efek Halo Neon */
         }
 
         /* GRID Blueprint (File Browser) */
         .file-browser-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+            gap: 25px; 
             padding: 30px;
-            margin: 0 auto; /* Tengah di dalam main */
+            margin: 0 auto; 
             max-width: 900px; 
             border: var(--border-width) solid var(--accent-cyan);
-            box-shadow: 0 0 15px var(--accent-cyan), inset 0 0 8px var(--accent-cyan);
-            background-color: #11222e; /* Latar belakang blueprint */
-            /* Tambahkan background grid hanya di sini */
+            box-shadow: 0 0 25px var(--accent-cyan), inset 0 0 15px var(--accent-cyan); /* Efek Neon Kuat */
+            background-color: #11222e; 
+            /* Grid Blueprint di dalam kotak konten */
             background-image: linear-gradient(0deg, var(--grid-line) 1px, transparent 1px),
                               linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
             background-size: 50px 50px;
         }
         
-        /* Tambahan styling untuk DIRECTORY BOX (dipertahankan) */
+        /* STYLING KOTAK FILE */
         .directory-box {
             padding: 15px;
             border: 1px dashed var(--accent-cyan);
@@ -118,7 +138,6 @@
             text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
         }
 
-        /* LOG BOX BAWAH */
         .log-box {
             grid-column: span 2; 
             padding: 10px;
@@ -129,30 +148,27 @@
             text-align: center;
         }
 
-        /* Tautan di list */
         .file-list { list-style: none; padding: 0; font-size: 0.7em; }
         .file-list a { color: var(--text-neon); text-decoration: none; transition: color 0.2s, text-shadow 0.2s; }
         .file-list a:hover { color: #fff; text-shadow: 0 0 8px #fff; }
         .file-list .fas { margin-right: 8px; color: var(--accent-cyan); }
         .file-list li { padding: 5px 0; }
 
-        /* Responsif untuk layar kecil */
+        /* Responsif */
         @media (max-width: 900px) {
             body {
-                grid-template-columns: 1fr 1fr 1fr; /* Ksatria tetap ada, tapi main lebih besar */
-                grid-template-columns: 100px 1fr 100px; /* Ksatria menyempit */
+                grid-template-columns: 100px 1fr 100px; 
             }
         }
         @media (max-width: 600px) {
             body {
-                grid-template-columns: 0 1fr 0; /* Sembunyikan Ksatria di mobile */
+                grid-template-columns: 0 1fr 0; 
             }
             .left-sidebar, .right-sidebar {
                 display: none;
             }
             .file-browser-grid {
                 grid-template-columns: 1fr;
-                padding: 15px;
             }
         }
     </style>
