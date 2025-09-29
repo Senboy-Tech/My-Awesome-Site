@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Video Archives - Modern Showcase</title>
+    <title>Video Archives - Modern Showcase</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -12,213 +12,117 @@
         /* Variabel Warna Kunci (KONSISTENSI & MODERN) */
         :root {
             --pixel-font: 'Press Start 2P', cursive;
-            --modern-font: 'Roboto Mono', monospace; /* Font modern untuk teks biasa */
+            --modern-font: 'Roboto Mono', monospace; 
 
-            --bg-dark: #0a0a0a;             /* Hitam paling pekat */
-            --bg-medium: #1a1a1a;           /* Abu-abu gelap untuk card/kontainer */
+            --bg-dark: #0f0f0f;             
+            --bg-medium: #1a1a1a;           
             --accent-main: #66ccff;         /* Biru Lembut/Modern */
-            --accent-glow: rgba(102, 204, 255, 0.3); /* Efek Cahaya */
-            --accent-border: #2c2c2c;       /* Garis abu-abu gelap */
-            --text-primary: #ffffff;        /* Teks Putih */
-            --text-secondary: #cccccc;      /* Teks Abu-abu terang */
-            --header-title: #ffffff;        /* Judul header putih */
-            --shadow-subtle: rgba(0, 0, 0, 0.6); /* Bayangan lebih lembut */
+            --accent-glow: rgba(102, 204, 255, 0.3); 
+            --accent-border: #444444;       
+            --text-primary: #ffffff;        
+            --text-secondary: #aaaaaa;      
+            --header-yellow: #CCCC00;       
+            --shadow-subtle: rgba(0, 0, 0, 0.6); 
         }
 
-        /* BASE & LAYOUT */
+        /* BASE & TATA LETAK UTAMA (GRID) */
         body {
-            font-family: var(--modern-font); /* Font modern untuk body utama */
+            font-family: var(--modern-font); 
             background-color: var(--bg-dark); 
             color: var(--text-primary); 
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
+            margin: 0; padding: 0; min-height: 100vh;
             display: grid;
             grid-template-areas:  "header header header"
                                   "left main right"
                                   "footer footer footer";
-            grid-template-columns: 200px 1fr 200px; /* Sidebar yang transparan */
+            grid-template-columns: 200px 1fr 200px; /* Sidebar Ksatria */
             grid-template-rows: auto 1fr auto;
             gap: 0;
-            box-sizing: border-box;
-            font-size: 16px;
-            line-height: 1.6;
+            position: relative;
         }
 
         /* Pola Latar Belakang Data Glitch */
         body::before {
-            content: "";
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
+            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
             background-image: repeating-linear-gradient(
-                135deg, rgba(255, 255, 255, 0.02) 0px, 
-                rgba(255, 255, 255, 0.02) 1px, 
-                transparent 1px, transparent 10px
+                135deg, rgba(255, 255, 255, 0.02) 0px, rgba(255, 255, 255, 0.02) 1px, transparent 1px, transparent 10px
             );
-            background-size: 30px 30px;
-            opacity: 0.7;
+            background-size: 30px 30px; opacity: 0.7;
         }
 
-        /* HEADER & NAV STYLES (KONSISTEN DENGAN INDEX.HTML) */
+        /* HEADER: KONSISTENSI & TINGGI */
         header {
             grid-area: header;
-            background-color: var(--bg-dark); 
-            height: 250px; /* Tinggi standar header */
+            background-color: var(--bg-dark); /* HITAM PEKAT */
+            height: 180px; 
             border-bottom: 2px solid var(--accent-border);
-            box-shadow: 0 0 5px var(--shadow-subtle);
-            position: relative;
-            overflow: hidden; 
-            background-image: url('Photo banner.jpg'); /* Banner Ksatria/Kelinci dari index.html */
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: 50% 20%; /* Fokus ke bagian atas */
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+            position: relative; overflow: hidden; 
+            background-image: url('Photo banner.jpg'); /* Banner Ksatria/Kelinci */
+            background-size: cover; background-repeat: no-repeat; background-position: 50% 0%; 
         }
 
-        nav { 
-            display: flex; justify-content: center; 
-            padding: 10px 0; 
-            background-color: rgba(0, 0, 0, 0.7); /* Latar belakang navigasi */
-            position: relative; z-index: 10; 
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
+        /* Navigasi & Teks Header */
+        header nav { padding: 10px 0; display: flex; justify-content: center; background-color: rgba(0, 0, 0, 0.7); border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .nav-link { text-decoration: none; color: var(--text-primary); font-family: var(--pixel-font); font-size: 0.8em; padding: 8px 15px; margin: 0 5px; border: 1px solid var(--accent-border); background-color: var(--bg-medium); box-shadow: 2px 2px 0px 0px var(--shadow-subtle); transition: all 0.2s; display: inline-block; border-radius: 3px; }
+        .nav-link:hover { color: var(--accent-main); border-color: var(--accent-main); background-color: #2a2a2a; transform: translateY(-2px); }
+        
+        .header-content { position: absolute; bottom: 0; left: 0; width: 100%; background-color: rgba(0, 0, 0, 0.6); padding: 20px; box-sizing: border-box; z-index: 5; }
+        .header-content h1 { font-family: var(--pixel-font); font-size: 2em; color: var(--text-primary); text-shadow: 3px 3px 0px var(--shadow-subtle); margin: 0; }
+        .header-content p { font-family: var(--modern-font); font-size: 0.9em; color: var(--text-secondary); margin-top: 5px; }
 
-        .nav-link { 
-            text-decoration: none; 
-            color: var(--text-primary); 
-            font-family: var(--pixel-font);
-            font-size: 0.8em; padding: 8px 15px; margin: 0 5px; 
-            border: 1px solid var(--accent-border); 
-            background-color: var(--bg-medium); 
-            box-shadow: 2px 2px 0px 0px var(--shadow-subtle); 
-            transition: all 0.2s ease-in-out; 
-            display: inline-block;
-            border-radius: 3px;
-        }
-        .nav-link:hover { 
-            color: var(--accent-main); 
-            border-color: var(--accent-main); 
-            background-color: #2a2a2a; 
-            transform: translateY(-2px); 
-            box-shadow: 4px 4px 0px 0px var(--shadow-subtle);
-        }
-
-        .header-content { 
-            position: absolute; bottom: 0; left: 0; width: 100%;
-            background-color: rgba(0, 0, 0, 0.6); 
-            padding: 20px; 
-            box-sizing: border-box;
-            z-index: 5; 
-        }
-        .header-content h1 { 
-            font-family: var(--pixel-font);
-            font-size: 2em; 
-            color: var(--header-title); /* Judul header putih */
-            text-shadow: 3px 3px 0px var(--shadow-subtle); 
-            margin: 0;
-        }
-        .header-content p { 
-            font-family: var(--modern-font);
-            font-size: 0.9em; 
-            color: var(--text-secondary); 
-            margin-top: 5px;
-        }
-
-        /* SIDEBARS: TRANSPARAN */
-        .left-sidebar, .right-sidebar { 
-            grid-area: left; 
-            background-color: transparent !important; 
-            padding: 0 !important; border: none !important; z-index: 5; 
-        }
-        .right-sidebar { grid-area: right; }
+        /* SIDEBARS: WAJIB TRANSPARAN */
+        .left-sidebar { grid-area: left; background-color: transparent !important; padding: 0 !important; border: none !important; z-index: 5; }
+        .right-sidebar { grid-area: right; background-color: transparent !important; padding: 0 !important; border: none !important; z-index: 5; }
 
         /* MAIN CONTENT */
         main { 
-            grid-area: main; 
-            background-color: transparent; 
+            grid-area: main; background-color: var(--bg-dark); 
             padding: 40px 20px; 
             border-left: 1px solid var(--accent-border);
             border-right: 1px solid var(--accent-border);
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
         }
         
         main h2 {
             font-family: var(--pixel-font);
-            font-size: 1.6em; 
-            color: var(--accent-main); 
-            text-align: center;
-            margin-bottom: 50px;
-            padding-bottom: 15px;
-            border-bottom: 2px dashed var(--accent-border); /* Garis putus-putus */
-            text-shadow: 0 0 8px rgba(102, 204, 255, 0.5); /* Glow biru */
-            letter-spacing: 1px;
+            font-size: 1.6em; color: var(--header-yellow); /* Judul Kuning */
+            text-align: center; margin-bottom: 50px; padding-bottom: 15px;
+            border-bottom: 2px dashed var(--accent-border); 
+            text-shadow: 0 0 8px var(--header-yellow); 
         }
 
-        /* STYLING KHUSUS VIDEO PLAYER (FANCY & MODERN - GLOW EFFECT) */
+        /* STYLING KHUSUS VIDEO PLAYER (FANCY & MODERN) */
         .video-wrapper {
-            max-width: 900px; /* Ukuran yang ideal */
-            margin: 0 auto; 
-            background-color: var(--bg-medium); /* Latar belakang video lebih gelap */
-            border: 1px solid var(--accent-main); /* Border tipis biru */
-            padding: 15px; /* Padding untuk jarak iframe */
-            position: relative;
-            z-index: 10;
-            border-radius: 8px; /* Sudut sedikit melengkung */
-            
-            /* Efek Fancy Mengambang & Glow */
-            box-shadow: 
-                0 0 40px var(--accent-glow), /* Glow lebih besar dan lembut */
-                0 0 15px var(--accent-main), /* Shadow biru lebih dekat */
-                0px 8px 15px var(--shadow-subtle); /* Bayangan ke bawah */
+            max-width: 900px; margin: 0 auto; 
+            background-color: var(--bg-medium); 
+            border: 1px solid var(--accent-main); 
+            padding: 15px; 
+            border-radius: 8px; 
+            position: relative; z-index: 10;
+            box-shadow: 0 0 40px var(--accent-glow), 0 0 15px var(--accent-main), 0px 8px 15px var(--shadow-subtle); 
             transform: translateY(0) perspective(1000px) rotateX(0deg); 
             transition: all 0.4s ease-in-out;
         }
         
         .video-wrapper:hover {
-            transform: translateY(-5px) perspective(1000px) rotateX(1deg); /* Efek melayang */
-            box-shadow: 
-                0 0 60px var(--accent-glow), 
-                0 0 25px var(--accent-main),
-                0px 12px 25px var(--shadow-subtle);
+            transform: translateY(-5px) perspective(1000px) rotateX(1deg); 
+            box-shadow: 0 0 60px var(--accent-glow), 0 0 25px var(--accent-main), 0px 12px 25px var(--shadow-subtle);
         }
         
         .video-player {
-            display: block;
-            width: 100%; /* Pastikan iframe mengisi wrapper */
-            height: 500px; /* Tinggi iframe default */
-            border: none;
-            border-radius: 4px; /* Sudut iframe */
+            display: block; width: 100%; height: 500px; border: none; border-radius: 4px; 
         }
 
         .video-caption {
-            font-family: var(--modern-font);
-            font-size: 0.9em; 
-            color: var(--text-secondary);
-            text-align: center;
-            margin-top: 30px;
+            font-family: var(--modern-font); font-size: 0.9em; color: var(--text-secondary); text-align: center; margin-top: 30px; 
         }
 
         /* FOOTER */
-        footer { 
-            grid-area: footer; text-align: center; padding: 15px; 
-            font-size: 0.8em; 
-            background-color: var(--bg-dark); 
-            border-top: 1px dashed var(--accent-border); 
-            color: var(--text-secondary);
-            font-family: var(--modern-font);
-        }
+        footer { grid-area: footer; text-align: center; padding: 15px; font-size: 0.8em; background-color: var(--bg-dark); border-top: 1px dashed var(--accent-border); color: var(--text-secondary); font-family: var(--modern-font); }
 
         /* Responsif */
-        @media (max-width: 900px) {
-            body { grid-template-columns: 100px 1fr 100px; }
-            .video-player { height: 400px; }
-        }
-        @media (max-width: 600px) {
-            body { grid-template-columns: 0 1fr 0; }
-            .left-sidebar, .right-sidebar { display: none; }
-            main { padding: 20px 10px; }
-            .video-player { height: 300px; }
-            .header-content h1 { font-size: 1.5em; }
-            .nav-link { font-size: 0.7em; padding: 7px 10px; margin: 0 3px; }
-        }
+        @media (max-width: 900px) { body { grid-template-columns: 100px 1fr 100px; } .video-player { height: 400px; } }
+        @media (max-width: 600px) { body { grid-template-columns: 0 1fr 0; } .left-sidebar, .right-sidebar { display: none; } main { padding: 20px 10px; } .video-player { height: 300px; } }
     </style>
 </head>
 <body>
@@ -228,7 +132,8 @@
             <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
             <a href="projects.html" class="nav-link"><i class="fas fa-code"></i> Projects</a>
             <a href="photos.html" class="nav-link"><i class="fas fa-camera"></i> Photos</a> 
-            <a href="my-video.html" class="nav-link"><i class="fas fa-video"></i> Videos</a> <a href="about.html" class="nav-link"><i class="fas fa-book"></i> About</a>
+            <a href="my-video.html" class="nav-link"><i class="fas fa-video"></i> Videos</a> 
+            <a href="about.html" class="nav-link"><i class="fas fa-book"></i> About</a>
         </nav>
         <div class="header-content">
             <h1>My Video Archives</h1>
@@ -241,31 +146,35 @@
 
     <main>
         <section>
-            <h2>[What the hell emely doing *stardew valley*]</h2>
+            <h2>Video [Stardew Valley]</h2>
             
             <div class="video-wrapper">
-                
                 <iframe 
                     class="video-player"
                     width="100%" 
                     height="540" 
-                  <iframe>  src="https://youtu.be/psYifl_7jHo" 
+                    src="https://www.youtube.com/embed/psYifl_7jHo" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                     allowfullscreen
                     frameborder="0">
                 </iframe>
             </div>
             
-            <section>
-            <h2>[Whutering wave Charlotta]</h2>
+            <p class="video-caption">
+                Video Pertama: What the hell emely doing (Stardew Valley).
+            </p>
+
+        </section>
+        
+        <section style="margin-top: 80px;">
+            <h2>Video [Whutering Wave]</h2>
             
             <div class="video-wrapper">
-                
                 <iframe 
                     class="video-player"
                     width="100%" 
                     height="540" 
-                  <iframe>  src="https://youtu.be/MAKikY3eYq8?si=xbmGKDt1dgOtfaid" 
+                    src="https://www.youtube.com/embed/MAKikY3eYq8" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                     allowfullscreen
                     frameborder="0">
@@ -273,14 +182,15 @@
             </div>
 
             <p class="video-caption">
-                Video ini di-host di YouTube. Tampilan ini menggunakan sistem *Modern HUD*.
+                Video Kedua: Whutering wave Charlotta.
             </p>
-
-            <section style="margin-top: 80px;">
-                <h2 style="margin-bottom: 20px;">Arsip Video Lainnya</h2>
-                <p style="text-align: center;">Anda bisa menyematkan *playlist* YouTube di sini atau tautan ke arsip lain.</p>
-            </section>
         </section>
+        
+        <section style="margin-top: 80px;">
+            <h2 style="font-size: 1.2em; margin-bottom: 20px;">Arsip Video Lainnya</h2>
+            <p style="text-align: center;">Anda bisa menyematkan *playlist* YouTube di sini atau tautan ke arsip lain.</p>
+        </section>
+
     </main>
 
     <footer>
