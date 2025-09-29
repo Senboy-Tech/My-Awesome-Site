@@ -3,9 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Developer Portfolio</title>
+    <title>My Developer Portfolio - Data Hub</title>
+    
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* Variabel Warna Kunci (Harus sama dengan all-code-list.html) */
+        :root {
+            --pixel-font: 'Press Start 2P', cursive;
+            --bg-dark: #1e1e2c;             
+            --accent-cyan: #00ffff;         
+            --grid-line: #003333;           
+            --text-neon: var(--accent-cyan);
+            --border-width: 2px;
+            --header-yellow: #CCCC00;       
+            --shadow-color: #0d0d14;
+        }
+
+        /* PERBAIKAN TATA LETAK UTAMA */
+        body {
+            display: grid;
+            grid-template-areas:  "header header header"
+                                  "left main right"
+                                  "footer footer footer";
+            grid-template-columns: 200px 1fr 200px; 
+            grid-template-rows: auto 1fr auto;
+            gap: 0;
+            background-color: var(--bg-dark); 
+            color: var(--text-neon);
+            background-image: none; /* Hapus semua background-image lama */
+            position: relative;
+        }
+
+        /* Pola Latar Belakang Data Glitch (Hanya Garis Cyan Transparan) */
+        body::before {
+            content: "";
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; 
+            background-image: repeating-linear-gradient(
+                135deg, 
+                rgba(0, 255, 255, 0.03) 0px, 
+                rgba(0, 255, 255, 0.03) 2px, 
+                transparent 2px, 
+                transparent 10px
+            );
+            background-size: 50px 50px;
+        }
+
+        /* HEADER: Mempertahankan Gambar Banner */
+        header {
+            grid-area: header;
+            background-color: var(--header-yellow); 
+            height: auto; 
+            padding-bottom: 0;
+            border-bottom: var(--border-width) solid var(--accent-cyan);
+            box-shadow: 0 0 10px var(--accent-cyan);
+            position: relative;
+        }
+
+        /* Teks di Header agar terbaca di atas Banner */
+        .header-content {
+            padding: 20px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.4); 
+        }
+
+        .header-content h1 {
+            font-size: 2em;
+            color: var(--text-neon);
+            text-shadow: 4px 4px 0px var(--shadow-color), 0 0 10px var(--accent-cyan);
+        }
+
+        .header-content p {
+            font-size: 0.8em;
+            color: var(--text-neon);
+            text-shadow: 0 0 5px var(--accent-cyan);
+        }
+
+        /* SIDEBAR: Transparan agar pola dan ksatria terlihat */
+        .left-sidebar { grid-area: left; background-color: transparent !important; padding: 0 !important; border: none !important; z-index: 5; }
+        .right-sidebar { grid-area: right; background-color: transparent !important; padding: 0 !important; border: none !important; z-index: 5; }
+
+        /* MAIN: Konten Utama */
+        main { 
+            grid-area: main;
+            background-color: transparent; 
+            padding: 20px; 
+            box-shadow: 0 0 80px rgba(0, 255, 255, 0.2);
+        }
+
+        /* FEATURED CONTENT STYLING */
+        .feature-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px 0;
+        }
+
+        .feature-card {
+            border: 1px solid var(--accent-cyan);
+            box-shadow: 0 0 8px var(--accent-cyan);
+            padding: 20px;
+            background-color: #11222e; 
+            transition: transform 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 15px #fff;
+        }
+
+        .feature-card h3 {
+            color: var(--accent-cyan);
+            border-bottom: 1px dashed var(--accent-cyan);
+            padding-bottom: 10px;
+            font-size: 1em;
+            text-shadow: 0 0 5px var(--accent-cyan);
+        }
+
+        .content-list {
+            list-style: none;
+            padding: 0;
+            font-size: 0.8em;
+        }
+        .content-list a {
+            color: var(--text-neon);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .content-list a:hover {
+            color: #fff;
+            text-shadow: 0 0 5px #fff;
+        }
+        .content-list .fas {
+            color: var(--accent-cyan);
+            margin-right: 5px;
+        }
+
+        /* FOOTER */
+        footer {
+            grid-area: footer;
+            text-align: center;
+            padding: 10px;
+            font-size: 0.6em;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-top: 1px dashed var(--accent-cyan);
+        }
+
+
+        /* Responsif */
+        @media (max-width: 900px) {
+            body {
+                grid-template-columns: 100px 1fr 100px; 
+            }
+        }
+        @media (max-width: 600px) {
+            body {
+                grid-template-columns: 0 1fr 0; 
+            }
+            .left-sidebar, .right-sidebar {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -26,11 +191,41 @@
     <div class="left-sidebar"></div>
     <div class="right-sidebar"></div>
 
-<main class="hud-dashboard-grid">
-    <div class="hud-box tall-box">Modul Status PC</div>
-    <div class="hud-box">Modul CPU</div>
-    <div class="hud-box">Modul RAM</div>
-    <div class="hud-box wide-box">Modul Jaringan</div>
+    <main>
+        <section class="intro-section">
+            <h2 style="color:var(--accent-cyan); text-shadow: 0 0 5px var(--accent-cyan);">Welcome to My Hub</h2>
+            <p style="font-size: 0.8em;">Hello! My name is **[Kana]**, and this is where I document my journey in Programming and Data Collection. This homepage links to my latest archives and project logs.
+            </p>
+        </section>
+        
+        <section class="featured-projects-section">
+            <h2 style="color:var(--accent-cyan); text-shadow: 0 0 5px var(--accent-cyan);">Featured Content</h2>
+            
+            <div class="feature-container">
+                
+                <div class="feature-card wide-card">
+                    <h3><i class="fas fa-code"></i> Coding Files</h3>
+                    <p style="font-size: 0.8em;">Lihat atau unduh skrip dan *snippet* penting yang saya buat:</p>
+                    <ul class="content-list">
+                        <li><a href="all-code-list.html"><i class="fas fa-list-ul"></i> View All Code Schematics</a></li>
+                        <li><a href="./files/data_processor.py" download><i class="fas fa-database"></i> New Custom Data Processor (.py)</a></li>
+                        <li><a href="[LINK_SHELL_COMMANDS]" target="_blank"><i class="fas fa-terminal"></i> Custom Git Workflow Alias</a></li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card wide-card">
+                    <h3><i class="fas fa-cubes"></i> 3D Assets Archive</h3>
+                    <p style="font-size: 0.8em;">Model dan aset yang saya buat untuk game/visual:</p>
+                    <ul class="content-list">
+                        <li><a href="meshes.html"><i class="fas fa-cube"></i> View All 3D MESH Downloads</a></li>
+                        <li><a href="photos.html"><i class="fas fa-camera"></i> View Photo Gallery</a></li>
+                        <li><a href="#" target="_blank"><i class="fas fa-mountain"></i> Environment Design Mockup</a></li>
+                    </ul>
+                </div>
+                
+            </div>
+            
+        </section>
     </main>
 
     <footer>
@@ -39,4 +234,3 @@
 
 </body>
 </html>
-
