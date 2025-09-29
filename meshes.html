@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
-        /* Definisi Variabel Warna dan Ukuran (Sama seperti file lainnya) */
+        /* Definisi Variabel Warna dan Ukuran */
         :root {
             --pixel-font: 'Press Start 2P', cursive;
             --bg-dark: #1e1e2c; 
@@ -42,7 +42,7 @@
             font-size: 14px;
         }
 
-        /* HEADER & NAV STYLES (Pastikan semua link diubah ke file yang benar) */
+        /* HEADER & NAV STYLES */
         header { grid-area: header; padding: 0 0 20px 0; text-align: center; background-color: #242436; }
         .header-content h1 { font-size: 2em; color: var(--secondary-accent); text-shadow: 4px 4px 0px var(--shadow-color); }
         .banner-container {
@@ -65,15 +65,17 @@
         main { grid-area: main; padding: 20px; background-color: #242436; }
         main h2 { font-size: 1.2em; color: var(--primary-accent); text-align: center; margin-bottom: 30px; border-bottom: 2px dashed var(--primary-accent); }
 
-        /* MESH CONTAINER STYLE (BARU) */
+        /* MESH CONTAINER STYLE */
         #mesh-gallery-container { 
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            /* Cukup satu kolom agar terlihat fokus di tengah jika hanya satu item */
+            grid-template-columns: minmax(300px, 400px); 
+            justify-content: center; /* Posisikan di tengah */
             gap: 25px;
             padding: 0 0 30px 0;
         }
         .mesh-container {
-            border: var(--border-width) solid var(--primary-accent); /* Border Merah/Magenta */
+            border: var(--border-width) solid var(--primary-accent); 
             box-shadow: var(--shadow-offset) var(--shadow-offset) 0px 0px var(--shadow-color);
             background-color: #3e3e50;
             padding: 10px;
@@ -92,7 +94,7 @@
             display: block;
             margin-top: 10px;
             padding: 8px 10px;
-            background-color: var(--secondary-accent); /* Cyan */
+            background-color: var(--secondary-accent); 
             color: var(--bg-dark); 
             text-decoration: none;
             font-size: 0.7em;
@@ -100,7 +102,7 @@
             box-shadow: 2px 2px 0px 0px var(--shadow-color);
         }
         .mesh-download-link:hover {
-            background-color: var(--primary-accent); /* Merah saat hover */
+            background-color: var(--primary-accent); 
             color: var(--text-light);
         }
         .gallery-photo {
@@ -135,39 +137,29 @@
 
     <main>
         <div>
-            <h2>Koleksi File 3D Saya</h2>
+            <h2>Monkey Mask Asset</h2>
             
             <div id="mesh-gallery-container">
                 
                 <div class="mesh-container">
-                    <a href="./images/Mongkey1.png" data-fancybox="mesh-gallery" data-caption="Preview Model Mongkey Mask">
-                        <img src="./images/Mongkey1.png" alt="Preview Model/Monkey1.png 3D" class="gallery-photo">
+                    <a href="./images/3d_previews/Mongkey1.png" data-fancybox="monkey-gallery" data-caption="Monkey Mask - View Utama">
+                        <img src="./images/3d_previews/Mongkey1.png" alt="Preview Utama Monkey Mask" class="gallery-photo">
                     </a>
                     
                     <h3 class="mesh-title">Monkey Mask.fbx</h3>
                     
-                    <a href="./files/robot_model.obj" download class="mesh-download-link">
-                        <i class="fas fa-download"></i> Download File Mesh (.OBJ)
-                    </a>
+                    <a href="./images/3d_previews/Mongkey2.png" data-fancybox="monkey-gallery" data-caption="Monkey Mask - View Samping" style="display: none;"></a>
+                    <a href="./images/3d_previews/Mongkey3.png" data-fancybox="monkey-gallery" data-caption="Monkey Mask - Detil Permukaan" style="display: none;"></a>
                     
-                    <p style="font-size: 0.6em; margin: 5px 0 0;">Ukuran file: 12.5 MB. Lisensi: CC BY-SA.</p>
-                </div>
-
-                <div class="mesh-container">
-                    <a href="./images/gun_preview.png" data-fancybox="mesh-gallery" data-caption="Preview Model Senjata Plasma">
-                        <img src="./images/gun_preview.png" alt="Preview Model Senjata 3D" class="gallery-photo">
-                    </a>
                     
-                    <h3 class="mesh-title">Senjata Plasma (Plasma Rifle)</h3>
-                    
-                    <a href="./files/plasma_gun.fbx" download class="mesh-download-link">
+                    <a href="./files/3d_assets/Monkey Mask.fbx" download class="mesh-download-link">
                         <i class="fas fa-download"></i> Download File Mesh (.FBX)
                     </a>
                     
-                    <p style="font-size: 0.6em; margin: 5px 0 0;">Ukuran file: 7.8 MB. Lisensi: Non-Commercial.</p>
+                    <p style="font-size: 0.6em; margin: 5px 0 0;">Ukuran file: [ISI UKURAN FILE]. Lisensi: [ISI LISENSI].</p>
                 </div>
-                
-                </div>
+
+            </div>
             
             <p style="font-size: 0.7em; margin-top: 20px; padding: 0 10px;">
                 Semua file 3D disediakan "as is." Silakan periksa lisensi masing-masing file.
