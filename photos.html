@@ -3,109 +3,256 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Photos - Cyberpunk Pixel Art</title>
+    <title>My Photos - Pixel Cozy Gallery</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
-        /* Definisi Variabel Warna dan Ukuran */
+        /* Variabel Warna Kunci untuk tema "Pixel Cozy" */
         :root {
             --pixel-font: 'Press Start 2P', cursive;
-            --bg-dark: #1e1e2c; 
-            --primary-accent: #ff005c; /* Aksen Merah/Magenta */
-            --secondary-accent: #00ffff; /* Aksen Cyan/Neon */
-            --text-light: #f0f0f0;
-            --shadow-color: #0d0d14;
-            --border-width: 3px;
-            --shadow-offset: 6px; 
+            --cozy-font: 'VT323', monospace; /* Font tambahan untuk teks biasa */
+
+            --bg-dark: #1f1f2e;             /* Dasar gelap keunguan/kebiruan */
+            --bg-medium: #2a2a3e;           /* Medium gelap untuk elemen */
+            --bg-light: #3a3a50;            /* Lapisan paling terang */
+
+            --accent-cozy: #ff8c42;         /* Aksen Oranye Hangat */
+            --accent-hover: #ffad6c;        /* Hover Oranye Lebih Cerah */
+            --accent-border: #6b6b80;       /* Garis abu-abu keunguan */
+            
+            --text-primary: #f0f0f0;        /* Putih lembut */
+            --text-secondary: #c0c0c0;      /* Abu-abu lembut */
+            
+            --shadow-color: rgba(0, 0, 0, 0.4); /* Bayangan hitam transparan */
+            --border-width: 2px;
         }
 
         /* BASE & LAYOUT */
         body {
-            font-family: var(--pixel-font);
+            font-family: var(--cozy-font); /* Gunakan font cozy untuk body utama */
             background-color: var(--bg-dark);
-            color: var(--text-light);
+            color: var(--text-primary);
             margin: 0;
             padding: 0;
             min-height: 100vh;
             display: grid;
-            grid-template-areas: 
-                "header header header"
-                "left main right"
-                "footer footer footer";
-            grid-template-columns: 30px 1fr 30px; 
+            grid-template-areas:  "header header header"
+                                  "left main right"
+                                  "footer footer footer";
+            grid-template-columns: 200px 1fr 200px; /* Sidebar yang lebih lebar */
             grid-template-rows: auto 1fr auto;
             gap: 0;
             box-sizing: border-box;
-            font-size: 14px;
+            font-size: 16px; /* Ukuran font dasar yang sedikit lebih besar */
+            line-height: 1.6;
+        }
+
+        /* Pola Latar Belakang Data Glitch (Cozy-fied) */
+        body::before {
+            content: "";
+            position: fixed; 
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1; 
+            background-image: repeating-linear-gradient(
+                45deg, rgba(255, 255, 255, 0.02) 0px, 
+                rgba(255, 255, 255, 0.02) 2px, 
+                transparent 2px, transparent 15px
+            );
+            background-size: 30px 30px;
+            opacity: 0.8; /* Sedikit lebih lembut */
         }
 
         /* HEADER & NAV STYLES */
-        header { grid-area: header; padding: 0 0 20px 0; text-align: center; background-color: #242436; }
-        .header-content h1 { font-size: 2em; color: var(--primary-accent); text-shadow: 4px 4px 0px var(--shadow-color); }
+        header {
+            grid-area: header;
+            padding-bottom: 0;
+            text-align: center;
+            background-color: var(--bg-dark); /* Menggantikan warna header lama */
+            height: 250px; /* Tinggi header yang lebih nyaman */
+            position: relative;
+            overflow: hidden;
+            border-bottom: var(--border-width) solid var(--accent-border);
+            box-shadow: 0 5px 15px var(--shadow-color);
+        }
+        
+        /* BANNER CONTAINER (CYBERPUNK_BANNER.PNG) */
         .banner-container {
-            width: 100%; height: 150px;
-            background-image: url('cyberpunk_banner.png'); /* Pastikan kamu punya file banner ini */
+            width: 100%; height: 100%; /* Memenuhi seluruh header */
+            background-image: url('cyberpunk_banner.jpg'); /* Nama file banner Anda */
             background-size: cover;
-            border-top: var(--border-width) solid var(--primary-accent);
-            border-bottom: var(--border-width) solid var(--primary-accent);
+            background-repeat: no-repeat;
+            background-position: center 30%; /* Fokus ke bagian atas gambar */
+            position: absolute; top: 1; left: 0; z-index: 1;
         }
-        nav { display: flex; justify-content: center; padding: 10px 0; background-color: #1a1a27; }
+
+        nav { 
+            display: flex; justify-content: center; 
+            padding: 15px 0; 
+            background-color: rgba(0, 0, 0, 0.7); /* Latar belakang navigasi gelap */
+            position: relative; z-index: 10; /* Pastikan di atas banner */
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
         .nav-link { 
-            text-decoration: none; color: var(--text-light); font-size: 0.8em; padding: 8px 15px; margin: 5px; 
-            border: 2px solid var(--secondary-accent); background-color: #2e2e46; 
-            box-shadow: 3px 3px 0px 0px var(--shadow-color); transition: all 0.1s; display: inline-block;
+            text-decoration: none; 
+            color: var(--text-primary); 
+            font-family: var(--pixel-font); /* Font pixel untuk menu */
+            font-size: 0.9em; padding: 10px 20px; margin: 0 8px; /* Padding lebih besar */
+            border: 1px solid var(--accent-border); 
+            background-color: var(--bg-medium); /* Warna tombol navigasi */
+            box-shadow: 2px 2px 0px 0px var(--shadow-color); 
+            transition: all 0.2s ease-in-out; 
+            display: inline-block;
+            border-radius: 4px; /* Sedikit rounded untuk cozy */
         }
-        .nav-link:hover { color: var(--primary-accent); border-color: var(--primary-accent); transform: translate(-2px, -2px); }
+
+        .nav-link:hover { 
+            color: var(--accent-cozy); /* Warna hover oranye */
+            border-color: var(--accent-cozy); 
+            background-color: var(--bg-light); 
+            transform: translateY(-2px); /* Efek melayang */
+            box-shadow: 4px 4px 0px 0px var(--shadow-color);
+        }
+
+        .header-content { 
+            position: absolute; bottom: 0; left: 0; width: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Lapisan transparan di atas banner */
+            padding: 20px; 
+            box-sizing: border-box;
+            z-index: 5; /* Di atas banner, di bawah nav */
+        }
+        .header-content h1 { 
+            font-family: var(--pixel-font);
+            font-size: 2.2em; 
+            color: var(--accent-cozy); /* Judul warna oranye */
+            text-shadow: 4px 4px 0px var(--shadow-color); 
+            margin: 0;
+            letter-spacing: 2px;
+        }
+        .header-content p { 
+            font-family: var(--cozy-font);
+            font-size: 1em; 
+            color: var(--text-secondary); 
+            text-shadow: none; 
+            margin-top: 5px;
+        }
 
         /* SIDEBARS & MAIN */
-        .left-sidebar, .right-sidebar { grid-area: left/right; background-color: #242436; border-color: var(--secondary-accent); }
-        main { grid-area: main; padding: 20px; background-color: #242436; }
-        main h2 { font-size: 1.2em; color: var(--primary-accent); text-align: center; margin-bottom: 30px; border-bottom: 2px dashed var(--primary-accent); }
+        .left-sidebar, .right-sidebar { 
+            grid-area: left; 
+            background-color: transparent; /* Tetap transparan */
+            padding: 0; border: none; z-index: 5; 
+        }
+        .right-sidebar { grid-area: right; }
 
-        /* GALLERY GRID BARU */
+        main { 
+            grid-area: main; 
+            padding: 30px; 
+            background-color: var(--bg-medium); /* Latar belakang konten utama */
+            border-left: var(--border-width) solid var(--accent-border);
+            border-right: var(--border-width) solid var(--accent-border);
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        main h2 { 
+            font-family: var(--pixel-font);
+            font-size: 1.5em; 
+            color: var(--accent-hover); /* Judul konten warna oranye cerah */
+            text-align: center; 
+            margin-bottom: 40px; 
+            border-bottom: 2px dashed var(--accent-border); 
+            padding-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        /* GALLERY GRID */
         #photo-gallery-container { 
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            padding: 0 0 30px 0;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Ukuran foto lebih fleksibel */
+            gap: 30px; /* Jarak antar foto */
+            padding: 20px; 
+            background-color: var(--bg-light); /* Latar belakang kotak galeri lebih terang */
+            border: var(--border-width) solid var(--accent-border);
+            box-shadow: 0 0 10px var(--shadow-color), inset 0 0 5px rgba(0,0,0,0.2);
+            border-radius: 8px; /* Lebih cozy dengan sudut melengkung */
         }
         
         /* PHOTO CONTAINER */
         .photo-container {
-            border: var(--border-width) solid var(--secondary-accent);
-            box-shadow: var(--shadow-offset) var(--shadow-offset) 0px 0px var(--shadow-color);
-            background-color: #344755; padding: 8px; transition: transform 0.1s ease-out; text-align: center;
+            border: 2px solid var(--accent-cozy); /* Border foto oranye hangat */
+            box-shadow: 4px 4px 0px 0px var(--shadow-color);
+            background-color: var(--bg-dark); /* Latar belakang foto gelap */
+            padding: 10px; transition: all 0.2s ease-in-out; text-align: center;
+            border-radius: 6px; /* Sedikit rounded */
         }
-        .photo-container:hover { transform: translate(-3px, -3px); }
+        .photo-container:hover { 
+            transform: translate(-5px, -5px); 
+            box-shadow: 8px 8px 0px 0px var(--shadow-color), 
+                        0 0 15px var(--accent-hover); /* Efek hover yang lebih kuat */
+        }
         .gallery-photo {
             width: 100%; height: auto; display: block; margin: 0;
-            /* PROPERTI PIXEL ART */
             image-rendering: pixelated; 
-            image-rendering: crisp-edges;
-            border: 1px solid var(--text-light);
+            border: 1px solid var(--accent-border); /* Border internal foto */
+            border-radius: 2px;
         }
-        
+
+        /* INFO TEXT */
+        main p {
+            font-family: var(--cozy-font);
+            font-size: 0.9em; 
+            margin-top: 30px; 
+            padding: 0 15px; 
+            text-align: center; 
+            color: var(--text-secondary);
+        }
+        main p strong { color: var(--accent-cozy); }
+
         /* FOOTER */
-        footer { grid-area: footer; text-align: center; padding: 15px; font-size: 0.7em; background-color: #1a1a27; border-top: var(--border-width) solid var(--primary-accent); color: var(--secondary-accent); }
+        footer { 
+            grid-area: footer; text-align: center; padding: 15px; 
+            font-size: 0.8em; 
+            background-color: var(--bg-dark); /* Gelap konsisten */
+            border-top: 1px dashed var(--accent-border); 
+            color: var(--text-secondary);
+            font-family: var(--cozy-font);
+        }
+
+        /* Responsif */
+        @media (max-width: 900px) {
+            body { grid-template-columns: 100px 1fr 100px; }
+            .nav-link { font-size: 0.7em; padding: 8px 12px; margin: 0 4px; }
+            .header-content h1 { font-size: 1.8em; }
+        }
+        @media (max-width: 600px) {
+            body { grid-template-columns: 0 1fr 0; }
+            .left-sidebar, .right-sidebar { display: none; }
+            main { padding: 15px; }
+            .nav-link { font-size: 0.6em; padding: 6px 10px; margin: 0 3px; }
+            .header-content h1 { font-size: 1.5em; }
+            #photo-gallery-container { padding: 15px; gap: 15px; }
+        }
     </style>
     
 </head>
 <body>
 
     <header>
-        <nav>
+        <div class="banner-container"></div> <nav>
             <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
             <a href="projects.html" class="nav-link"><i class="fas fa-code"></i> Projects</a>
+            <a href="photos.html" class="nav-link"><i class="fas fa-camera"></i> Photos</a> 
+            <a href="meshes.html" class="nav-link"><i class="fas fa-cube"></i> Meshes</a> 
             <a href="about.html" class="nav-link"><i class="fas fa-book"></i> About</a>
         </nav>
         <div class="header-content">
             <h1>My Photo Gallery</h1>
-            <p style="font-size: 0.7em; margin: 5px 0 0;">A collection of my favorite photos and artworks.</p>
+            <p>Ini foto Gua yang Tampan.</p>
         </div>
-        <div class="banner-container"></div>
     </header>
 
     <div class="left-sidebar"></div>
@@ -123,7 +270,7 @@
                     </a>
                 </div>
 
-                 <div class="photo-container">
+                <div class="photo-container">
                     <a href="./images/Farmasi.jpg" data-fancybox="gallery" data-caption="Cyber City View.">
                         <img src="./images/Farmasi.jpg" alt="Foto Pemandangan Kota Cyber" class="gallery-photo">
                     </a>
@@ -147,7 +294,7 @@
                     </a>
                 </div>
                 
-                 <div class="photo-container">
+                <div class="photo-container">
                     <a href="./images/Kana5.jpg" data-fancybox="gallery" data-caption="Cyber City View.">
                         <img src="./images/Kana5.jpg" alt="Foto Pemandangan Kota Cyber" class="gallery-photo">
                     </a>
@@ -161,8 +308,8 @@
                 
                 </div>
             
-            <p style="font-size: 0.7em; margin-top: 20px; padding: 0 10px;">
-                Galeri ini kini **dikelola secara manual**. Anda dapat menambah/mengedit foto langsung di kode ini. 💾
+            <p style="font-size: 0.9em; margin-top: 30px; padding: 0 15px; text-align: center; color: var(--text-secondary);">
+                **STATUS:** Galeri ini dikelola secara manual. 💾
             </p>
 
         </div>
@@ -179,8 +326,3 @@
     
 </body>
 </html>
-
-
-
-
-
