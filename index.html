@@ -13,9 +13,9 @@
         :root {
             --pixel-font: 'Press Start 2P', cursive;
             --bg-dark: #0f0f0f;             /* Hitam Pekat */
-            --accent-main: #66ccff;         /* Aksen Biru Lembut (Tidak Terlalu Neon) */
+            --accent-main: #66ccff;         /* Aksen Biru Lembut (Link & Icon) */
             --accent-border: #444444;       /* Garis Border Abu-abu Gelap */
-            --text-primary: #ffffff;        /* Teks Utama: Putih Terang */
+            --text-primary: #ffffff;        /* Teks Utama: PUTIH TERANG */
             --text-secondary: #aaaaaa;      /* Teks Sekunder: Abu-abu Muda */
             --border-width: 2px;
             --header-yellow: #CCCC00;       
@@ -37,7 +37,7 @@
             position: relative;
         }
 
-        /* Pola Latar Belakang Data Glitch (Ganti menjadi garis abu-abu halus) */
+        /* Pola Latar Belakang Data Glitch */
         body::before {
             content: "";
             position: fixed; 
@@ -48,7 +48,7 @@
             z-index: -1; 
             background-image: repeating-linear-gradient(
                 135deg, 
-                rgba(255, 255, 255, 0.03) 0px, /* Garis Putih Sangat Tipis */
+                rgba(255, 255, 255, 0.03) 0px, 
                 rgba(255, 255, 255, 0.03) 1px, 
                 transparent 1px, 
                 transparent 8px
@@ -56,28 +56,34 @@
             background-size: 40px 40px;
         }
 
-        /* HEADER: Mempertahankan Gambar Banner */
+        /* HEADER: Memperbaiki Posisi Banner & Kontras */
         header {
             grid-area: header;
             background-color: var(--header-yellow); 
             height: auto; 
             padding-bottom: 0;
             border-bottom: var(--border-width) solid var(--accent-border);
-            box-shadow: 0 0 5px rgba(255, 255, 255, 0.3); /* Soft glow */
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
             position: relative;
+            
+            /* PROPERTI GAMBAR BANNER */
+            background-image: url('Photo banner.jpg'); /* Pastikan path ini benar! */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: top center; /* MEMPERBAIKI POSISI KEPALA */
         }
 
         /* Teks di Header agar terbaca di atas Banner */
         .header-content {
             padding: 20px;
             text-align: center;
-            background-color: rgba(0, 0, 0, 0.6); /* Lapisan gelap transparan yang lebih kuat */
+            background-color: rgba(0, 0, 0, 0.6); 
         }
 
         .header-content h1 {
             font-size: 2em;
-            color: var(--text-primary);
-            text-shadow: 3px 3px 0px var(--shadow-color); /* Kembali ke shadow normal */
+            color: var(--text-primary); /* Judul PUTIH */
+            text-shadow: 3px 3px 0px var(--shadow-color); 
         }
 
         .header-content p {
@@ -95,17 +101,17 @@
             grid-area: main;
             background-color: transparent; 
             padding: 20px; 
-            box-shadow: none; /* Hapus semua efek halo yang mengganggu */
+            box-shadow: none; 
         }
         
         /* Konten Section (Welcome & Featured) */
         .intro-section, .featured-projects-section {
-            background-color: #1a1a1a; /* Latar belakang abu-abu sangat gelap */
+            background-color: #1a1a1a; 
             border: 1px solid var(--accent-border);
             padding: 20px;
             margin-bottom: 20px;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-            color: var(--text-primary);
+            color: var(--text-primary); /* Memastikan teks PUTIH */
         }
 
         .intro-section h2, .featured-projects-section h2 {
@@ -127,17 +133,17 @@
             border: 1px solid var(--accent-border);
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
             padding: 20px;
-            background-color: #2a2a2a; /* Latar belakang card lebih terang */
+            background-color: #2a2a2a; 
             transition: transform 0.2s;
         }
 
         .feature-card:hover {
             transform: scale(1.02);
-            box-shadow: 0 0 10px var(--accent-main); /* Soft blue highlight on hover */
+            box-shadow: 0 0 10px var(--accent-main); 
         }
 
         .feature-card h3 {
-            color: var(--text-primary);
+            color: var(--text-primary); /* Sub-judul PUTIH */
             border-bottom: 1px dashed var(--accent-main);
             padding-bottom: 10px;
             font-size: 1em;
