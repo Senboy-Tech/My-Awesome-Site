@@ -32,11 +32,11 @@
             gap: 0;
             background-color: var(--bg-dark); 
             color: var(--text-neon);
-            background-image: none; /* Hapus semua background-image lama */
+            background-image: none;
             position: relative;
         }
 
-        /* Pola Latar Belakang Data Glitch (Hanya Garis Cyan Transparan) */
+        /* Pola Latar Belakang Data Glitch */
         body::before {
             content: "";
             position: fixed; 
@@ -85,7 +85,7 @@
             text-shadow: 0 0 5px var(--accent-cyan);
         }
 
-        /* SIDEBAR: Transparan agar pola dan ksatria terlihat */
+        /* SIDEBAR: Transparan */
         .left-sidebar { grid-area: left; background-color: transparent !important; padding: 0 !important; border: none !important; z-index: 5; }
         .right-sidebar { grid-area: right; background-color: transparent !important; padding: 0 !important; border: none !important; z-index: 5; }
 
@@ -96,6 +96,18 @@
             padding: 20px; 
             box-shadow: 0 0 80px rgba(0, 255, 255, 0.2);
         }
+        
+        /* <<<< PERUBAHAN PENTING ADA DI SINI >>>> */
+        /* Memaksa background gelap untuk section konten utama agar teks neon terbaca */
+        .intro-section, .featured-projects-section {
+            background-color: #11222e; /* Latar belakang gelap seperti kotak blueprint */
+            border: 1px solid var(--accent-cyan);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 8px var(--accent-cyan);
+        }
+        /* <<<< AKHIR PERUBAHAN PENTING >>>> */
+
 
         /* FEATURED CONTENT STYLING */
         .feature-container {
@@ -109,7 +121,7 @@
             border: 1px solid var(--accent-cyan);
             box-shadow: 0 0 8px var(--accent-cyan);
             padding: 20px;
-            background-color: #11222e; 
+            background-color: #0b1a20; /* Lebih gelap dari section utama */
             transition: transform 0.2s;
         }
 
