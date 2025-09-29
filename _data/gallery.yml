@@ -1,7 +1,0 @@
-# FILE: _data/gallery.yml
-gallery_title: Koleksi Foto Baru
-photos:
-  - image: Kana.jpg
-    caption: Tes1
-- image: Kana2.jpg
-    caption: Tes2
