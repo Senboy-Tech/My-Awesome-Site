@@ -12,13 +12,13 @@
         /* Variabel Warna Kunci (FOKUS PADA KETERBACAAN) */
         :root {
             --pixel-font: 'Press Start 2P', cursive;
-            --bg-dark: #0f0f0f;             /* Hitam Pekat */
-            --accent-main: #66ccff;         /* Aksen Biru Lembut (Link & Icon) */
-            --accent-border: #444444;       /* Garis Border Abu-abu Gelap */
-            --text-primary: #ffffff;        /* Teks Utama: PUTIH TERANG */
-            --text-secondary: #aaaaaa;      /* Teks Sekunder: Abu-abu Muda */
+            --bg-dark: #0f0f0f;             
+            --accent-main: #66ccff;         
+            --accent-border: #444444;       
+            --text-primary: #ffffff;        /* PUTIH */
+            --text-secondary: #aaaaaa;      
             --border-width: 2px;
-            --header-yellow: #CCCC00;       /* Warna Kuning Banner & Judul Utama */
+            --header-yellow: #CCCC00;       /* Kuning untuk Header & Judul */
             --shadow-color: #0d0d14;
         }
 
@@ -32,97 +32,88 @@
             grid-template-rows: auto 1fr auto;
             gap: 0;
             background-color: var(--bg-dark); 
-            color: var(--text-primary); /* Teks dasar PUTIH */
+            color: var(--text-primary); 
             background-image: none;
             position: relative;
-            margin: 0; /* Pastikan tidak ada margin default */
-            font-family: Arial, sans-serif; /* Fallback font */
+            margin: 0; 
+            font-family: var(--pixel-font), monospace; /* Terapkan font pixel di body */
         }
 
         /* Pola Latar Belakang Data Glitch */
         body::before {
             content: "";
             position: fixed; 
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             z-index: -1; 
             background-image: repeating-linear-gradient(
-                135deg, 
-                rgba(255, 255, 255, 0.03) 0px, 
+                135deg, rgba(255, 255, 255, 0.03) 0px, 
                 rgba(255, 255, 255, 0.03) 1px, 
-                transparent 1px, 
-                transparent 8px
+                transparent 1px, transparent 8px
             );
             background-size: 40px 40px;
         }
 
-        /* HEADER: MEMPERBAIKI POSISI BANNER & KONTRAST */
+        /* HEADER: POSISI BANNER DAN TINGGI */
         header {
             grid-area: header;
             background-color: var(--header-yellow); 
-            height: 150px; /* Atur tinggi header agar gambar banner punya ruang */
+            height: 180px; /* Ditinggikan untuk memberi ruang kepala */
             padding-bottom: 0;
             border-bottom: var(--border-width) solid var(--accent-border);
             box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
             position: relative;
-            overflow: hidden; /* Penting: mencegah gambar meluber */
+            overflow: hidden; 
             
             /* PROPERTI GAMBAR BANNER */
-            background-image: url('Photo banner.jpg'); /* Pastikan path ini benar! */
+            background-image: url('Photo banner.jpg'); 
             background-size: cover;
             background-repeat: no-repeat;
-            background-position: top center; /* Ini yang akan memastikan kepala terlihat */
+            background-position: 50% 0%; /* FOKUS KE ATAS (0%) */
         }
 
-        /* Teks Navigasi di Header (Agar kontras dan PUTIH) */
+        /* Navigasi */
         header nav {
             padding: 10px 0;
             display: flex;
             justify-content: center;
-            background-color: rgba(0, 0, 0, 0.6); /* Lapisan gelap agar navigasi mudah dibaca */
+            background-color: rgba(0, 0, 0, 0.6); 
         }
 
         .nav-link { 
             text-decoration: none; 
-            color: var(--text-primary); /* Teks Navigasi PUTIH */
+            color: var(--text-primary); 
             font-size: 0.8em; 
             padding: 8px 15px; 
-            margin: 0 5px; /* Kurangi margin horizontal */
-            border: 1px solid var(--accent-border); /* Border lebih halus */
+            margin: 0 5px; 
+            border: 1px solid var(--accent-border); 
             background-color: rgba(0, 0, 0, 0.4); 
-            box-shadow: 0 0 3px rgba(255,255,255,0.2); /* Soft shadow */
-            transition: all 0.1s; 
-            display: inline-block;
-            font-family: var(--pixel-font), monospace; /* Font pixel untuk nav */
+            box-shadow: 0 0 3px rgba(255,255,255,0.2); 
+            transition: all 0.1s; display: inline-block;
+            font-family: inherit; /* Gunakan font body */
         }
 
         .nav-link:hover { 
-            color: var(--accent-main); /* Hover menjadi biru lembut */
+            color: var(--accent-main); 
             border-color: var(--accent-main); 
-            transform: translate(-1px, -1px); /* Efek hover lebih halus */
+            transform: translate(-1px, -1px); 
             box-shadow: 0 0 5px var(--accent-main);
         }
 
-        /* Teks Judul di Header agar terbaca di atas Banner */
+        /* Teks Judul di Header */
         .header-content {
             padding: 20px;
             text-align: center;
-            background-color: rgba(0, 0, 0, 0.6); /* Lapisan gelap transparan yang kuat */
-            position: absolute; /* PENTING: Untuk menempatkannya di atas gambar */
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            box-sizing: border-box; /* Pastikan padding tidak membuat lebar melebihi 100% */
+            background-color: rgba(0, 0, 0, 0.6); 
+            position: absolute; bottom: 0; left: 0; width: 100%;
+            box-sizing: border-box; 
         }
 
         .header-content h1 {
             font-size: 2em;
-            color: var(--text-primary); /* Judul My Code & Data Hub PUTIH */
+            color: var(--text-primary); 
             text-shadow: 3px 3px 0px var(--shadow-color); 
-            margin: 0; /* Hapus margin default */
-            font-family: var(--pixel-font), cursive; /* Font pixel */
+            margin: 0;
         }
 
         .header-content p {
@@ -133,20 +124,8 @@
         }
 
         /* SIDEBAR: Transparan */
-        .left-sidebar { 
-            grid-area: left; 
-            background-color: transparent !important; 
-            padding: 0 !important; 
-            border: none !important; 
-            z-index: 5; 
-        }
-        .right-sidebar { 
-            grid-area: right; 
-            background-color: transparent !important; 
-            padding: 0 !important; 
-            border: none !important; 
-            z-index: 5; 
-        }
+        .left-sidebar { grid-area: left; background-color: transparent !important; padding: 0 !important; border: none !important; z-index: 5; }
+        .right-sidebar { grid-area: right; background-color: transparent !important; padding: 0 !important; border: none !important; z-index: 5; }
 
         /* MAIN: Konten Utama */
         main { 
@@ -158,12 +137,12 @@
         
         /* Konten Section (Welcome & Featured) */
         .intro-section, .featured-projects-section {
-            background-color: #1a1a1a; /* Latar belakang abu-abu sangat gelap */
+            background-color: #1a1a1a; 
             border: 1px solid var(--accent-border);
             padding: 20px;
             margin-bottom: 20px;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-            color: var(--text-primary); /* Memastikan teks utama PUTIH */
+            color: var(--text-primary); 
         }
 
         .intro-section h2, .featured-projects-section h2 {
@@ -171,8 +150,7 @@
             text-shadow: none;
             border-bottom: 1px dashed var(--accent-border);
             padding-bottom: 10px;
-            font-family: var(--pixel-font), cursive; /* Font pixel */
-            font-size: 1.2em; /* Ukuran font judul */
+            font-size: 1.2em; 
         }
 
         /* FEATURED CONTENT STYLING */
@@ -187,7 +165,7 @@
             border: 1px solid var(--accent-border);
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
             padding: 20px;
-            background-color: #2a2a2a; /* Latar belakang card lebih terang */
+            background-color: #2a2a2a; 
             transition: transform 0.2s;
         }
 
@@ -197,12 +175,11 @@
         }
 
         .feature-card h3 {
-            color: var(--text-primary); /* Sub-judul PUTIH */
+            color: var(--text-primary); 
             border-bottom: 1px dashed var(--accent-main);
             padding-bottom: 10px;
             font-size: 1em;
             text-shadow: none;
-            font-family: var(--pixel-font), cursive; /* Font pixel */
         }
 
         .content-list {
@@ -211,7 +188,7 @@
             font-size: 0.8em;
         }
         .content-list a {
-            color: var(--accent-main); /* Link menggunakan warna Aksen Biru */
+            color: var(--accent-main); 
             text-decoration: none;
             transition: color 0.2s;
         }
