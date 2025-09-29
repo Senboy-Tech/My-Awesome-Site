@@ -9,13 +9,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        /* Variabel Warna Kunci (Harus sama dengan all-code-list.html) */
+        /* Variabel Warna Kunci (FOKUS PADA KETERBACAAN) */
         :root {
             --pixel-font: 'Press Start 2P', cursive;
-            --bg-dark: #1e1e2c;             
-            --accent-red:#bf2424;         
-            --grid-line: #003333;           
-            --text-red: var(--accent-red);
+            --bg-dark: #0f0f0f;             /* Hitam Pekat */
+            --accent-main: #66ccff;         /* Aksen Biru Lembut (Tidak Terlalu Neon) */
+            --accent-border: #444444;       /* Garis Border Abu-abu Gelap */
+            --text-primary: #ffffff;        /* Teks Utama: Putih Terang */
+            --text-secondary: #aaaaaa;      /* Teks Sekunder: Abu-abu Muda */
             --border-width: 2px;
             --header-yellow: #CCCC00;       
             --shadow-color: #0d0d14;
@@ -31,12 +32,12 @@
             grid-template-rows: auto 1fr auto;
             gap: 0;
             background-color: var(--bg-dark); 
-            color: var(--text-neon);
+            color: var(--text-primary); /* Teks dasar Putih */
             background-image: none;
             position: relative;
         }
 
-        /* Pola Latar Belakang Data Glitch */
+        /* Pola Latar Belakang Data Glitch (Ganti menjadi garis abu-abu halus) */
         body::before {
             content: "";
             position: fixed; 
@@ -47,12 +48,12 @@
             z-index: -1; 
             background-image: repeating-linear-gradient(
                 135deg, 
-                rgba(0, 255, 255, 0.03) 0px, 
-                rgba(0, 255, 255, 0.03) 2px, 
-                transparent 2px, 
-                transparent 10px
+                rgba(255, 255, 255, 0.03) 0px, /* Garis Putih Sangat Tipis */
+                rgba(255, 255, 255, 0.03) 1px, 
+                transparent 1px, 
+                transparent 8px
             );
-            background-size: 50px 50px;
+            background-size: 40px 40px;
         }
 
         /* HEADER: Mempertahankan Gambar Banner */
@@ -61,32 +62,28 @@
             background-color: var(--header-yellow); 
             height: auto; 
             padding-bottom: 0;
-            border-bottom: var(--border-width) solid var(--accent-cyan);
-            box-shadow: 0 0 10px var(--accent-cyan);
+            border-bottom: var(--border-width) solid var(--accent-border);
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.3); /* Soft glow */
             position: relative;
-            background-image: url('Photo banner.jpg'); /* Pastikan path ke gambar banner Anda benar */
-    background-size: cover;
-    background-position: top center; /* Ini yang akan memastikan kepala terlihat */
-}
         }
 
         /* Teks di Header agar terbaca di atas Banner */
         .header-content {
             padding: 20px;
             text-align: center;
-            background-color: rgba(0, 0, 0, 0.4); 
+            background-color: rgba(0, 0, 0, 0.6); /* Lapisan gelap transparan yang lebih kuat */
         }
 
         .header-content h1 {
             font-size: 2em;
-            color: var(--text-neon);
-            text-shadow: 4px 4px 0px var(--shadow-color), 0 0 10px var(--accent-cyan);
+            color: var(--text-primary);
+            text-shadow: 3px 3px 0px var(--shadow-color); /* Kembali ke shadow normal */
         }
 
         .header-content p {
             font-size: 0.8em;
-            color: var(--text-neon);
-            text-shadow: 0 0 5px var(--accent-cyan);
+            color: var(--text-secondary);
+            text-shadow: none;
         }
 
         /* SIDEBAR: Transparan */
@@ -98,20 +95,25 @@
             grid-area: main;
             background-color: transparent; 
             padding: 20px; 
-            box-shadow: 0 0 80px rgba(0, 255, 255, 0.2);
+            box-shadow: none; /* Hapus semua efek halo yang mengganggu */
         }
         
-        /* <<<< PERUBAHAN PENTING ADA DI SINI >>>> */
-        /* Memaksa background gelap untuk section konten utama agar teks neon terbaca */
+        /* Konten Section (Welcome & Featured) */
         .intro-section, .featured-projects-section {
-            background-color: #11222e; /* Latar belakang gelap seperti kotak blueprint */
-            border: 1px solid var(--accent-cyan);
+            background-color: #1a1a1a; /* Latar belakang abu-abu sangat gelap */
+            border: 1px solid var(--accent-border);
             padding: 20px;
             margin-bottom: 20px;
-            box-shadow: 0 0 8px var(--accent-cyan);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            color: var(--text-primary);
         }
-        /* <<<< AKHIR PERUBAHAN PENTING >>>> */
 
+        .intro-section h2, .featured-projects-section h2 {
+            color: var(--accent-main); /* Judul menggunakan aksen Biru Lembut */
+            text-shadow: none;
+            border-bottom: 1px dashed var(--accent-border);
+            padding-bottom: 10px;
+        }
 
         /* FEATURED CONTENT STYLING */
         .feature-container {
@@ -122,24 +124,24 @@
         }
 
         .feature-card {
-            border: 1px solid var(--accent-cyan);
-            box-shadow: 0 0 8px var(--accent-cyan);
+            border: 1px solid var(--accent-border);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
             padding: 20px;
-            background-color: #0b1a20; /* Lebih gelap dari section utama */
+            background-color: #2a2a2a; /* Latar belakang card lebih terang */
             transition: transform 0.2s;
         }
 
         .feature-card:hover {
             transform: scale(1.02);
-            box-shadow: 0 0 15px #fff;
+            box-shadow: 0 0 10px var(--accent-main); /* Soft blue highlight on hover */
         }
 
         .feature-card h3 {
-            color: var(--accent-cyan);
-            border-bottom: 1px dashed var(--accent-cyan);
+            color: var(--text-primary);
+            border-bottom: 1px dashed var(--accent-main);
             padding-bottom: 10px;
             font-size: 1em;
-            text-shadow: 0 0 5px var(--accent-cyan);
+            text-shadow: none;
         }
 
         .content-list {
@@ -148,16 +150,16 @@
             font-size: 0.8em;
         }
         .content-list a {
-            color: var(--text-neon);
+            color: var(--accent-main); /* Link menggunakan warna Aksen Biru */
             text-decoration: none;
             transition: color 0.2s;
         }
         .content-list a:hover {
-            color: #fff;
-            text-shadow: 0 0 5px #fff;
+            color: var(--text-primary);
+            text-shadow: none;
         }
         .content-list .fas {
-            color: var(--accent-cyan);
+            color: var(--accent-main);
             margin-right: 5px;
         }
 
@@ -168,9 +170,9 @@
             padding: 10px;
             font-size: 0.6em;
             background-color: rgba(0, 0, 0, 0.5);
-            border-top: 1px dashed var(--accent-cyan);
+            border-top: 1px dashed var(--accent-border);
+            color: var(--text-secondary);
         }
-
 
         /* Responsif */
         @media (max-width: 900px) {
@@ -209,19 +211,19 @@
 
     <main>
         <section class="intro-section">
-            <h2 style="color:var(--accent-cyan); text-shadow: 0 0 5px var(--accent-cyan);">Welcome to My Hub</h2>
-            <p style="font-size: 0.8em;">Hello! My name is **[Kana]**, and this is where I document my journey in Programming and Data Collection. This homepage links to my latest archives and project logs.
+            <h2>Welcome to My Hub</h2>
+            <p style="font-size: 0.8em; color: var(--text-secondary);">Hello! My name is **[Kana]**, and this is where I document my journey in Programming and Data Collection. This homepage links to my latest archives and project logs.
             </p>
         </section>
         
         <section class="featured-projects-section">
-            <h2 style="color:var(--accent-cyan); text-shadow: 0 0 5px var(--accent-cyan);">Featured Content</h2>
+            <h2>Featured Content</h2>
             
             <div class="feature-container">
                 
                 <div class="feature-card wide-card">
                     <h3><i class="fas fa-code"></i> Coding Files</h3>
-                    <p style="font-size: 0.8em;">Lihat atau unduh skrip dan *snippet* penting yang saya buat:</p>
+                    <p style="font-size: 0.8em; color: var(--text-secondary);">Lihat atau unduh skrip dan *snippet* penting yang saya buat:</p>
                     <ul class="content-list">
                         <li><a href="all-code-list.html"><i class="fas fa-list-ul"></i> View All Code Schematics</a></li>
                         <li><a href="./files/data_processor.py" download><i class="fas fa-database"></i> New Custom Data Processor (.py)</a></li>
@@ -231,7 +233,7 @@
                 
                 <div class="feature-card wide-card">
                     <h3><i class="fas fa-cubes"></i> 3D Assets Archive</h3>
-                    <p style="font-size: 0.8em;">Model dan aset yang saya buat untuk game/visual:</p>
+                    <p style="font-size: 0.8em; color: var(--text-secondary);">Model dan aset yang saya buat untuk game/visual:</p>
                     <ul class="content-list">
                         <li><a href="meshes.html"><i class="fas fa-cube"></i> View All 3D MESH Downloads</a></li>
                         <li><a href="photos.html"><i class="fas fa-camera"></i> View Photo Gallery</a></li>
@@ -250,5 +252,3 @@
 
 </body>
 </html>
-
-
