@@ -3,54 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar File Kode - My Hub</title>
+    <title>PROJECT SCHEMATICS // FILE BROWSER</title>
     
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* Variabel Warna Khusus untuk Blueprint */
+        :root {
+            --pixel-font: 'Press Start 2P', cursive;
+            --bg-dark: #1e1e2c; 
+            --accent-cyan: #00ffff; /* Warna utama, Cyan Neon */
+            --grid-line: #003333; /* Warna garis grid/latar */
+            --box-bg: #111e25; /* Latar belakang kotak file */
+            --text-neon: var(--accent-cyan);
+            --border-width: 2px;
+        }
+
+        /* OVERWRITE FONT & BACKGROUND */
+        body { 
+            font-family: var(--pixel-font);
+            background-color: var(--bg-dark); 
+            color: var(--text-neon);
+            /* Latar belakang grid (opsional, bisa diganti dengan gambar) */
+            background-image: linear-gradient(0deg, var(--grid-line) 1px, transparent 1px),
+                              linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        header, footer, .left-sidebar, .right-sidebar, nav {
+            /* Pastikan elemen lain menyesuaikan tema gelap */
+            background-color: transparent !important;
+            color: var(--text-neon);
+        }
+        
+        main { background-color: transparent; }
+        
+        /* HEADER & BANNER TEXT */
+        .header-content h1 {
+            font-size: 1.5em;
+            text-shadow: 0 0 10px var(--accent-cyan);
+            color: var(--text-neon);
+            margin-bottom: 0.5em;
+            border-bottom: var(--border-width) solid var(--accent-cyan);
+            padding-bottom: 5px;
+        }
+        .header-content p {
+            font-size: 0.7em;
+            color: var(--text-neon);
+            text-shadow: 0 0 5px var(--accent-cyan);
+        }
+        
+        /* GRID UTAMA KONTEN */
+        .file-browser-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Dua kolom utama */
+            gap: 20px;
+            padding: 40px 0;
+            border-top: var(--border-width) solid var(--accent-cyan);
+            border-bottom: var(--border-width) solid var(--accent-cyan);
+            box-shadow: 0 0 10px var(--accent-cyan), inset 0 0 10px var(--accent-cyan);
+            background-color: #11222e; /* Latar belakang untuk memisahkan dari grid body */
+        }
+        
+        /* KOTAK DIREKTORI */
+        .directory-box {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid var(--accent-cyan);
+            box-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+        }
+
+        .directory-box h3 {
+            font-size: 0.8em;
+            color: var(--accent-cyan);
+            margin-top: 0;
+            padding-bottom: 5px;
+            border-bottom: 1px dashed var(--accent-cyan);
+            text-transform: uppercase;
+        }
+
+        /* DAFTAR FILE */
+        .file-list {
+            list-style: none;
+            padding: 0;
+            font-size: 0.7em;
+        }
+
+        .file-list li {
+            padding: 5px 0;
+        }
+        
+        .file-list a {
+            color: var(--text-neon);
+            text-decoration: none;
+            transition: color 0.2s, text-shadow 0.2s;
+        }
+
+        .file-list a:hover {
+            color: #fff;
+            text-shadow: 0 0 8px #fff;
+        }
+
+        .file-list .fas {
+            margin-right: 8px;
+            color: var(--accent-cyan);
+        }
+
+        /* LOG BOX BAWAH */
+        .log-box {
+            grid-column: 2 / 3; /* Hanya di kolom kanan */
+            padding: 10px;
+            border: 1px solid var(--accent-cyan);
+            background-color: #0d1a21;
+            font-size: 0.6em;
+            align-self: end; /* Tetap di bawah grid */
+        }
+
+        /* RESPONSIF */
+        @media (max-width: 800px) {
+            .file-browser-grid {
+                grid-template-columns: 1fr; /* Satu kolom di layar kecil */
+            }
+            .log-box {
+                grid-column: 1 / 2; /* Log box kembali ke satu kolom */
+                margin-top: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
 
     <header>
         <nav>
-            <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
-            <a href="projects.html" class="nav-link"><i class="fas fa-code"></i> Projects</a>
-            <a href="photos.html" class="nav-link"><i class="fas fa-camera"></i> Photos</a> 
-            <a href="meshes.html" class="nav-link"><i class="fas fa-cube"></i> Meshes</a> 
-            <a href="about.html" class="nav-link"><i class="fas fa-book"></i> About</a>
+            <a href="index.html" class="nav-link"><i class="fas fa-home"></i> HOME</a>
+            <a href="projects.html" class="nav-link"><i class="fas fa-code"></i> PROJECTS</a>
+            <a href="photos.html" class="nav-link"><i class="fas fa-camera"></i> PHOTOS</a> 
+            <a href="meshes.html" class="nav-link"><i class="fas fa-cube"></i> MESHES</a> 
+            <a href="about.html" class="nav-link"><i class="fas fa-book"></i> ABOUT</a>
         </nav>
         <div class="header-content">
-            <h1>Daftar Semua File Kode</h1>
-            <p>Pilih yang lu mau bro.</p>
+            <h1>PROJECT SCHEMATICS / FILE BROWSER</h1>
+            <p>ACCESSING DIGITAL ARCHIVES // USER: KANA // LOCATION: SECTOR-01</p>
         </div>
+        <div class="banner-container"></div>
     </header>
 
     <div class="left-sidebar"></div>
     <div class="right-sidebar"></div>
 
     <main>
+        
         <section class="code-list-section">
-            <h2>File Kode & Keterangan Saya</h2>
-            <p>Di sini Anda dapat mencantumkan semua file kode yang ingin Anda bagikan, dengan deskripsi buatan Anda sendiri.</p>
+            <div class="file-browser-grid">
+                
+                <div class="left-column">
+                    
+                    <div class="directory-box">
+                        <h3>&lt; DIRECTRY: PYTHON_SCRPT &gt;</h3>
+                        <ul class="file-list">
+                            <li><i class="fas fa-file-code"></i> <a href="./files/data_processor.py" download>data_processor.py</a></li>
+                            <li><i class="fas fa-file-code"></i> <a href="./files/api_interface.py" download>api_interface.py</a></li>
+                            <li><i class="fas fa-file-code"></i> <a href="./files/script_runner.py" download>script_runner.py</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="directory-box">
+                        <h3>&lt; DIRECTORY: JS_MODULES &gt;</h3>
+                        <ul class="file-list">
+                            <li><i class="fas fa-file-code"></i> <a href="./files/chart_module.js" download>chart_module.js</a></li>
+                            <li><i class="fas fa-file-code"></i> <a href="./files/animation_core.js" download>animation_core.js</a></li>
+                            <li><i class="fas fa-file-code"></i> <a href="./files/utility_funcs.js" download>utility_funcs.js</a></li>
+                        </ul>
+                    </div>
 
-            <div class="code-category">
-                <h3><i class="fas fa-file-code"></i> Skrip Python Terbaru</h3>
-                <p>Skrip untuk pemrosesan data dan otomatisasi.</p>
-                <ul class="content-list">
-                    <li><a href="./files/new_script.py" download><i class="fas fa-download"></i> New Data Script (.py) (15 KB)</a> - Skrip Pemrosesan Data Kustom.</li>
-                </ul>
+                </div>
+
+                <div class="right-column">
+                    
+                    <div class="directory-box">
+                        <h3>&lt; CONFIG: SYSTEM_UTILITIES &gt;</h3>
+                        <ul class="file-list">
+                            <li><i class="fas fa-cogs"></i> <a href="./files/config.yml" download>config.yml</a></li>
+                            <li><i class="fas fa-file-alt"></i> <a href="./files/keybinds.json" download>keybinds.json</a></li>
+                            <li><i class="fas fa-terminal"></i> <a href="./files/setup_alias.sh" download>setup_alias.sh</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="log-box">
+                        LOG &gt; FILES_LOADED_SUCCESSFULLY<br>
+                        LOG &gt; RENDER_COMPLETE
+                    </div>
+
+                </div>
+
             </div>
-            
-            <div class="code-category">
-                <h3><i class="fas fa-wrench"></i> Alat & Konfigurasi</h3>
-                <p>File-file pendukung proyek dan *workflow*.</p>
-                <ul class="content-list">
-                    <li><a href="./files/new_config.yml" download><i class="fas fa-cogs"></i> New Project Config (.yml) (5 KB)</a> - Konfigurasi Utama Proyek.</li>
-                </ul>
-            </div>
-            
-            <p class="footnote-text">
-                **Catatan:** Untuk menjalankan kode, Anda perlu mengunduh semua file terkait.
-            </p>
         </section>
     </main>
 
