@@ -8,40 +8,34 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    :root {
-    --bg-dark: #000000;         /* Ganti ke Hitam Pekat */
-    --text-primary: #00ffff;    /* Aksen Cyan (biru terang) */
-    --text-secondary: #ff8c00;  /* Aksen Oranye/Amber */
-    --border-color: #00ffff;    /* Warna garis utama */
-    --font-mono: 'Dosis', monospace; /* Coba font yang lebih clean/sci-fi jika ada */
-}
+    <style>
+        /* Variabel Warna Kunci (Anda bisa ubah di sini!) */
+        :root {
+            --pixel-font: 'Press Start 2P', cursive;
+            --bg-dark: #1e1e2c;             /* Warna Dasar Body: Biru gelap */
+            --accent-cyan: #00ffff;         /* Warna Aksen Neon: Cyan/Biru terang */
+            --grid-line: #003333;           /* Warna Garis Pola */
+            --text-neon: var(--accent-cyan);
+            --border-width: 2px;
+            --header-yellow: #CCCC00;       /* Warna kuning banner */
+        }
 
-/* Terapkan di Body */
-body {
-    background-color: var(--bg-dark);
-    color: var(--text-primary);
-    /* Hapus semua background-image lama */
-    background-image: none; 
-}
-
-        /* PERBAIKAN TATA LETAK UTAMA: Memastikan ksatria dan konten di tempatnya */
+        /* PERBAIKAN TATA LETAK UTAMA: Mengatur grid untuk Header, Ksatria (Sidebar), Main, dan Footer */
         body {
             display: grid;
             grid-template-areas:  "header header header"
                                   "left main right"
                                   "footer footer footer";
-            /* Atur lebar sidebar kiri/kanan. Ubah 200px jika gambar ksatria Anda lebih kecil/besar */
-            grid-template-columns: 200px 1fr 200px; 
+            grid-template-columns: 200px 1fr 200px; /* Lebar Sidebar Ksatria (200px) | Konten Utama (1fr) */
             grid-template-rows: auto 1fr auto;
             gap: 0;
             background-color: var(--bg-dark); 
             color: var(--text-neon);
             background-image: none;
-            /* Pola Latar Belakang Global di area kiri/kanan */
             position: relative;
         }
 
-        /* Pola Latar Belakang Data Glitch */
+        /* Pola Latar Belakang Data Glitch (Hanya Garis Cyan Transparan) */
         body::before {
             content: "";
             position: fixed; 
@@ -52,7 +46,7 @@ body {
             z-index: -1; 
             background-image: repeating-linear-gradient(
                 135deg, 
-                rgba(0, 255, 255, 0.03) 0px, 
+                rgba(0, 255, 255, 0.03) 0px, /* Warna Cyan Transparan */
                 rgba(0, 255, 255, 0.03) 2px, 
                 transparent 2px, 
                 transparent 10px
@@ -60,8 +54,9 @@ body {
             background-size: 50px 50px;
         }
 
-        /* PERBAIKAN HEADER (Mempertahankan Banner) */
+        /* HEADER: Mempertahankan Gambar Banner (Diasumsikan ada di styles.css) */
         header {
+            grid-area: header;
             background-color: var(--header-yellow); 
             height: auto; 
             padding-bottom: 0;
@@ -74,7 +69,7 @@ body {
         .header-content {
             padding: 20px;
             text-align: center;
-            background-color: rgba(0, 0, 0, 0.4); 
+            background-color: rgba(0, 0, 0, 0.4); /* Lapisan gelap transparan di atas banner */
         }
 
         .header-content h1 {
@@ -92,19 +87,16 @@ body {
             margin-top: 10px;
         }
 
-        /* PERBAIKAN SIDEBAR: Transparan agar pola terlihat */
-        .left-sidebar, .right-sidebar {
-            background-color: transparent !important; 
-            padding: 0 !important; 
-            border: none !important; 
-            z-index: 5; /* Agar ksatria di atas pola */
-        }
+        /* SIDEBAR: Transparan agar pola dan ksatria terlihat, tidak menekan konten */
+        .left-sidebar { grid-area: left; background-color: transparent !important; padding: 0 !important; border: none !important; z-index: 5; }
+        .right-sidebar { grid-area: right; background-color: transparent !important; padding: 0 !important; border: none !important; z-index: 5; }
         
-        /* KONTEN UTAMA (Blueprint) */
+        /* MAIN: Konten Utama Blueprint */
         main { 
+            grid-area: main;
             background-color: transparent; 
             padding: 20px 0; 
-            box-shadow: 0 0 80px rgba(0, 255, 255, 0.2); /* Efek Halo Neon */
+            box-shadow: 0 0 80px rgba(0, 255, 255, 0.2); /* Efek Halo Neon di sekitar blueprint */
         }
 
         /* GRID Blueprint (File Browser) */
@@ -116,9 +108,9 @@ body {
             margin: 0 auto; 
             max-width: 900px; 
             border: var(--border-width) solid var(--accent-cyan);
-            box-shadow: 0 0 25px var(--accent-cyan), inset 0 0 15px var(--accent-cyan); /* Efek Neon Kuat */
-            background-color: #11222e; 
-            /* Grid Blueprint di dalam kotak konten */
+            box-shadow: 0 0 25px var(--accent-cyan), inset 0 0 15px var(--accent-cyan); 
+            background-color: #11222e; /* Warna latar belakang kotak blueprint */
+            /* Grid Garis Biru di dalam kotak blueprint */
             background-image: linear-gradient(0deg, var(--grid-line) 1px, transparent 1px),
                               linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
             background-size: 50px 50px;
@@ -129,7 +121,7 @@ body {
             padding: 15px;
             border: 1px dashed var(--accent-cyan);
             box-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
-            background-color: #0b1a20;
+            background-color: #0b1a20; /* Warna kotak file individual */
         }
 
         .directory-box h3 {
@@ -142,6 +134,7 @@ body {
             text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
         }
 
+        /* LOG BOX */
         .log-box {
             grid-column: span 2; 
             padding: 10px;
@@ -152,21 +145,32 @@ body {
             text-align: center;
         }
 
+        /* STYLING LIST */
         .file-list { list-style: none; padding: 0; font-size: 0.7em; }
         .file-list a { color: var(--text-neon); text-decoration: none; transition: color 0.2s, text-shadow 0.2s; }
         .file-list a:hover { color: #fff; text-shadow: 0 0 8px #fff; }
         .file-list .fas { margin-right: 8px; color: var(--accent-cyan); }
         .file-list li { padding: 5px 0; }
+        
+        /* FOOTER */
+        footer {
+            grid-area: footer;
+            text-align: center;
+            padding: 10px;
+            font-size: 0.6em;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-top: 1px dashed var(--accent-cyan);
+        }
 
         /* Responsif */
         @media (max-width: 900px) {
             body {
-                grid-template-columns: 100px 1fr 100px; 
+                grid-template-columns: 100px 1fr 100px; /* Sempitkan Ksatria */
             }
         }
         @media (max-width: 600px) {
             body {
-                grid-template-columns: 0 1fr 0; 
+                grid-template-columns: 0 1fr 0; /* Sembunyikan Ksatria di mobile */
             }
             .left-sidebar, .right-sidebar {
                 display: none;
