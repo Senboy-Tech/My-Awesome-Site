@@ -1,6 +1,3 @@
----
-layout: false
----
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,7 +47,7 @@ layout: false
         .header-content h1 { font-size: 2em; color: var(--primary-accent); text-shadow: 4px 4px 0px var(--shadow-color); }
         .banner-container {
             width: 100%; height: 150px;
-            background-image: url('cyberpunk_banner.png'); /* Pastikan kamu punya file ini */
+            background-image: url('cyberpunk_banner.png'); /* Pastikan kamu punya file banner ini */
             background-size: cover;
             border-top: var(--border-width) solid var(--primary-accent);
             border-bottom: var(--border-width) solid var(--primary-accent);
@@ -68,9 +65,9 @@ layout: false
         main { grid-area: main; padding: 20px; background-color: #242436; }
         main h2 { font-size: 1.2em; color: var(--primary-accent); text-align: center; margin-bottom: 30px; border-bottom: 2px dashed var(--primary-accent); }
 
-        /* GALLERY GRID BARU - TARGET ID */
+        /* GALLERY GRID BARU */
         #photo-gallery-container { 
-            display: grid; /* INI KUNCI UNTUK MENGAKTIFKAN GRID */
+            display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
             padding: 0 0 30px 0;
@@ -85,7 +82,9 @@ layout: false
         .photo-container:hover { transform: translate(-3px, -3px); }
         .gallery-photo {
             width: 100%; height: auto; display: block; margin: 0;
-            image-rendering: pixelated; image-rendering: crisp-edges;
+            /* PROPERTI PIXEL ART */
+            image-rendering: pixelated; 
+            image-rendering: crisp-edges;
             border: 1px solid var(--text-light);
         }
         
@@ -114,23 +113,32 @@ layout: false
 
     <main>
         <div>
-            <h2>Foto Terbaru</h2>
+            <h2>Foto Terbaru (Manual)</h2>
             
             <div id="photo-gallery-container">
                 
-                {% assign gallery = site.data.gallery.photos %}
-                {% for photo in gallery %}
-                    <div class="photo-container">
-                        <a href="{{ photo.image }}" data-fancybox="gallery" data-caption="{{ photo.caption }}">
-                            <img src="{{ photo.image }}" alt="{{ photo.caption }}" class="gallery-photo">
-                        </a>
-                    </div>
-                {% endfor %}
+                <div class="photo-container">
+                    <a href="./images/my_photo_1.jpg" data-fancybox="gallery" data-caption="Cyber City View.">
+                        <img src="./images/my_photo_1.jpg" alt="Pemandangan Kota Cyber" class="gallery-photo">
+                    </a>
+                </div>
 
-            </div>
+                <div class="photo-container">
+                    <a href="./images/my_photo_2.png" data-fancybox="gallery" data-caption="Digital Samurai.">
+                        <img src="./images/my_photo_2.png" alt="Samurai Digital" class="gallery-photo">
+                    </a>
+                </div>
+
+                <div class="photo-container">
+                    <a href="./images/my_photo_3.webp" data-fancybox="gallery" data-caption="Old Terminal Screen.">
+                        <img src="./images/my_photo_3.webp" alt="Layar Terminal Lama" class="gallery-photo">
+                    </a>
+                </div>
+                
+                </div>
             
             <p style="font-size: 0.7em; margin-top: 20px; padding: 0 10px;">
-                Galeri ini dikelola oleh CMS Headless.
+                Galeri ini kini **dikelola secara manual**. Anda dapat menambah/mengedit foto langsung di kode ini. 💾
             </p>
 
         </div>
