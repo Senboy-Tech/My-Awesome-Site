@@ -3,21 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Coding Files - Download</title>
-    <link rel="stylesheet" href="styles.css?v=20250927B"> 
+    <title>Daftar File Kode - My Hub</title>
+    
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body class="futuristic-mode">
+<body>
 
     <header>
         <nav>
             <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
             <a href="projects.html" class="nav-link"><i class="fas fa-code"></i> Projects</a>
+            <a href="photos.html" class="nav-link"><i class="fas fa-camera"></i> Photos</a> 
+            <a href="meshes.html" class="nav-link"><i class="fas fa-cube"></i> Meshes</a> 
             <a href="about.html" class="nav-link"><i class="fas fa-book"></i> About</a>
         </nav>
         <div class="header-content">
-            <h1>All Project Downloads</h1>
-            <p>Unduh kode sumber dan skrip siap pakai yang dibuat untuk developer.</p>
+            <h1>Daftar Semua File Kode</h1>
+            <p>Kumpulan *utility* dan skrip buatan sendiri.</p>
         </div>
     </header>
 
@@ -25,84 +28,29 @@
     <div class="right-sidebar"></div>
 
     <main>
-        <section class="code-listing">
-            <h2>Daftar Semua File Kode</h2>
-            <p>Semua skrip utama, *cleaner*, dan *utility* tersedia di sini. Klik tautan untuk mengunduh.</p>
-            
-            <ul class="download-list">
-                
-                <li class="category-header">PYTHON SCRIPTS</li> 
+        <section class="code-list-section">
+            <h2>File Kode & Keterangan Saya</h2>
+            <p>Di sini Anda dapat mencantumkan semua file kode yang ingin Anda bagikan, dengan deskripsi buatan Anda sendiri.</p>
 
-                <li>
-                    <a href="files/web_scraper_main.py" download>
-                        <i class="fas fa-file-code"></i> **web_scraper_main.py**
-                        <span class="file-size">(12 KB - Script Utama Python)</span>
-                    </a>
-                </li>
-                
-                <li>
-                    <a href="files/data_cleaner_script.py" download>
-                        <i class="fas fa-file-code"></i> **data_cleaner_script.py**
-                        <span class="file-size">(8 KB - Script Pembersihan Data)</span>
-                    </a>
-                </li>
-
-                <li class="category-header">JSON & CSV UTILITIES</li> 
-                <li>
-                    <a href="files/json_validator.py" download>
-                        <i class="fas fa-check-square"></i> **json_validator.py**
-                        <span class="file-size">(6 KB - Memeriksa format JSON)</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="files/csv_merger.py" download>
-                        <i class="fas fa-file-csv"></i> **csv_merger.py**
-                        <span class="file-size">(7 KB - Menggabungkan File CSV)</span>
-                    </a>
-                </li>
-
-                <li class="category-header">DATABASE & SQL</li> 
-
-                <li>
-                    <a href="files/monthly_report.sql" download>
-                        <i class="fas fa-database"></i> **monthly_report.sql**
-                        <span class="file-size">(5 KB - Query SQL Laporan Bulanan)</span>
-                    </a>
-                </li>
-                
-                <li class="category-header">SECURITY & HASH TOOLS</li> 
-                <li>
-                    <a href="files/password_hasher.py" download>
-                        <i class="fas fa-lock"></i> **password_hasher.py**
-                        <span class="file-size">(4 KB - Fungsi Hashing)</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="files/sha256_checksum.py" download>
-                        <i class="fas fa-fingerprint"></i> **sha256_checksum.py**
-                        <span class="file-size">(3 KB - Verifikasi Integritas File)</span>
-                    </a>
-                </li>
-                
-                <li class="category-header">CONFIG & UTILITY</li> 
-                <li>
-                    <a href="files/requirements.txt" download>
-                        <i class="fas fa-file-alt"></i> **requirements.txt**
-                        <span class="file-size">(1 KB - Daftar Library Python)</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="files/.gitconfig_alias" download>
-                        <i class="fas fa-terminal"></i> **.gitconfig_alias**
-                        <span class="file-size">(3 KB - Alias Git Workflow)</span>
-                    </a>
-                </li>
-            </ul>
-            
-            <div style="margin-top: 30px;">
-                <p>⚠️ **Catatan:** Untuk menjalankan kode, Anda mungkin perlu mengunduh semua file, termasuk data contoh apa pun yang mungkin ada di repositori GitHub Anda.
-                </p>
+            <div class="code-category">
+                <h3><i class="fas fa-file-code"></i> Skrip Python Terbaru</h3>
+                <p>Skrip untuk pemrosesan data dan otomatisasi.</p>
+                <ul class="content-list">
+                    <li><a href="./files/new_script.py" download><i class="fas fa-download"></i> New Data Script (.py) (15 KB)</a> - Skrip Pemrosesan Data Kustom.</li>
+                </ul>
             </div>
+            
+            <div class="code-category">
+                <h3><i class="fas fa-wrench"></i> Alat & Konfigurasi</h3>
+                <p>File-file pendukung proyek dan *workflow*.</p>
+                <ul class="content-list">
+                    <li><a href="./files/new_config.yml" download><i class="fas fa-cogs"></i> New Project Config (.yml) (5 KB)</a> - Konfigurasi Utama Proyek.</li>
+                </ul>
+            </div>
+            
+            <p class="footnote-text">
+                **Catatan:** Untuk menjalankan kode, Anda perlu mengunduh semua file terkait.
+            </p>
         </section>
     </main>
 
