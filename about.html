@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,10 +6,69 @@
     <title>My About Page</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* Variabel Warna Kunci (Diambil dari styles.css jika ada, atau default browser) */
+        :root {
+            --pixel-font: 'Press Start 2P', cursive;
+            --secondary-accent: #00ffff; /* Asumsi warna aksen cyan/neon dari styles.css */
+            --text-light: #f0f0f0; 
+            --bg-dark: #1e1e2c;
+        }
+
+        /* STYLING SEARCH BAR (PENAMBAHAN MINIMAL) */
+        .search-module {
+            position: absolute; 
+            top: 15px; 
+            left: 15px; 
+            z-index: 20; 
+            display: flex;
+            align-items: center;
+            background-color: rgba(30, 30, 44, 0.9); /* Latar belakang transparan */
+            border: 2px solid var(--secondary-accent); /* Border Cyan/Neon */
+            padding: 4px 8px;
+            box-shadow: 0 0 5px var(--secondary-accent); /* Glow Cyan */
+        }
+
+        .search-input {
+            background-color: transparent; 
+            border: none;
+            color: var(--text-light); /* Teks Putih */
+            font-family: inherit; /* Menggunakan font dari styles.css */
+            font-size: 0.7em;
+            padding: 3px 5px;
+            outline: none; 
+            width: 180px;
+        }
+
+        .search-input::placeholder {
+            color: var(--secondary-accent);
+            opacity: 0.7;
+        }
+
+        .search-icon {
+            color: var(--secondary-accent); /* Ikon Cyan */
+            margin-left: 5px;
+            font-size: 0.8em;
+        }
+
+        /* RESPONSIVITAS SEARCH BAR */
+        @media (max-width: 600px) {
+            .search-module { 
+                display: none; /* Sembunyikan di ponsel */
+            } 
+        }
+    </style>
 </head>
 <body>
 
     <header>
+        <!-- PENAMBAHAN 1: HTML SEARCH BAR -->
+        <div class="search-module">
+            <input type="text" placeholder="ACCESS LOGS / SEARCH" class="search-input" id="site-search-input-about">
+            <i class="fas fa-search search-icon"></i>
+        </div>
+        
         <nav>
             <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
             <a href="projects.html" class="nav-link"><i class="fas fa-code"></i> Projects</a>
@@ -45,7 +104,6 @@
         </section>
     </div>
     
-
     <main>
         <section class="intro-section">
             <h2>My Story</h2>
@@ -66,6 +124,26 @@
     <footer>
         <p>&copy; 2025 My Code & Data Hub. All rights reserved.</p>
     </footer>
+
+<!-- PENAMBAHAN 3: KODE JAVASCRIPT UNTUK FUNGSI SEARCH -->
+<script>
+    // Menggunakan ID unik untuk halaman ini
+    const searchInput = document.getElementById('site-search-input-about');
+
+    // Tambahkan event listener untuk mendeteksi tombol Enter
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            const query = searchInput.value;
+            if (query.length > 0) {
+                const encodedQuery = encodeURIComponent(query);
+                // Domain Anda
+                const siteDomain = 'my-awesome-site-chi.vercel.app'; 
+                
+                window.location.href = `https://www.google.com/search?q=${encodedQuery}+site:${siteDomain}`;
+            }
+        }
+    });
+</script>
 
 </body>
 </html>
