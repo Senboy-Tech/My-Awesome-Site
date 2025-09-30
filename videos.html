@@ -16,12 +16,12 @@
 
             --bg-dark: #0f0f0f;             
             --bg-medium: #1a1a1a;           
-            --accent-main: #66ccff;         /* Biru Lembut/Modern */
+            --accent-main: #66ccff;         /* Neon Biru/Cyan */
             --accent-glow: rgba(102, 204, 255, 0.3); 
             --accent-border: #444444;       
             --text-primary: #ffffff;        
             --text-secondary: #aaaaaa;      
-            --header-yellow: #CCCC00;       
+            --header-yellow: #CCCC00;       /* Kuning Judul & Ikon */
             --shadow-subtle: rgba(0, 0, 0, 0.6); 
         }
 
@@ -41,7 +41,7 @@
             position: relative;
         }
 
-        /* Pola Latar Belakang Data Glitch */
+        /* Pola Latar Belakang Glitch Global */
         body::before {
             content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
             background-image: repeating-linear-gradient(
@@ -53,13 +53,13 @@
         /* HEADER: KONSISTENSI & TINGGI */
         header {
             grid-area: header;
-            background-color: var(--bg-dark); /* HITAM PEKAT */
+            background-color: var(--bg-dark); 
             height: 180px; 
             border-bottom: 2px solid var(--accent-border);
             box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
             position: relative; overflow: hidden; 
-            background-image: url('Photo banner.jpg'); /* Banner Ksatria/Kelinci */
-            background-size: cover; background-repeat: no-repeat; background-position: 50% 10%; 
+            background-image: url('Photo banner.jpg'); 
+            background-size: cover; background-repeat: no-repeat; background-position: 50% 30%; 
         }
 
         /* Navigasi & Teks Header */
@@ -71,13 +71,29 @@
         .header-content h1 { font-family: var(--pixel-font); font-size: 2em; color: var(--text-primary); text-shadow: 3px 3px 0px var(--shadow-subtle); margin: 0; }
         .header-content p { font-family: var(--modern-font); font-size: 0.9em; color: var(--text-secondary); margin-top: 5px; }
 
-        /* SIDEBARS: WAJIB TRANSPARAN */
-        .left-sidebar { grid-area: left; background-color: transparent !important; padding: 0 !important; border: none !important; z-index: 5; }
-        .right-sidebar { grid-area: right; background-color: transparent !important; padding: 0 !important; border: none !important; z-index: 5; }
-
-        /* MAIN CONTENT */
+        /* SIDEBARS BARU (Dengan gambar ksatria dan min-height) */
+        .left-sidebar { 
+            grid-area: left; padding: 0 !important; z-index: 5; 
+            background-image: url('Photoleft.png'); /* Menggunakan .png */
+            background-size: cover; background-repeat: no-repeat; background-position: center top; 
+            min-height: 800px; /* Memastikan tinggi untuk gambar terlihat */
+        }
+        .right-sidebar { 
+            grid-area: right; padding: 0 !important; z-index: 5; 
+            background-image: url('Photoright.png'); /* Menggunakan .png */
+            background-size: cover; background-repeat: no-repeat; background-position: center top; 
+            min-height: 800px; 
+        }
+        .left-sidebar, .right-sidebar { background-color: transparent !important; border: none !important; }
+        
+        /* PERBAIKAN: MAIN CONTENT AREA (Menambahkan pola/variasi background) */
         main { 
-            grid-area: main; background-color: var(--bg-dark); 
+            grid-area: main; 
+            /* Background yang sedikit transparan dengan pola minimalis */
+            background-color: rgba(15, 15, 15, 0.9); 
+            background-image: url('data:image/svg+xml;utf8,<svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h1v1H0zm2 0h1v1H2zm4 0h1v1H4zm2 0h1v1H6zm-4 2h1v1H2zm4 0h1v1H4zm-2 4h1v1H2zm4 0h1v1H4z" fill="%23222" opacity="0.1" /></svg>');
+            background-size: 10px 10px;
+            
             padding: 40px 20px; 
             border-left: 1px solid var(--accent-border);
             border-right: 1px solid var(--accent-border);
@@ -85,10 +101,12 @@
         
         main h2 {
             font-family: var(--pixel-font);
-            font-size: 1.6em; color: var(--header-yellow); /* Judul Kuning */
+            font-size: 1.6em; color: var(--header-yellow); 
             text-align: center; margin-bottom: 50px; padding-bottom: 15px;
             border-bottom: 2px dashed var(--accent-border); 
-            text-shadow: 0 0 8px var(--header-yellow); 
+            /* Menambahkan glow effect */
+            text-shadow: 0 0 10px var(--header-yellow), 0 0 20px rgba(204, 204, 0, 0.4); 
+            letter-spacing: 1px;
         }
 
         /* STYLING SEARCH BAR */
@@ -101,33 +119,95 @@
         .search-input::placeholder { color: var(--text-secondary); opacity: 0.7; }
         .search-icon { color: var(--accent-main); margin-left: 5px; font-size: 0.8em; }
 
-        /* STYLING KHUSUS VIDEO PLAYER (FANCY & MODERN) */
+        
+        /* ==================================================== */
+        /* STYLING GRID GALERI VIDEO */
+        /* ==================================================== */
+        
+        .video-category {
+            margin-bottom: 60px;
+        }
+
+        .category-description {
+            text-align: center;
+            color: var(--accent-main);
+            font-size: 0.9em;
+            margin-top: -30px; 
+            margin-bottom: 50px;
+            font-style: italic;
+        }
+
+        /* CONTAINER UTAMA GALERI GRID */
+        .video-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ITEM VIDEO (Setiap kotak video) */
+        .video-item {
+            /* Menambahkan sedikit background dan shadow pada kartu video */
+            background-color: rgba(26, 26, 26, 0.9); 
+            border: 1px solid var(--accent-border);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 0 10px var(--shadow-subtle);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .video-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px var(--accent-main); /* Glow saat hover */
+        }
+
+        .video-item h3 {
+            font-family: var(--pixel-font);
+            font-size: 0.9em;
+            color: var(--header-yellow);
+            /* PADDING DIUBAH AGAR KOTAK TIDAK TERLALU TINGGI PADA JUDUL PENDEK */
+            padding: 15px 15px 5px; 
+            margin: 0;
+            text-align: center;
+            border-bottom: 1px dashed var(--accent-border);
+            
+            /* PERBAIKAN TULISAN NUMPUK dan KEPANJANGAN/KOTAK TINGGI */
+            line-height: 1.5; 
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2; 
+            max-height: 2.8em; 
+            text-overflow: ellipsis; 
+        }
+
+        /* WRAPPER IFRAME */
         .video-wrapper {
-            max-width: 900px; margin: 0 auto; 
-            background-color: var(--bg-medium); 
-            border: 1px solid var(--accent-main); 
-            padding: 15px; 
-            border-radius: 8px; 
-            position: relative; z-index: 10;
-            box-shadow: 0 0 40px var(--accent-glow), 0 0 15px var(--accent-main), 0px 8px 15px var(--shadow-subtle); 
-            transform: translateY(0) perspective(1000px) rotateX(0deg); 
-            transition: all 0.4s ease-in-out;
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; 
         }
-        
-        .video-wrapper:hover {
-            transform: translateY(-5px) perspective(1000px) rotateX(1deg); 
-            box-shadow: 0 0 60px var(--accent-glow), 0 0 25px var(--accent-main), 0px 12px 25px var(--shadow-subtle);
+
+        .video-player {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
         }
-        
-        .video-player { display: block; width: 100%; height: 500px; border: none; border-radius: 4px; }
-        .video-caption { font-family: var(--modern-font); font-size: 0.9em; color: var(--text-secondary); text-align: center; margin-top: 30px; }
+
+        /* ==================================================== */
+        /* AKHIR STYLING */
+        /* ==================================================== */
+
 
         /* FOOTER */
         footer { grid-area: footer; text-align: center; padding: 15px; font-size: 0.8em; background-color: var(--bg-dark); border-top: 1px dashed var(--accent-border); color: var(--text-secondary); font-family: var(--modern-font); }
 
         /* Responsif */
-        @media (max-width: 900px) { body { grid-template-columns: 100px 1fr 100px; } .video-player { height: 400px; } }
-        @media (max-width: 600px) { body { grid-template-columns: 0 1fr 0; } .left-sidebar, .right-sidebar { display: none; } main { padding: 20px 10px; } .video-player { height: 300px; } .search-module { display: none; } }
+        @media (max-width: 600px) { .search-module { display: none; } body { grid-template-columns: 0 1fr 0; } .left-sidebar, .right-sidebar { display: none; } }
     </style>
 </head>
 <body>
@@ -142,7 +222,7 @@
             <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
             <a href="projects.html" class="nav-link"><i class="fas fa-code"></i> Projects</a>
             <a href="photos.html" class="nav-link"><i class="fas fa-camera"></i> Photos</a> 
-            <a href="my-video.html" class="nav-link"><i class="fas fa-video"></i> Videos</a> 
+            <a href="meshes.html" class="nav-link"><i class="fas fa-cube"></i> Meshes</a> 
             <a href="about.html" class="nav-link"><i class="fas fa-book"></i> About</a>
         </nav>
         <div class="header-content">
@@ -155,90 +235,107 @@
     <div class="right-sidebar"></div>
 
     <main>
-        <section>
-            <h2>Video [Delta Force gameplay]</h2>
+        
+        <section class="video-category">
+            <h2>Gaming Video Showcase</h2>
+            <p class="category-description">Koleksi video gameplay, demo game, dan rekaman streaming.</p>
             
-            <div class="video-wrapper">
-                <iframe 
-                    class="video-player"
-                    width="100%" 
-                    height="540" 
-                    src="https://www.youtube.com/embed/pidrtpKW_zs" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen
-                    frameborder="0">
-                </iframe>
-            </div>
-             <p class="video-caption">
-                Gameplay Delta Force.
-            </p>
+            <div class="video-gallery">
+                
+                <div class="video-item" id="delta-force-video">
+                    <h3 title="Delta Force Gameplay">Delta Force Gameplay</h3>
+                    <div class="video-wrapper">
+                        <iframe 
+                            class="video-player"
+                            src="https://www.youtube.com/embed/pidrtpKW_zs" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
 
-        </section>
-        
-        <section style="margin-top: 80px;">
-            <h2>Video [Skyrim The Guard maybe Nerfeous]</h2>
-            
-            <div class="video-wrapper">
-                <iframe 
-                    class="video-player"
-                    width="100%" 
-                    height="540" 
-                    src="https://www.youtube.com/embed/ZR8FWGED2CM" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen
-                    frameborder="0">
-                </iframe>
-            </div>
-            
-            <p class="video-caption">
-                Skyrim Gameplay.
-            </p>
-        </section>
-        
-        <section style="margin-top: 80px;">
-            <h2>Video [Stardew Valley]</h2>
-            
-            <div class="video-wrapper">
-                <iframe 
-                    class="video-player"
-                    width="100%" 
-                    height="540" 
-                    src="https://www.youtube.com/embed/psYifl_7jHo" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen
-                    frameborder="0">
-                </iframe>
-            </div>
-            
-            <p class="video-caption">
-                Video Pertama: What the hell emely doing (Stardew Valley).
-            </p>
+                <div class="video-item" id="skyrim-video">
+                    <h3 title="Skyrim The Guard maybe Nerfeous">Skyrim The Guard maybe Nerfeous</h3>
+                    <div class="video-wrapper">
+                        <iframe 
+                            class="video-player"
+                            src="https://www.youtube.com/embed/ZR8FWGED2CM" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+                
+                <div class="video-item" id="stardew-video">
+                    <h3 title="Stardew Valley - Emely Doing What?">Stardew Valley - Emely Doing What?</h3>
+                    <div class="video-wrapper">
+                        <iframe 
+                            class="video-player"
+                            src="https://www.youtube.com/embed/psYifl_7jHo" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
 
-        </section>
-        
-        <section style="margin-top: 80px;">
-            <h2>Video [Whutering Wave]</h2>
-            
-            <div class="video-wrapper">
-                <iframe 
-                    class="video-player"
-                    width="100%" 
-                    height="540" 
-                    src="https://www.youtube.com/embed/MAKikY3eYq8" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen
-                    frameborder="0">
-                </iframe>
+                <div class="video-item" id="whutering-wave-video">
+                    <h3 title="Whutering Wave Charlotta">Whutering Wave Charlotta</h3>
+                    <div class="video-wrapper">
+                        <iframe 
+                            class="video-player"
+                            src="https://www.youtube.com/embed/MAKikY3eYq8" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+                
             </div>
-
-            <p class="video-caption">
-                Video Kedua: Whutering wave Charlotta.
-            </p>
         </section>
         
-        <section style="margin-top: 80px;">
-            <h2 style="font-size: 1.2em; margin-bottom: 20px;">Arsip Video Lainnya</h2>
-            <p style="text-align: center;">Anda bisa menyematkan *playlist* YouTube di sini atau tautan ke arsip lain.</p>
+        <section class="video-category" style="margin-top: 80px;">
+            <h2>Video Editing & Tutorial</h2>
+            <p class="category-description">Arsip video yang berfokus pada editing, VFX, atau tutorial.</p>
+            
+            <div class="video-gallery">
+                
+                <div class="video-item" id="delete-temp-file">
+                    <h3 title="Tutorial How To Delete all Temp File On your PC">Tutorial How To Delete all Temp File On your PC</h3>
+                    <div class="video-wrapper">
+                        <iframe 
+                            class="video-player"
+                            src="https://www.youtube.com/embed/j56Qs2BYpHE" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+                
+                <div class="video-item" id="blender-cube-tutorial">
+                    <h3 title="Tutorial How To open a cube in Blender">Tutorial How To open a cube in Blender</h3>
+                    <div class="video-wrapper">
+                        <iframe 
+                            class="video-player"
+                            src="https://www.youtube.com/embed/2yR7hReVbO8" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+
+                <div class="video-item" id="after-effects-vfx">
+                    <h3 title="How To remove Background From Photos">How To remove Background From Photos</h3>
+                    <div class="video-wrapper">
+                        <iframe 
+                            class="video-player"
+                            src="https://www.youtube.com/embed/-Al73auStvg" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+                
+                </div>
         </section>
 
     </main>
