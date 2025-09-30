@@ -18,7 +18,7 @@
             --text-primary: #ffffff;        /* PUTIH */
             --text-secondary: #aaaaaa;      
             --border-width: 2px;
-            --header-yellow: #CCCC00;       /* Kuning untuk Header & Judul */
+            --header-yellow: #CCCC00;       /* Kuning untuk Judul */
             --shadow-color: #0d0d14;
         }
 
@@ -58,7 +58,7 @@
         header {
             grid-area: header;
             background-color: var(--header-yellow); 
-            height: 180px; /* Ditinggikan untuk memberi ruang kepala */
+            height: 180px; 
             padding-bottom: 0;
             border-bottom: var(--border-width) solid var(--accent-border);
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
@@ -69,10 +69,10 @@
             background-image: url('Photo banner.jpg'); 
             background-size: cover;
             background-repeat: no-repeat;
-            background-position: 40% 23%; /* FOKUS KE ATAS (0%) */
+            background-position: 40% 23%; /* Nilai yang terakhir Anda coba */
         }
 
-        /* Navigasi */
+        /* NAVIGASI UTAMA */
         header nav {
             padding: 10px 0;
             display: flex;
@@ -90,7 +90,7 @@
             background-color: rgba(0, 0, 0, 0.4); 
             box-shadow: 0 0 6px rgba(255,255,255,0.3); 
             transition: all 0.1s; display: inline-block;
-            font-family: inherit; /* Gunakan font body */
+            font-family: inherit; 
         }
 
         .nav-link:hover { 
@@ -123,113 +123,88 @@
             margin-top: 5px;
         }
 
-        /* SIDEBAR: Transparan */
+        /* STYLING SEARCH BAR (DIPINDAHKAN KE SINI) */
+        .search-module {
+            position: absolute; 
+            top: 20px; 
+            left: 20px; 
+            z-index: 20; 
+            display: flex;
+            align-items: center;
+            background-color: var(--bg-medium); /* Menggunakan warna yang lebih gelap */
+            border: 1px solid var(--accent-border);
+            padding: 5px;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+        }
+
+        .search-input {
+            background-color: transparent; 
+            border: none;
+            color: var(--text-primary);
+            font-family: var(--pixel-font); 
+            font-size: 0.8em;
+            padding: 5px 8px;
+            outline: none; 
+            width: 200px;
+        }
+
+        .search-input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .search-icon {
+            color: var(--accent-main); 
+            margin-left: 5px;
+            font-size: 0.9em;
+        }
+
+        /* SIDEBARS & MAIN CONTENT */
         .left-sidebar { grid-area: left; background-color: transparent !important; padding: 0 !important; border: none !important; z-index: 5; }
         .right-sidebar { grid-area: right; background-color: transparent !important; padding: 0 !important; border: none !important; z-index: 5; }
 
-        /* MAIN: Konten Utama */
-        main { 
-            grid-area: main;
-            background-color: transparent; 
-            padding: 20px; 
-            box-shadow: none; 
-        }
+        main { grid-area: main; background-color: transparent; padding: 20px; box-shadow: none; }
         
-        /* Konten Section (Welcome & Featured) */
         .intro-section, .featured-projects-section {
             background-color: #1a1a1a; 
             border: 1px solid var(--accent-border);
-            padding: 20px;
-            margin-bottom: 20px;
+            padding: 20px; margin-bottom: 20px;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
             color: var(--text-primary); 
         }
 
         .intro-section h2, .featured-projects-section h2 {
             color: var(--header-yellow); /* JUDUL UTAMA KUNING */
-            text-shadow: none;
-            border-bottom: 1px dashed var(--accent-border);
-            padding-bottom: 10px;
-            font-size: 1.2em; 
+            text-shadow: none; border-bottom: 1px dashed var(--accent-border);
+            padding-bottom: 10px; font-size: 1.2em; 
         }
 
-        /* FEATURED CONTENT STYLING */
-        .feature-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            padding: 20px 0;
-        }
-
-        .feature-card {
-            border: 1px solid var(--accent-border);
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-            padding: 20px;
-            background-color: #2a2a2a; 
-            transition: transform 0.2s;
-        }
-
-        .feature-card:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 10px var(--accent-main); 
-        }
-
-        .feature-card h3 {
-            color: var(--text-primary); 
-            border-bottom: 1px dashed var(--accent-main);
-            padding-bottom: 10px;
-            font-size: 1em;
-            text-shadow: none;
-        }
-
-        .content-list {
-            list-style: none;
-            padding: 0;
-            font-size: 0.8em;
-        }
-        .content-list a {
-            color: var(--accent-main); 
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        .content-list a:hover {
-            color: var(--text-primary);
-            text-shadow: none;
-        }
-        .content-list .fas {
-            color: var(--accent-main);
-            margin-right: 5px;
-        }
+        .feature-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 20px 0; }
+        .feature-card { border: 1px solid var(--accent-border); box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); padding: 20px; background-color: #2a2a2a; transition: transform 0.2s; }
+        .feature-card:hover { transform: scale(1.02); box-shadow: 0 0 10px var(--accent-main); }
+        .feature-card h3 { color: var(--text-primary); border-bottom: 1px dashed var(--accent-main); padding-bottom: 10px; font-size: 1em; text-shadow: none; }
+        .content-list { list-style: none; padding: 0; font-size: 0.8em; }
+        .content-list a { color: var(--accent-main); text-decoration: none; transition: color 0.2s; }
+        .content-list a:hover { color: var(--text-primary); text-shadow: none; }
+        .content-list .fas { color: var(--accent-main); margin-right: 5px; }
 
         /* FOOTER */
-        footer {
-            grid-area: footer;
-            text-align: center;
-            padding: 10px;
-            font-size: 0.6em;
-            background-color: rgba(0, 0, 0, 0.5);
-            border-top: 1px dashed var(--accent-border);
-            color: var(--text-secondary);
-        }
+        footer { grid-area: footer; text-align: center; padding: 10px; font-size: 0.6em; background-color: rgba(0, 0, 0, 0.5); border-top: 1px dashed var(--accent-border); color: var(--text-secondary); }
 
-        /* Responsif */
-        @media (max-width: 900px) {
-            body {
-                grid-template-columns: 100px 1fr 100px; 
-            }
-        }
+        /* RESPONSIVITAS KHUSUS SEARCH BAR */
         @media (max-width: 600px) {
-            body {
-                grid-template-columns: 0 1fr 0; 
-            }
-            .left-sidebar, .right-sidebar {
-                display: none;
-            }
+            .search-module { display: none; } 
+            body { grid-template-columns: 0 1fr 0; }
+            .left-sidebar, .right-sidebar { display: none; }
         }
     </style>
 </head>
 <body>
 <header>
+    <div class="search-module">
+        <input type="text" placeholder="ACCESS LOGS / SEARCH" class="search-input">
+        <i class="fas fa-search search-icon"></i>
+    </div>
+
     <nav>
         <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
         <a href="projects.html" class="nav-link"><i class="fas fa-code"></i> Projects</a>
