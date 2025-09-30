@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
-        /* Variabel Warna Kunci (KONSISTENSI & MODERN) */
+        /* Variabel Warna Kunci (KONSISTENSI DENGAN INDEX.HTML) */
         :root {
             --pixel-font: 'Press Start 2P', cursive;
             --modern-font: 'Roboto Mono', monospace; 
@@ -91,6 +91,16 @@
             text-shadow: 0 0 8px var(--header-yellow); 
         }
 
+        /* STYLING SEARCH BAR */
+        .search-module {
+            position: absolute; top: 15px; left: 15px; z-index: 20; display: flex; align-items: center;
+            background-color: #2a2a2a; border: 1px solid var(--accent-border); padding: 4px 8px;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+        }
+        .search-input { background-color: transparent; border: none; color: var(--text-primary); font-family: var(--pixel-font); font-size: 0.7em; padding: 3px 5px; outline: none; width: 180px; }
+        .search-input::placeholder { color: var(--text-secondary); opacity: 0.7; }
+        .search-icon { color: var(--accent-main); margin-left: 5px; font-size: 0.8em; }
+
         /* STYLING KHUSUS VIDEO PLAYER (FANCY & MODERN) */
         .video-wrapper {
             max-width: 900px; margin: 0 auto; 
@@ -109,25 +119,25 @@
             box-shadow: 0 0 60px var(--accent-glow), 0 0 25px var(--accent-main), 0px 12px 25px var(--shadow-subtle);
         }
         
-        .video-player {
-            display: block; width: 100%; height: 500px; border: none; border-radius: 4px; 
-        }
-
-        .video-caption {
-            font-family: var(--modern-font); font-size: 0.9em; color: var(--text-secondary); text-align: center; margin-top: 30px; 
-        }
+        .video-player { display: block; width: 100%; height: 500px; border: none; border-radius: 4px; }
+        .video-caption { font-family: var(--modern-font); font-size: 0.9em; color: var(--text-secondary); text-align: center; margin-top: 30px; }
 
         /* FOOTER */
         footer { grid-area: footer; text-align: center; padding: 15px; font-size: 0.8em; background-color: var(--bg-dark); border-top: 1px dashed var(--accent-border); color: var(--text-secondary); font-family: var(--modern-font); }
 
         /* Responsif */
         @media (max-width: 900px) { body { grid-template-columns: 100px 1fr 100px; } .video-player { height: 400px; } }
-        @media (max-width: 600px) { body { grid-template-columns: 0 1fr 0; } .left-sidebar, .right-sidebar { display: none; } main { padding: 20px 10px; } .video-player { height: 300px; } }
+        @media (max-width: 600px) { body { grid-template-columns: 0 1fr 0; } .left-sidebar, .right-sidebar { display: none; } main { padding: 20px 10px; } .video-player { height: 300px; } .search-module { display: none; } }
     </style>
 </head>
 <body>
 
     <header>
+        <div class="search-module">
+            <input type="text" placeholder="ACCESS LOGS / SEARCH" class="search-input" id="site-search-input-videos">
+            <i class="fas fa-search search-icon"></i>
+        </div>
+
         <nav>
             <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
             <a href="projects.html" class="nav-link"><i class="fas fa-code"></i> Projects</a>
@@ -136,8 +146,8 @@
             <a href="about.html" class="nav-link"><i class="fas fa-book"></i> About</a>
         </nav>
         <div class="header-content">
-            <h1>Video channel youtube Gua</h1>
-            <p>Video Gameplay Dan lain lain .</p>
+            <h1>My Video Archives</h1>
+            <p>Koleksi video dan demo proyek.</p>
         </div>
     </header>
 
@@ -153,7 +163,7 @@
                     class="video-player"
                     width="100%" 
                     height="540" 
-                    src="https://youtube.com/embed/pidrtpKW_zs" 
+                    src="https://www.youtube.com/embed/pidrtpKW_zs" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                     allowfullscreen
                     frameborder="0">
@@ -163,8 +173,9 @@
                 Gameplay Delta Force.
             </p>
 
-              <main>
-        <section>
+        </section>
+        
+        <section style="margin-top: 80px;">
             <h2>Video [Skyrim The Guard maybe Nerfeous]</h2>
             
             <div class="video-wrapper">
@@ -172,7 +183,7 @@
                     class="video-player"
                     width="100%" 
                     height="540" 
-                    src="https://www.youtube.com/embed/ZR8FWGED2CM 
+                    src="https://www.youtube.com/embed/ZR8FWGED2CM" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                     allowfullscreen
                     frameborder="0">
@@ -182,9 +193,9 @@
             <p class="video-caption">
                 Skyrim Gameplay.
             </p>
-
-    <main>
-        <section>
+        </section>
+        
+        <section style="margin-top: 80px;">
             <h2>Video [Stardew Valley]</h2>
             
             <div class="video-wrapper">
@@ -235,6 +246,25 @@
     <footer>
         <p>&copy; 2025 My Code & Data Hub. All rights reserved.</p>
     </footer>
+
+<script>
+    // Menggunakan ID unik untuk halaman ini
+    const searchInput = document.getElementById('site-search-input-videos');
+
+    // Tambahkan event listener untuk mendeteksi tombol Enter
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            const query = searchInput.value;
+            if (query.length > 0) {
+                const encodedQuery = encodeURIComponent(query);
+                // Domain Anda
+                const siteDomain = 'my-awesome-site-chi.vercel.app'; 
+                
+                window.location.href = `https://www.google.com/search?q=${encodedQuery}+site:${siteDomain}`;
+            }
+        }
+    });
+</script>
 
 </body>
 </html>
