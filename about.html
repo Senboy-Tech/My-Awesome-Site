@@ -3,67 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My About Page</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>About Me | Kana's Data Hub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
-        /* Variabel Warna Kunci (Diambil dari styles.css jika ada, atau default browser) */
+        /* Menggunakan VARIBEL & BASE LAYOUT DARI videos.html untuk KONSISTENSI */
         :root {
             --pixel-font: 'Press Start 2P', cursive;
-            --secondary-accent: #00ffff; /* Asumsi warna aksen cyan/neon dari styles.css */
-            --text-light: #f0f0f0; 
-            --bg-dark: #1e1e2c;
+            --modern-font: 'Roboto Mono', monospace; 
+            --bg-dark: #0f0f0f;             
+            --bg-medium: #1a1a1a;           
+            --accent-main: #66ccff;         /* Neon Biru/Cyan */
+            --accent-glow: rgba(102, 204, 255, 0.3); 
+            --accent-border: #444444;       
+            --text-primary: #ffffff;        /* Putih */
+            --text-secondary: #aaaaaa;      /* Abu-abu lembut */
+            --header-yellow: #CCCC00;       /* Kuning Ikon & Judul */
+            --shadow-subtle: rgba(0, 0, 0, 0.6); 
+            --glow-strong: rgba(102, 204, 255, 0.6); /* Cahaya lebih kuat */
         }
 
-        /* STYLING SEARCH BAR (PENAMBAHAN MINIMAL) */
-        .search-module {
-            position: absolute; 
-            top: 15px; 
-            left: 15px; 
-            z-index: 20; 
-            display: flex;
-            align-items: center;
-            background-color: rgba(30, 30, 44, 0.9); /* Latar belakang transparan */
-            border: 2px solid var(--secondary-accent); /* Border Cyan/Neon */
-            padding: 4px 8px;
-            box-shadow: 0 0 5px var(--secondary-accent); /* Glow Cyan */
+        body {
+            font-family: var(--modern-font); 
+            background-color: var(--bg-dark); 
+            color: var(--text-primary); 
+            margin: 0; padding: 0; min-height: 100vh;
+            display: grid;
+            grid-template-areas:  "header header header"
+                                  "left main right"
+                                  "footer footer footer";
+            grid-template-columns: 200px 1fr 200px; 
+            grid-template-rows: auto 1fr auto;
+            gap: 0;
+            position: relative;
         }
 
-        .search-input {
-            background-color: transparent; 
-            border: none;
-            color: var(--text-light); /* Teks Putih */
-            font-family: inherit; /* Menggunakan font dari styles.css */
-            font-size: 0.7em;
-            padding: 3px 5px;
-            outline: none; 
-            width: 180px;
+        body::before {
+            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
+            background-image: repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0px, rgba(255, 255, 255, 0.02) 1px, transparent 1px, transparent 10px);
+            background-size: 30px 30px; opacity: 0.7;
+        }
+        
+        header { grid-area: header; background-color: var(--bg-dark); height: 180px; border-bottom: 2px solid var(--accent-border); box-shadow: 0 0 5px rgba(255, 255, 255, 0.3); position: relative; overflow: hidden; background-image: url('Photo banner.jpg'); background-size: cover; background-repeat: no-repeat; background-position: 50% 30%; }
+        header nav { padding: 10px 0; display: flex; justify-content: center; background-color: rgba(0, 0, 0, 0.7); border-bottom: 1px solid rgba(255,255,255,0.1); }
+        
+        .nav-link { text-decoration: none; color: var(--text-primary); font-family: var(--pixel-font); font-size: 0.8em; padding: 8px 15px; margin: 0 5px; border: 1px solid var(--accent-border); background-color: var(--bg-medium); box-shadow: 2px 2px 0px 0px var(--shadow-subtle); transition: all 0.2s; display: inline-block; border-radius: 3px; }
+        .nav-link:hover { color: var(--accent-main); border-color: var(--accent-main); background-color: #2a2a2a; transform: translateY(-2px); }
+        
+        .header-content { position: absolute; bottom: 0; left: 0; width: 100%; background-color: rgba(0, 0, 0, 0.6); padding: 20px; box-sizing: border-box; z-index: 5; }
+        .header-content h1 { font-family: var(--pixel-font); font-size: 2em; color: var(--text-primary); text-shadow: 3px 3px 0px var(--shadow-subtle); margin: 0; }
+        .header-content p { font-family: var(--modern-font); font-size: 0.9em; color: var(--text-secondary); margin-top: 5px; }
+
+        /* SIDEBARS: GAMBAR KESATRIA & MIN-HEIGHT */
+        .left-sidebar { 
+            grid-area: left; padding: 0 !important; z-index: 5; 
+            background-image: url('Photoleft.png'); 
+            background-size: cover; background-repeat: no-repeat; background-position: center top; 
+            min-height: 800px; /* Menjamin gambar ksatria terlihat penuh */
+        }
+        .right-sidebar { 
+            grid-area: right; padding: 0 !important; z-index: 5; 
+            background-image: url('Photoright.png'); 
+            background-size: cover; background-repeat: no-repeat; background-position: center top; 
+            min-height: 800px; /* Menjamin gambar ksatria terlihat penuh */
         }
 
-        .search-input::placeholder {
-            color: var(--secondary-accent);
-            opacity: 0.7;
+        .left-sidebar, .right-sidebar { background-color: transparent !important; border: none !important; }
+
+        /* ========================================================= */
+        /* PERBAIKAN UTAMA: MAIN CONTENT AREA */
+        /* ========================================================= */
+        main { 
+            grid-area: main; 
+            background-color: rgba(15, 15, 15, 0.9); /* Sedikit transparan */
+            padding: 40px 20px; 
+            border-left: 1px solid var(--accent-border); 
+            border-right: 1px solid var(--accent-border); 
+            /* Menambahkan pola background yang subtle */
+            background-image: url('data:image/svg+xml;utf8,<svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h1v1H0zm2 0h1v1H2zm4 0h1v1H4zm2 0h1v1H6zm-4 2h1v1H2zm4 0h1v1H4zm-2 4h1v1H2zm4 0h1v1H4z" fill="%23222" opacity="0.1" /></svg>');
+            background-size: 10px 10px;
         }
 
-        .search-icon {
-            color: var(--secondary-accent); /* Ikon Cyan */
-            margin-left: 5px;
+        /* Styling untuk Judul H2 di main content */
+        main h2 { 
+            font-family: var(--pixel-font); 
+            font-size: 1.6em; 
+            color: var(--header-yellow); /* Warna kuning */
+            text-align: center; 
+            margin-bottom: 30px; 
+            padding-bottom: 15px; 
+            border-bottom: 2px dashed var(--accent-border); 
+            /* Menambahkan glow effect */
+            text-shadow: 0 0 10px var(--header-yellow), 0 0 20px rgba(204, 204, 0, 0.4); 
+            letter-spacing: 1px;
+        }
+
+        /* Styling untuk Section Konten (My Story, My Superpowers) */
+        .intro-section, .featured-projects-section {
+            background-color: rgba(26, 26, 26, 0.9); /* Latar belakang lebih gelap transparan */
+            border: 1px solid var(--accent-main); /* Border neon biru */
+            padding: 25px 30px; /* Padding lebih lega */
+            margin-bottom: 35px; /* Jarak antar section */
+            box-shadow: 0 0 10px var(--accent-glow); /* Efek glow */
+            transition: all 0.3s ease-in-out; /* Transisi untuk hover */
+            border-radius: 5px; /* Sedikit sudut membulat */
+            position: relative; /* Untuk pseudo-element */
+            overflow: hidden; /* Pastikan shadow tidak keluar */
+        }
+        
+        /* Animasi subtle saat hover */
+        .intro-section:hover, .featured-projects-section:hover {
+            transform: translateY(-5px); /* Sedikit naik */
+            box-shadow: 0 5px 20px var(--glow-strong); /* Glow lebih kuat */
+        }
+
+        /* Styling untuk Paragraf */
+        .intro-section p {
+            font-family: var(--modern-font); /* Font modern untuk keterbacaan */
+            font-size: 1em; 
+            color: var(--text-secondary); /* Teks abu-abu */
+            line-height: 1.8; /* Jarak antar baris */
+            margin-top: 15px;
+            text-align: justify; /* Teks rata kanan kiri */
+        }
+
+        /* Styling untuk List (My Superpowers) */
+        .featured-projects-section ul {
+            list-style: none; /* Hilangkan bullet default */
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .featured-projects-section ul li {
+            font-family: var(--modern-font);
+            font-size: 0.95em;
+            color: var(--text-primary); /* Teks putih */
+            padding: 8px 0;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1); /* Garis bawah putus-putus */
+            transition: color 0.2s ease-in-out;
+            position: relative;
+            padding-left: 20px; /* Untuk ikon custom */
+        }
+
+        .featured-projects-section ul li:last-child {
+            border-bottom: none; /* Hilangkan garis bawah pada item terakhir */
+        }
+
+        .featured-projects-section ul li::before {
+            content: "\f006"; /* FontAwesome: Star */
+            font-family: "Font Awesome 5 Free"; /* Pastikan font awesome terbaca */
+            font-weight: 900; /* Solid icon */
+            position: absolute;
+            left: 0;
+            color: var(--header-yellow); /* Warna ikon kuning */
             font-size: 0.8em;
+            top: 10px;
         }
 
-        /* RESPONSIVITAS SEARCH BAR */
-        @media (max-width: 600px) {
-            .search-module { 
-                display: none; /* Sembunyikan di ponsel */
-            } 
+        .featured-projects-section ul li:hover {
+            color: var(--accent-main); /* Teks jadi neon biru saat hover */
+            transform: translateX(5px);
         }
+
+        /* ========================================================= */
+        /* AKHIR PERBAIKAN MAIN CONTENT AREA */
+        /* ========================================================= */
+
+        /* Gaya Sidebar List (My Stuff & Socials) */
+        .sidebar-list { 
+            padding-top: 200px; 
+            background-color: rgba(26, 26, 26, 0.8); 
+            padding: 15px; border: 1px solid var(--accent-main); box-shadow: 0 0 10px var(--accent-glow); margin-top: 50px; 
+            margin-bottom: 20px;
+        }
+        /* PERBAIKAN: JUDUL MY STUFF */
+        .sidebar-list h2 { 
+            font-family: var(--pixel-font); 
+            font-size: 1em; 
+            color: var(--text-primary); /* Diubah jadi putih */
+            border-bottom: 1px dashed var(--accent-border); 
+            margin-bottom: 10px; text-shadow: none; 
+        }
+        
+        .sidebar-list ul { list-style: none; padding: 0; }
+        .sidebar-list ul li { margin-bottom: 5px; position: relative; }
+
+        /* GAYA LINK DEFAULT */
+        .sidebar-list ul li a { 
+            text-decoration: none; 
+            color: var(--text-secondary); 
+            font-size: 0.8em; 
+            display: block; 
+            padding: 5px 0; 
+            transition: all 0.2s ease-in-out; 
+        }
+
+        /* Ikon & Warna */
+        .sidebar-list ul li a i { 
+            margin-right: 8px; 
+            color: var(--header-yellow); 
+            transition: color 0.2s;
+        }
+
+        /* PERBAIKAN: EFEK HOVER BARU (Animasi & Warna Neon) */
+        .sidebar-list ul li a:hover { 
+            color: var(--accent-main); 
+            transform: translateX(5px); /* Geser ke kanan */
+        }
+
+        .sidebar-list ul li a:hover i {
+            color: var(--accent-main); /* Ikon ikut jadi neon biru */
+        }
+
+        .search-module { position: absolute; top: 15px; left: 15px; z-index: 20; display: flex; align-items: center; background-color: #2a2a2a; border: 1px solid var(--accent-border); padding: 4px 8px; box-shadow: 0 0 5px rgba(255, 255, 255, 0.1); }
+        .search-input { background-color: transparent; border: none; color: var(--text-primary); font-family: var(--pixel-font); font-size: 0.7em; padding: 3px 5px; outline: none; width: 180px; }
+        .search-icon { color: var(--accent-main); margin-left: 5px; font-size: 0.8em; }
+
+        footer { grid-area: footer; text-align: center; padding: 15px; font-size: 0.8em; background-color: var(--bg-dark); border-top: 1px dashed var(--accent-border); color: var(--text-secondary); font-family: var(--modern-font); }
+
+        @media (max-width: 600px) { .search-module { display: none; } body { grid-template-columns: 0 1fr 0; } .left-sidebar, .right-sidebar { display: none; } }
     </style>
 </head>
 <body>
 
     <header>
-        <!-- PENAMBAHAN 1: HTML SEARCH BAR -->
         <div class="search-module">
             <input type="text" placeholder="ACCESS LOGS / SEARCH" class="search-input" id="site-search-input-about">
             <i class="fas fa-search search-icon"></i>
@@ -72,11 +235,14 @@
         <nav>
             <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
             <a href="projects.html" class="nav-link"><i class="fas fa-code"></i> Projects</a>
+            <a href="photos.html" class="nav-link"><i class="fas fa-camera"></i> Photos</a>
+            <a href="videos.html" class="nav-link"><i class="fas fa-video"></i> Videos</a>
+            <a href="meshes.html" class="nav-link"><i class="fas fa-cube"></i> Meshes</a>
             <a href="about.html" class="nav-link"><i class="fas fa-book"></i> About</a>
         </nav>
         <div class="header-content">
             <h1>About Me</h1>
-            <p>A little about my journey and skills. So my name is kana i was just an ordinary man</p>
+            <p>A little about my journey and skills. So my name is kana i Like COllY</p>
         </div>
     </header>
     
@@ -107,15 +273,15 @@
     <main>
         <section class="intro-section">
             <h2>My Story</h2>
-            <p>My journey into programming started purely out of curiosity and a stubborn belief that "how hard can it be?" Turns out, it's a lot harder than it looks, but also way more fun. This website is basically a monument to all the times I've screamed at a screen only to realize I was missing a semicolon. Now, I'm just a semi-professional digital wizard who enjoys making things work, and occasionally, making them break. Let's build something!</p>
+            <p>Jadi gini Cerita gua Dengerin nih gua pengangguran tanpa skill dan gua suka COLI COLI dan COLI</p>
         </section>
         
         <section class="featured-projects-section">
             <h2>My Superpowers</h2>
             <ul>
-                <li>Learning from my own bugs</li>
-                <li>Making a to-do list and then immediately ignoring it</li>
-                <li>Copy-pasting code until it works</li>
+                <li>Coli</li>
+                <li>Nonton Bokep</li>
+                <li>Coli</li>
                 <li>Google searching like my life depends on it</li>
             </ul>
         </section>
@@ -125,7 +291,6 @@
         <p>&copy; 2025 My Code & Data Hub. All rights reserved.</p>
     </footer>
 
-<!-- PENAMBAHAN 3: KODE JAVASCRIPT UNTUK FUNGSI SEARCH -->
 <script>
     // Menggunakan ID unik untuk halaman ini
     const searchInput = document.getElementById('site-search-input-about');
