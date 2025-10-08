@@ -18,7 +18,7 @@
             --text-primary: #ffffff;        /* PUTIH */
             --text-secondary: #aaaaaa;      
             --border-width: 2px;
-            --header-yellow: #CCCC00;       /* Kuning untuk Judul */
+            --header-yellow: #CCCC00;       /* Kuning untuk Tautan */
             --shadow-color: #0d0d14;
         }
 
@@ -69,7 +69,7 @@
             background-image: url('Photo banner.jpg'); 
             background-size: cover;
             background-repeat: no-repeat;
-            background-position: 40% 23%; /* Nilai yang terakhir Anda coba */
+            background-position: 40% 23%; /* Nilai sebelumnya yang disesuaikan */
         }
 
         /* NAVIGASI UTAMA */
@@ -111,14 +111,14 @@
 
         .header-content h1 {
             font-size: 2em;
-            color: var(--text-primary); 
+            color: var(--text-primary) !important; 
             text-shadow: 3px 3px 0px var(--shadow-color); 
             margin: 0;
         }
 
         .header-content p {
             font-size: 0.8em;
-            color: var(--text-secondary);
+            color: var(--header-yellow) !important;
             text-shadow: none;
             margin-top: 5px;
         }
@@ -131,7 +131,7 @@
             z-index: 20; 
             display: flex;
             align-items: center;
-            background-color: var(--bg-medium); /* Menggunakan warna yang lebih gelap */
+            background-color: var(--bg-dark); /* Menggunakan warna yang lebih gelap */
             border: 1px solid var(--accent-border);
             padding: 5px;
             box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
@@ -182,10 +182,30 @@
         .feature-card { border: 1px solid var(--accent-border); box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); padding: 20px; background-color: #2a2a2a; transition: transform 0.2s; }
         .feature-card:hover { transform: scale(1.02); box-shadow: 0 0 10px var(--accent-main); }
         .feature-card h3 { color: var(--text-primary); border-bottom: 1px dashed var(--accent-main); padding-bottom: 10px; font-size: 1em; text-shadow: none; }
+        
+        /* WARNA DEFAULT KUNING */
         .content-list { list-style: none; padding: 0; font-size: 0.8em; }
-        .content-list a { color: var(--accent-main); text-decoration: none; transition: color 0.2s; }
-        .content-list a:hover { color: var(--text-primary); text-shadow: none; }
-        .content-list .fas { color: var(--accent-main); margin-right: 5px; }
+        .content-list a { 
+            color: var(--header-yellow) !important; 
+            text-decoration: none; 
+            /* TRANSITION: Tambahkan 'transform 0.3s ease-in-out' di sini */
+            transition: color 0.3s ease-in-out, transform 0.3s ease-in-out; 
+        }
+        
+        /* WARNA SAAT HOVER MENJADI PUTIH + MOTION */
+        .content-list a:hover { 
+            color: var(--text-primary) !important; 
+            text-shadow: none; 
+            /* MOTION: Geser 5 pixel ke kanan */
+            transform: translateX(5px); 
+        }
+        
+        /* IKON JUGA KUNING */
+        .content-list .fas { 
+            color: var(--header-yellow) !important; 
+            margin-right: 5px; 
+            transition: color 0.3s ease-in-out; 
+        }
 
         /* FOOTER */
         footer { grid-area: footer; text-align: center; padding: 10px; font-size: 0.6em; background-color: rgba(0, 0, 0, 0.5); border-top: 1px dashed var(--accent-border); color: var(--text-secondary); }
@@ -214,7 +234,7 @@
     </nav>
     <div class="header-content">
         <h1>My Code & Data Hub</h1>
-        <p>A collection of my projects, code snippets, and technical notes.</p>
+        <p style="color: var(--header-yellow) !important;">A collection of my projects, code snippets, and technical notes.</p>
     </div>
 </header>
 
@@ -248,7 +268,7 @@
                     <p style="font-size: 0.8em; color: var(--text-secondary);">Model dan aset yang saya buat untuk game/visual:</p>
                     <ul class="content-list">
                         <li><a href="meshes.html"><i class="fas fa-cube"></i> View All 3D MESH Downloads</a></li>
-                        <li><a href="photos.html"><i class="fas fa-camera"></i> View Photo Gallery</a></li>
+                        <li><a href="textures.html"><i class="fas fa-palette"></i> View 3D TEXTURE Downloads</a></li>
                         <li><a href="#" target="_blank"><i class="fas fa-mountain"></i> Environment Design Mockup</a></li>
                     </ul>
                 </div>
