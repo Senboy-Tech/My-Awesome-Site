@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me | Kana's Data Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
@@ -59,27 +60,26 @@
             grid-area: left; padding: 0 !important; z-index: 5; 
             background-image: url('Photoleft.png'); 
             background-size: cover; background-repeat: no-repeat; background-position: center top; 
-            min-height: 800px; /* Menjamin gambar ksatria terlihat penuh */
+            min-height: 800px; 
         }
         .right-sidebar { 
             grid-area: right; padding: 0 !important; z-index: 5; 
             background-image: url('Photoright.png'); 
             background-size: cover; background-repeat: no-repeat; background-position: center top; 
-            min-height: 800px; /* Menjamin gambar ksatria terlihat penuh */
+            min-height: 800px; 
         }
 
         .left-sidebar, .right-sidebar { background-color: transparent !important; border: none !important; }
 
         /* ========================================================= */
-        /* PERBAIKAN UTAMA: MAIN CONTENT AREA */
+        /* MAIN CONTENT AREA */
         /* ========================================================= */
         main { 
             grid-area: main; 
-            background-color: rgba(15, 15, 15, 0.9); /* Sedikit transparan */
+            background-color: rgba(15, 15, 15, 0.9); 
             padding: 40px 20px; 
             border-left: 1px solid var(--accent-border); 
             border-right: 1px solid var(--accent-border); 
-            /* Menambahkan pola background yang subtle */
             background-image: url('data:image/svg+xml;utf8,<svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h1v1H0zm2 0h1v1H2zm4 0h1v1H4zm2 0h1v1H6zm-4 2h1v1H2zm4 0h1v1H4zm-2 4h1v1H2zm4 0h1v1H4z" fill="%23222" opacity="0.1" /></svg>');
             background-size: 10px 10px;
         }
@@ -88,48 +88,47 @@
         main h2 { 
             font-family: var(--pixel-font); 
             font-size: 1.6em; 
-            color: var(--header-yellow); /* Warna kuning */
+            color: var(--header-yellow); 
             text-align: center; 
             margin-bottom: 30px; 
             padding-bottom: 15px; 
             border-bottom: 2px dashed var(--accent-border); 
-            /* Menambahkan glow effect */
             text-shadow: 0 0 10px var(--header-yellow), 0 0 20px rgba(204, 204, 0, 0.4); 
             letter-spacing: 1px;
         }
 
         /* Styling untuk Section Konten (My Story, My Superpowers) */
         .intro-section, .featured-projects-section {
-            background-color: rgba(26, 26, 26, 0.9); /* Latar belakang lebih gelap transparan */
-            border: 1px solid var(--accent-main); /* Border neon biru */
-            padding: 25px 30px; /* Padding lebih lega */
-            margin-bottom: 35px; /* Jarak antar section */
-            box-shadow: 0 0 10px var(--accent-glow); /* Efek glow */
-            transition: all 0.3s ease-in-out; /* Transisi untuk hover */
-            border-radius: 5px; /* Sedikit sudut membulat */
-            position: relative; /* Untuk pseudo-element */
-            overflow: hidden; /* Pastikan shadow tidak keluar */
+            background-color: rgba(26, 26, 26, 0.9); 
+            border: 1px solid var(--accent-main); 
+            padding: 25px 30px; 
+            margin-bottom: 35px; 
+            box-shadow: 0 0 10px var(--accent-glow); 
+            transition: all 0.3s ease-in-out; 
+            border-radius: 5px; 
+            position: relative; 
+            overflow: hidden; 
         }
         
         /* Animasi subtle saat hover */
         .intro-section:hover, .featured-projects-section:hover {
-            transform: translateY(-5px); /* Sedikit naik */
-            box-shadow: 0 5px 20px var(--glow-strong); /* Glow lebih kuat */
+            transform: translateY(-5px); 
+            box-shadow: 0 5px 20px var(--glow-strong); 
         }
 
         /* Styling untuk Paragraf */
         .intro-section p {
-            font-family: var(--modern-font); /* Font modern untuk keterbacaan */
+            font-family: var(--modern-font); 
             font-size: 1em; 
-            color: var(--text-secondary); /* Teks abu-abu */
-            line-height: 1.8; /* Jarak antar baris */
+            color: var(--text-secondary); 
+            line-height: 1.8; 
             margin-top: 15px;
-            text-align: justify; /* Teks rata kanan kiri */
+            text-align: justify; 
         }
 
         /* Styling untuk List (My Superpowers) */
         .featured-projects-section ul {
-            list-style: none; /* Hilangkan bullet default */
+            list-style: none; 
             padding: 0;
             margin-top: 20px;
         }
@@ -137,38 +136,34 @@
         .featured-projects-section ul li {
             font-family: var(--modern-font);
             font-size: 0.95em;
-            color: var(--text-primary); /* Teks putih */
+            color: var(--text-primary); 
             padding: 8px 0;
-            border-bottom: 1px dashed rgba(255, 255, 255, 0.1); /* Garis bawah putus-putus */
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1); 
             transition: color 0.2s ease-in-out;
             position: relative;
-            padding-left: 20px; /* Untuk ikon custom */
+            padding-left: 20px; 
         }
 
         .featured-projects-section ul li:last-child {
-            border-bottom: none; /* Hilangkan garis bawah pada item terakhir */
+            border-bottom: none; 
         }
 
         .featured-projects-section ul li::before {
-            content: "\f006"; /* FontAwesome: Star */
-            font-family: "Font Awesome 5 Free"; /* Pastikan font awesome terbaca */
-            font-weight: 900; /* Solid icon */
+            content: "\f006"; 
+            font-family: "Font Awesome 5 Free"; 
+            font-weight: 900; 
             position: absolute;
             left: 0;
-            color: var(--header-yellow); /* Warna ikon kuning */
+            color: var(--header-yellow); 
             font-size: 0.8em;
             top: 10px;
         }
 
         .featured-projects-section ul li:hover {
-            color: var(--accent-main); /* Teks jadi neon biru saat hover */
+            color: var(--accent-main); 
             transform: translateX(5px);
         }
-
-        /* ========================================================= */
-        /* AKHIR PERBAIKAN MAIN CONTENT AREA */
-        /* ========================================================= */
-
+        
         /* Gaya Sidebar List (My Stuff & Socials) */
         .sidebar-list { 
             padding-top: 200px; 
@@ -180,7 +175,7 @@
         .sidebar-list h2 { 
             font-family: var(--pixel-font); 
             font-size: 1em; 
-            color: var(--text-primary); /* Diubah jadi putih */
+            color: var(--text-primary); 
             border-bottom: 1px dashed var(--accent-border); 
             margin-bottom: 10px; text-shadow: none; 
         }
@@ -208,11 +203,11 @@
         /* PERBAIKAN: EFEK HOVER BARU (Animasi & Warna Neon) */
         .sidebar-list ul li a:hover { 
             color: var(--accent-main); 
-            transform: translateX(5px); /* Geser ke kanan */
+            transform: translateX(5px); 
         }
 
         .sidebar-list ul li a:hover i {
-            color: var(--accent-main); /* Ikon ikut jadi neon biru */
+            color: var(--accent-main); 
         }
 
         .search-module { position: absolute; top: 15px; left: 15px; z-index: 20; display: flex; align-items: center; background-color: #2a2a2a; border: 1px solid var(--accent-border); padding: 4px 8px; box-shadow: 0 0 5px rgba(255, 255, 255, 0.1); }
@@ -222,6 +217,113 @@
         footer { grid-area: footer; text-align: center; padding: 15px; font-size: 0.8em; background-color: var(--bg-dark); border-top: 1px dashed var(--accent-border); color: var(--text-secondary); font-family: var(--modern-font); }
 
         @media (max-width: 600px) { .search-module { display: none; } body { grid-template-columns: 0 1fr 0; } .left-sidebar, .right-sidebar { display: none; } }
+        
+        /* --- CAROUSEL STYLES YANG SUDAH DIOPTIMASI --- */
+        .cyber-carousel-section {
+            margin-top: 50px;
+        }
+
+        .cyber-carousel-section h2 {
+            font-size: 1.4em;
+        }
+        
+        .carousel-container {
+            width: 100%;
+            overflow: hidden; 
+            position: relative;
+            /* Lebar maksimum disesuaikan untuk gambar vertikal agar bingkai pas */
+            max-width: 400px; 
+            margin: 0 auto;
+            border: 2px solid var(--accent-main);
+            box-shadow: 0 0 15px var(--accent-glow);
+            border-radius: 5px;
+            background-color: var(--bg-medium);
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.8s ease-in-out; 
+        }
+
+        /* Ketinggian slide disesuaikan agar proporsional */
+        .carousel-slide {
+            min-width: 100%; 
+            flex-shrink: 0; 
+            height: 500px; 
+            overflow: hidden;
+            background-color: #e0e0e0; 
+        }
+
+        .slide-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Memastikan seluruh gambar terlihat */
+        }
+        
+        /* --- KODE UNTUK MENGGESER FOTO SPESIFIK (KAMU BISA UBAH INI) --- */
+        
+        #slide-knight .slide-image {
+            /* PERBAIKAN: Ganti 'left 90%' menjadi dua nilai persentase */
+            /* 10% = Geser ke KANAN dari posisi paling kiri */
+            /* center = Pertahankan di tengah vertikal (sama dengan 50%) */
+            object-position: -250px center; /* UBAH NILAI '10%' DI SINI SESUAI KEINGINAN KAMU */
+        }
+        
+        /* Gambar Farmasi tetap di tengah */
+        #slide-farmasi .slide-image {
+            object-position: center; 
+        }
+
+        /* --- END KODE GESER SPESIFIK --- */
+
+
+        .slide-overlay {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.75);
+            border-top: 1px solid var(--accent-main);
+        }
+        
+        .slide-overlay h3 {
+            font-family: var(--pixel-font);
+            font-size: 1.1em;
+            color: var(--header-yellow); 
+            margin: 0 0 5px 0;
+            text-shadow: 0 0 5px rgba(204, 204, 0, 0.7);
+        }
+
+        .slide-overlay p {
+            font-family: var(--modern-font);
+            font-size: 0.9em;
+            color: var(--text-primary);
+            margin: 0;
+            line-height: 1.4;
+            text-align: left; 
+        }
+
+        /* Navigasi Titik (Dots) */
+        .carousel-dots {
+            text-align: center;
+            padding: 20px 0 10px;
+        }
+
+        .dot {
+            height: 10px;
+            width: 10px;
+            margin: 0 5px;
+            background-color: var(--accent-border); 
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+            cursor: pointer;
+            border: 1px solid var(--text-primary);
+        }
+
+        .dot.active {
+            background-color: var(--accent-main); 
+            box-shadow: 0 0 8px var(--accent-main);
+        }
     </style>
 </head>
 <body>
@@ -285,7 +387,48 @@
                 <li>Google searching like my life depends on it</li>
             </ul>
         </section>
-    </main>
+        
+        <section class="cyber-carousel-section">
+            <h2>&lt; PROJECT  SHOWCASE  &gt;</h2>
+            
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    
+                    <div class="carousel-slide" id="slide-knight">
+                        <img src="./images/Knight.png" alt="Digital Knight Asset" class="slide-image">
+                        <div class="slide-overlay">
+                            <h3><i class="fas fa-cube"></i> 3D  Modeling  Skills</h3>
+                            <p>Creating  high-quality,  detailed  3D  renders  using  Blender.  Specializing  in  compelling  visualizations  crafted  with  Blender.</p>
+                        </div>
+                    </div>
+
+                    <div class="carousel-slide" id="slide-farmasi">
+                        <img src="./images/Farmasi.jpg" alt="Web Development Code" class="slide-image">
+                        <div class="slide-overlay">
+                            <h3><i class="fas fa-terminal"></i> Frontend  Skills</h3>
+                            <p>Expertise  in  HTML,  CSS  Grid,  and  basic  JavaScript  (React  Ongoing).</p>
+                        </div>
+                    </div>
+
+                    <div class="carousel-slide">
+                        <img src="./images/Kana5.jpg" alt="3D Modeling Software" class="slide-image">
+                        <div class="slide-overlay">
+                            <h3><i class="fas fa-gamepad"></i> GameDev  Focus</h3>
+                            <p>Creating  low-poly  meshes  and  textures  for  immersive  environments.</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="carousel-dots">
+                <span class="dot active" data-slide="0"></span>
+                <span class="dot" data-slide="1"></span>
+                <span class="dot" data-slide="2"></span>
+            </div>
+            
+        </section>
+        </main>
 
     <footer>
         <p>&copy; 2025 My Code & Data Hub. All rights reserved.</p>
@@ -307,6 +450,65 @@
                 window.location.href = `https://www.google.com/search?q=${encodedQuery}+site:${siteDomain}`;
             }
         }
+    });
+
+    // --- CAROUSEL LOGIC YANG SUDAH DIPERBAIKI ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const track = document.querySelector('.carousel-track');
+        const slides = Array.from(track.children);
+        const dotsContainer = document.querySelector('.carousel-dots');
+        const dots = Array.from(dotsContainer.children);
+        
+        if (slides.length === 0 || !track) return; 
+
+        let slideIndex = 0;
+        const intervalTime = 5000; // Geser otomatis setiap 5 detik
+
+        // Fungsi untuk menggeser track
+        const moveToSlide = (targetIndex) => {
+            const slideWidth = slides[0].getBoundingClientRect().width;
+            
+            // Menggunakan transform untuk menggeser track horizontal
+            track.style.transform = 'translateX(-' + (targetIndex * slideWidth) + 'px)';
+            
+            // Update dots
+            const currentDot = dots[slideIndex];
+            const targetDot = dots[targetIndex];
+            currentDot.classList.remove('active');
+            targetDot.classList.add('active');
+            
+            slideIndex = targetIndex;
+        };
+
+        // Fungsi utama untuk geser otomatis
+        const autoAdvance = () => {
+            let nextIndex = (slideIndex + 1) % slides.length;
+            moveToSlide(nextIndex);
+        };
+
+        let advanceInterval = setInterval(autoAdvance, intervalTime);
+
+        // Ketika titik navigasi diklik (Manual Swipe)
+        dotsContainer.addEventListener('click', e => {
+            if (!e.target.classList.contains('dot')) return;
+            
+            // Hentikan geser otomatis saat interaksi
+            clearInterval(advanceInterval); 
+            
+            const targetIndex = parseInt(e.target.dataset.slide);
+            moveToSlide(targetIndex);
+            
+            // Mulai kembali geser otomatis
+            advanceInterval = setInterval(autoAdvance, intervalTime);
+        });
+        
+        // Menangani resize window untuk memperbaiki posisi slide
+        window.addEventListener('resize', () => {
+             // Langsung geser ke slide aktif saat ini setelah resize
+             moveToSlide(slideIndex);
+        });
+        
+        moveToSlide(0); 
     });
 </script>
 
