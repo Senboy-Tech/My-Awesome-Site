@@ -22,6 +22,7 @@
             --header-yellow: #CCCC00;       /* Kuning Ikon & Judul */
             --shadow-subtle: rgba(0, 0, 0, 0.6); 
             --glow-strong: rgba(102, 204, 255, 0.6); /* Cahaya lebih kuat */
+            --card-gap: 20px; /* Jarak antara kartu di Grid */
         }
 
         body {
@@ -98,7 +99,7 @@
         }
 
         /* Styling untuk Section Konten (My Story, My Superpowers) */
-        .intro-section, .featured-projects-section {
+        .intro-section, .featured-projects-section, .cyber-carousel-section { 
             background-color: rgba(26, 26, 26, 0.9); 
             border: 1px solid var(--accent-main); 
             padding: 25px 30px; 
@@ -111,7 +112,7 @@
         }
         
         /* Animasi subtle saat hover */
-        .intro-section:hover, .featured-projects-section:hover {
+        .intro-section:hover, .featured-projects-section:hover, .cyber-carousel-section:hover { 
             transform: translateY(-5px); 
             box-shadow: 0 5px 20px var(--glow-strong); 
         }
@@ -218,7 +219,7 @@
 
         @media (max-width: 600px) { .search-module { display: none; } body { grid-template-columns: 0 1fr 0; } .left-sidebar, .right-sidebar { display: none; } }
         
-        /* --- CAROUSEL STYLES YANG SUDAH DIOPTIMASI --- */
+        /* --- CAROUSEL STYLES UNTUK TAMPILAN 2 KOTAK/GRID PER SLIDE --- */
         .cyber-carousel-section {
             margin-top: 50px;
         }
@@ -231,13 +232,12 @@
             width: 100%;
             overflow: hidden; 
             position: relative;
-            /* Lebar maksimum disesuaikan untuk gambar vertikal agar bingkai pas */
-            max-width: 400px; 
+            /* Container mencakup seluruh lebar main content */
+            max-width: none; 
             margin: 0 auto;
-            border: 2px solid var(--accent-main);
-            box-shadow: 0 0 15px var(--accent-glow);
-            border-radius: 5px;
-            background-color: var(--bg-medium);
+            border: none;
+            box-shadow: none;
+            background-color: transparent;
         }
 
         .carousel-track {
@@ -245,61 +245,93 @@
             transition: transform 0.8s ease-in-out; 
         }
 
-        /* Ketinggian slide disesuaikan agar proporsional */
+        /* Setip slide carousel sekarang mewakili satu BINGKAI yang berisi dua proyek */
         .carousel-slide {
-            min-width: 100%; 
+            min-width: 100%; /* Setiap slide memenuhi 100% lebar container (main content) */
             flex-shrink: 0; 
-            height: 500px; 
             overflow: hidden;
-            background-color: #e0e0e0; 
+            background-color: transparent; 
+            padding: 10px 0; /* Memberi sedikit padding vertikal */
+        }
+        
+        /* GRID untuk menampung 2 proyek di dalam 1 SLIDE */
+        .slide-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* 2 kolom yang sama lebar */
+            gap: var(--card-gap); /* Jarak antar kotak */
+        }
+        
+        /* Gaya untuk KOTAK PROYEK di dalam grid (Inilah yang merupakan "kartu" proyek) */
+        .project-card {
+            background-color: var(--bg-medium);
+            border: 2px solid var(--accent-main);
+            box-shadow: 0 0 15px var(--accent-glow);
+            border-radius: 5px;
+            height: 450px; /* Tinggi kartu ditetapkan */
+            transition: all 0.3s ease-in-out;
+            position: relative;
+            cursor: pointer; /* Menandakan bahwa kartu bisa di-klik */
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px var(--glow-strong);
         }
 
-        .slide-image {
+        .card-image-container {
+            height: 70%; /* Gambar mengisi 70% bagian atas kartu */
+            overflow: hidden;
+            border-bottom: 1px solid var(--accent-border);
+        }
+
+        .card-image {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* Memastikan seluruh gambar terlihat */
+            object-fit: cover; /* Memastikan gambar memenuhi area */
+            transition: transform 0.5s;
+            /* TRANSFORM DEFAULT DIHAPUS DARI HOVER CSS */
+            transform: scale(1); 
         }
         
-        /* --- KODE UNTUK MENGGESER FOTO SPESIFIK (KAMU BISA UBAH INI) --- */
-        
-        #slide-knight .slide-image {
-            /* PERBAIKAN: Ganti 'left 90%' menjadi dua nilai persentase */
-            /* 10% = Geser ke KANAN dari posisi paling kiri */
-            /* center = Pertahankan di tengah vertikal (sama dengan 50%) */
-            object-position: -250px center; /* UBAH NILAI '10%' DI SINI SESUAI KEINGINAN KAMU */
-        }
-        
-        /* Gambar Farmasi tetap di tengah */
-        #slide-farmasi .slide-image {
-            object-position: center; 
+        /* [1] KELAS KHUSUS UNTUK ZOOM IN DENGAN CLICK */
+        .project-card.is-zoomed .card-image {
+             transform: scale(2); /* Zoom in saat di-klik (200%) */
         }
 
-        /* --- END KODE GESER SPESIFIK --- */
+        /* [2] Pengaturan Awal Gambar Knight (Perlu disesuaikan agar tidak hanya berlaku untuk Knight) */
+        #project-knight .card-image {
+            object-position:  center; /* PERTAHANKAN HANYA JIKA MEMANG KNIGHT PERLU POSISI SPESIFIK */
+        }
+        
+        /* [3] Default scale saat mouse meninggalkan (untuk memastikan transisi kembali halus) */
+        .card-image:not(.is-zoomed) { 
+             transform: scale(1); 
+        }
 
-
-        .slide-overlay {
+        .card-overlay {
             position: absolute;
             bottom: 0; left: 0; width: 100%;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.75);
-            border-top: 1px solid var(--accent-main);
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.7);
+            /* border-top: 1px solid var(--accent-main); */
+            box-sizing: border-box;
+            height: 30%; /* Overlay mengisi 30% bagian bawah kartu */
         }
         
-        .slide-overlay h3 {
+        .card-overlay h3 {
             font-family: var(--pixel-font);
-            font-size: 1.1em;
+            font-size: 0.9em;
             color: var(--header-yellow); 
             margin: 0 0 5px 0;
             text-shadow: 0 0 5px rgba(204, 204, 0, 0.7);
         }
 
-        .slide-overlay p {
+        .card-overlay p {
             font-family: var(--modern-font);
-            font-size: 0.9em;
+            font-size: 0.8em;
             color: var(--text-primary);
             margin: 0;
             line-height: 1.4;
-            text-align: left; 
         }
 
         /* Navigasi Titik (Dots) */
@@ -323,6 +355,15 @@
         .dot.active {
             background-color: var(--accent-main); 
             box-shadow: 0 0 8px var(--accent-main);
+        }
+
+        @media (max-width: 900px) { 
+             .slide-grid {
+                 grid-template-columns: 1fr; /* Ubah menjadi 1 kolom di layar kecil */
+             }
+             .project-card {
+                 margin-bottom: var(--card-gap);
+             }
         }
     </style>
 </head>
@@ -394,38 +435,65 @@
             <div class="carousel-container">
                 <div class="carousel-track">
                     
-                    <div class="carousel-slide" id="slide-knight">
-                        <img src="./images/Knight.png" alt="Digital Knight Asset" class="slide-image">
-                        <div class="slide-overlay">
-                            <h3><i class="fas fa-cube"></i> 3D  Modeling  Skills</h3>
-                            <p>Creating  high-quality,  detailed  3D  renders  using  Blender.  Specializing  in  compelling  visualizations  crafted  with  Blender.</p>
-                        </div>
-                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-grid">
+                            
+                            <div class="project-card" id="project-knight">
+                                <div class="card-image-container">
+                                    <img src="./images/Knight.png" alt="Digital Knight Asset" class="card-image">
+                                </div>
+                                <div class="card-overlay">
+                                    <h3><i class="fas fa-cube"></i> 3D  Modeling  Skills</h3>
+                                    <p>Creating  high-quality,  detailed  3D  renders  using  Blender.  Bringing  Imaginative  Concepts  to  life.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="project-card" id="project-frontend">
+                                <div class="card-image-container">
+                                    <img src="./images/knight2.png" alt="Web Development Code" class="card-image">
+                                </div>
+                                <div class="card-overlay">
+                                    <h3><i class="fas fa-terminal"></i> Frontend  Skills</h3>
+                                    <p>Expertise  in  HTML,  CSS  Grid,  dan  basic  JavaScript  (React  Ongoing).  Building  responsive  UIs.</p>
+                                </div>
+                            </div>
 
-                    <div class="carousel-slide" id="slide-farmasi">
-                        <img src="./images/Farmasi.jpg" alt="Web Development Code" class="slide-image">
-                        <div class="slide-overlay">
-                            <h3><i class="fas fa-terminal"></i> Frontend  Skills</h3>
-                            <p>Expertise  in  HTML,  CSS  Grid,  and  basic  JavaScript  (React  Ongoing).</p>
                         </div>
                     </div>
 
                     <div class="carousel-slide">
-                        <img src="./images/Kana5.jpg" alt="3D Modeling Software" class="slide-image">
-                        <div class="slide-overlay">
-                            <h3><i class="fas fa-gamepad"></i> GameDev  Focus</h3>
-                            <p>Creating  low-poly  meshes  and  textures  for  immersive  environments.</p>
+                         <div class="slide-grid">
+                            
+                            <div class="project-card" id="project-gamedev">
+                                <div class="card-image-container">
+                                    <img src="./images/Knight3.png" alt="Game Development Focus" class="card-image">
+                                </div>
+                                <div class="card-overlay">
+                                    <h3><i class="fas fa-gamepad"></i> GameDev  Focus</h3>
+                                    <p>Creating  low-poly  meshes  and  textures  for  immersive  environments  using  Blender.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="project-card" id="project-new-knight4">
+                                <div class="card-image-container">
+                                    <img src="./images/Knight4.png" alt="Knight4" class="card-image">
+                                </div>
+                                <div class="card-overlay">
+                                    <h3><i class="fas fa-plus"></i> Call  us  now</h3>
+                                    <p>Slot  ini  siap  untuk  proyek  Anda  berikutnya!</p>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     
-                </div>
+                    </div>
             </div>
             
             <div class="carousel-dots">
                 <span class="dot active" data-slide="0"></span>
                 <span class="dot" data-slide="1"></span>
-                <span class="dot" data-slide="2"></span>
-            </div>
+                </div>
             
         </section>
         </main>
@@ -452,7 +520,10 @@
         }
     });
 
-    // --- CAROUSEL LOGIC YANG SUDAH DIPERBAIKI ---
+    // --- LOGIC CAROUSEL (Auto-Sweep dihidupkan kembali) ---
+    const intervalTime = 5000; // Geser otomatis setiap 5 detik
+    let advanceInterval; // Variabel global untuk interval
+    
     document.addEventListener('DOMContentLoaded', () => {
         const track = document.querySelector('.carousel-track');
         const slides = Array.from(track.children);
@@ -462,54 +533,149 @@
         if (slides.length === 0 || !track) return; 
 
         let slideIndex = 0;
-        const intervalTime = 5000; // Geser otomatis setiap 5 detik
-
-        // Fungsi untuk menggeser track
+        
         const moveToSlide = (targetIndex) => {
             const slideWidth = slides[0].getBoundingClientRect().width;
-            
-            // Menggunakan transform untuk menggeser track horizontal
             track.style.transform = 'translateX(-' + (targetIndex * slideWidth) + 'px)';
             
-            // Update dots
-            const currentDot = dots[slideIndex];
-            const targetDot = dots[targetIndex];
-            currentDot.classList.remove('active');
-            targetDot.classList.add('active');
+            dots.forEach(dot => dot.classList.remove('active'));
+            if (dots[targetIndex]) {
+                 dots[targetIndex].classList.add('active');
+            }
             
             slideIndex = targetIndex;
         };
 
-        // Fungsi utama untuk geser otomatis
         const autoAdvance = () => {
             let nextIndex = (slideIndex + 1) % slides.length;
             moveToSlide(nextIndex);
         };
+        
+        // Fungsi untuk memulai auto-sweep
+        const startAutoAdvance = () => {
+            if (!advanceInterval) {
+                advanceInterval = setInterval(autoAdvance, intervalTime);
+            }
+        };
 
-        let advanceInterval = setInterval(autoAdvance, intervalTime);
+        // Fungsi untuk menghentikan auto-sweep
+        const stopAutoAdvance = () => {
+            clearInterval(advanceInterval);
+            advanceInterval = null;
+        };
 
-        // Ketika titik navigasi diklik (Manual Swipe)
+        // Event handler klik dot (menghentikan dan memulai ulang)
         dotsContainer.addEventListener('click', e => {
             if (!e.target.classList.contains('dot')) return;
             
-            // Hentikan geser otomatis saat interaksi
-            clearInterval(advanceInterval); 
+            stopAutoAdvance();
             
             const targetIndex = parseInt(e.target.dataset.slide);
             moveToSlide(targetIndex);
             
-            // Mulai kembali geser otomatis
-            advanceInterval = setInterval(autoAdvance, intervalTime);
+            startAutoAdvance();
         });
         
-        // Menangani resize window untuk memperbaiki posisi slide
         window.addEventListener('resize', () => {
-             // Langsung geser ke slide aktif saat ini setelah resize
              moveToSlide(slideIndex);
         });
         
+        // MULAI OTOMATIS SAAT HALAMAN DIMUAT
         moveToSlide(0); 
+        startAutoAdvance(); 
+
+
+        // --- INTEGRASI DENGAN MOUSE FOLLOW LOGIC ---
+        const projectCards = document.querySelectorAll('.project-card');
+        
+        projectCards.forEach(card => {
+            // HENTIKAN CAROUSEL SAAT MOUSE MASUK KE AREA MANA PUN
+            card.addEventListener('mouseenter', stopAutoAdvance);
+            // JALANKAN CAROUSEL SAAT MOUSE KELUAR DARI AREA MANA PUN
+            card.addEventListener('mouseleave', startAutoAdvance);
+        });
+
     });
+
+
+    // --- LOGIC BARU: MOUSE FOLLOW/PARALLAX PADA GAMBAR (Click Toggle) ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const projectCards = document.querySelectorAll('.project-card');
+        const maxTilt = 200; // <--- DITINGKATKAN AGAR LEBIH SENSITIF
+        const zoomedScale = 2; 
+
+        projectCards.forEach(card => {
+            const image = card.querySelector('.card-image');
+            
+            // Variabel untuk melacak apakah zoom aktif
+            let isZoomActive = false;
+
+            // Event saat kartu di-klik
+            card.addEventListener('click', (e) => {
+                // Toggle status zoom
+                isZoomActive = !isZoomActive;
+
+                // Nonaktifkan semua kartu lain saat satu kartu di-zoom
+                projectCards.forEach(otherCard => {
+                    if (otherCard !== card) {
+                        otherCard.classList.remove('is-zoomed');
+                        // Hapus listener mousemove dari kartu lain yang mungkin aktif
+                        otherCard.removeEventListener('mousemove', otherCard.handleMouseMove);
+                        // Kembalikan skala normal pada gambar kartu lain
+                        const otherImage = otherCard.querySelector('.card-image');
+                        otherImage.style.transition = 'transform 0.5s ease-out';
+                        otherImage.style.transform = `scale(1)`;
+                        setTimeout(() => {otherImage.style.transition = '';}, 500);
+                        otherCard.isZoomActive = false; // Reset status zoom kartu lain
+                    }
+                });
+
+                if (isZoomActive) {
+                    // 1. Zoom In (aktifkan kelas CSS)
+                    card.classList.add('is-zoomed');
+                    // 2. Terapkan skala awal di JS (sebelum mousemove)
+                    image.style.transform = `scale(${zoomedScale})`;
+                    // 3. Aktifkan listener mousemove
+                    card.addEventListener('mousemove', handleMouseMove);
+                } else {
+                    // 1. Zoom Out (hapus kelas CSS)
+                    card.classList.remove('is-zoomed');
+                    // 2. Hapus listener mousemove
+                    card.removeEventListener('mousemove', handleMouseMove);
+                    // 3. Kembalikan ke scale(1) dengan transisi halus
+                    image.style.transition = 'transform 0.5s ease-out';
+                    image.style.transform = `scale(1)`;
+                    
+                    // Reset transisi setelah selesai
+                    setTimeout(() => {
+                        image.style.transition = ''; 
+                    }, 500);
+                }
+            });
+
+            // Fungsi Mouse Move (dipisah agar bisa di-add/remove)
+            const handleMouseMove = (e) => {
+                const rect = card.getBoundingClientRect();
+                const width = rect.width;
+                const height = rect.height;
+                
+                const x = (e.clientX - rect.left) / width; 
+                const y = (e.clientY - rect.top) / height; 
+
+                const tiltX = (x * maxTilt) * 2 - maxTilt; 
+                const tiltY = (y * maxTilt) * 2 - maxTilt; 
+                
+                // Menerapkan pergeseran ke arah yang sama dengan mouse (tiltX, tiltY)
+                image.style.transform = `scale(${zoomedScale}) translate(${tiltX}px, ${tiltY}px)`;
+                image.style.transition = 'transform 0s'; // Hapus transisi agar responsif
+            };
+            
+            // Simpan referensi handleMouseMove ke kartu agar bisa dihapus dari kartu lain
+            card.handleMouseMove = handleMouseMove; 
+            card.isZoomActive = isZoomActive; // Simpan status zoom
+        });
+    });
+
 </script>
 
 </body>
