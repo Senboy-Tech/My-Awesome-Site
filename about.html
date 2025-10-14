@@ -46,7 +46,7 @@
             background-size: 30px 30px; opacity: 0.7;
         }
         
-        header { grid-area: header; background-color: var(--bg-dark); height: 180px; border-bottom: 2px solid var(--accent-border); box-shadow: 0 0 5px rgba(255, 255, 255, 0.3); position: relative; overflow: hidden; background-image: url('Photo banner.jpg'); background-size: cover; background-repeat: no-repeat; background-position: 50% 30%; }
+        header { grid-area: header; background-color: var(--bg-dark); height: 180px; border-bottom: 2px solid var(--accent-border); box-shadow: 0 0 5px rgba(255, 255, 255, 0.3); position: relative; overflow: hidden; background-image: url('Photo banner.png'); background-size: cover; background-repeat: no-repeat; background-position: 50% -150px; }
         header nav { padding: 10px 0; display: flex; justify-content: center; background-color: rgba(0, 0, 0, 0.7); border-bottom: 1px solid rgba(255,255,255,0.1); }
         
         .nav-link { text-decoration: none; color: var(--text-primary); font-family: var(--pixel-font); font-size: 0.8em; padding: 8px 15px; margin: 0 5px; border: 1px solid var(--accent-border); background-color: var(--bg-medium); box-shadow: 2px 2px 0px 0px var(--shadow-subtle); transition: all 0.2s; display: inline-block; border-radius: 3px; }
@@ -302,7 +302,11 @@
         #project-knight .card-image {
             object-position:  center; /* PERTAHANKAN HANYA JIKA MEMANG KNIGHT PERLU POSISI SPESIFIK */
         }
-        
+         /* --- KODE UNTUK HANYA MENGUBAH POSISI KNIGHT 4 --- */
+        #project-new-knight4 .card-image {
+            /* Nilai negatif akan menggeser fokus gambar ke KANAN, sehingga teks muncul. */
+            object-position: -50px center; /* Anda bisa menyesuaikan nilai -80px ini */
+        }
         /* [3] Default scale saat mouse meninggalkan (untuk memastikan transisi kembali halus) */
         .card-image:not(.is-zoomed) { 
              transform: scale(1); 
