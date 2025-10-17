@@ -1,0 +1,295 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Index - [CYBERPUNK NEWS]</title>
+    
+    <link rel="stylesheet" href="styles.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* Variabel Warna Kunci (Dari about.html/videos.html) */
+        :root {
+            --pixel-font: 'Press Start 2P', cursive;
+            --modern-font: 'Roboto Mono', monospace; 
+            --bg-dark: #0f0f0f;             
+            --bg-medium: #1a1a1a;           
+            --accent-main: #66ccff;         /* Neon Biru/Cyan */
+            --accent-border: #444444;       
+            --text-primary: #ffffff;        
+            --text-secondary: #aaaaaa;
+            --header-yellow: #CCCC00;       
+        }
+        
+        /* BASE LAYOUT */
+        body {
+            font-family: var(--modern-font); 
+            background-color: var(--bg-dark); 
+            color: var(--text-primary); 
+            display: grid;
+            grid-template-areas:  "header header header"
+                                  "left main right"
+                                  "footer footer footer";
+            grid-template-columns: 200px 1fr 200px; /* Sidebar Ksatria (tetap ada) */
+            grid-template-rows: auto 1fr auto;
+        }
+        main {
+            grid-area: main; 
+            background-color: var(--bg-medium); /* Latar belakang main gelap */
+            padding: 40px;
+        }
+
+        /* Navigasi & Header/Footer (Gunakan style dari about.html/videos.html) */
+        /* [ ... Anda perlu menyalin gaya Header, Nav, Footer, Sidebar dari file lain ke dalam style.css jika belum ada, atau salin di sini ] */
+        
+        /* ================================================= */
+        /* GRID UTAMA - MENIRU LAYOUT TOM'S HARDWARE */
+        /* ================================================= */
+
+        #article-index-grid {
+            display: grid;
+            /* Layout: Kolom Kiri 2x lebih lebar dari Kolom Kanan */
+            grid-template-columns: 2fr 1fr; 
+            gap: 25px;
+            padding-top: 20px;
+        }
+
+        /* ----------------------------------------------- */
+        /* KOLOM KIRI: MAIN FEATURE & ARTIKEL LIST */
+        /* ----------------------------------------------- */
+
+        .main-articles-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        /* 1. KARTU ARTIKEL UNGGULAN (Mirip TP-Link di Tom's) */
+        .main-feature-card {
+            background-color: #21212f; /* Background card gelap */
+            border: 1px solid var(--accent-main);
+            box-shadow: 0 0 10px rgba(102, 204, 255, 0.4);
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        .main-feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px var(--accent-main);
+        }
+
+        .feature-image-container {
+            height: 350px; 
+            overflow: hidden;
+        }
+        .feature-image {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+
+        .feature-content {
+            padding: 20px;
+        }
+        .feature-content h2 {
+            font-family: var(--pixel-font);
+            font-size: 1.5em;
+            color: var(--header-yellow);
+            margin: 0 0 10px 0;
+            border-bottom: 2px dashed var(--accent-border);
+            padding-bottom: 5px;
+        }
+        .feature-content p {
+            font-family: var(--modern-font);
+            color: var(--text-secondary);
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+        .feature-content a {
+            color: var(--accent-main);
+            text-decoration: none;
+            font-family: var(--pixel-font);
+            font-size: 0.7em;
+            display: block;
+            margin-top: 15px;
+        }
+
+        /* 2. DAFTAR ARTIKEL BAWAH (Jika ada) */
+        .article-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .article-card {
+            background-color: #21212f;
+            border: 1px solid var(--accent-border);
+            padding: 15px;
+            transition: border-color 0.2s;
+        }
+        .article-card:hover {
+            border-color: var(--header-yellow);
+        }
+        .article-card h4 a {
+             font-family: var(--modern-font);
+             color: var(--text-primary);
+             font-size: 1.1em;
+             text-decoration: none;
+             display: block;
+        }
+
+        /* ----------------------------------------------- */
+        /* KOLOM KANAN: NEWS STREAM (Mirip Tom's) */
+        /* ----------------------------------------------- */
+
+        .news-stream-column {
+            background-color: #21212f;
+            border: 1px solid var(--accent-main);
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(102, 204, 255, 0.4);
+        }
+        .news-stream-column h3 {
+            font-family: var(--pixel-font);
+            font-size: 0.9em;
+            color: var(--accent-main);
+            border-bottom: 2px solid var(--header-yellow);
+            padding-bottom: 10px;
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .stream-item {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px dashed var(--accent-border);
+            padding-bottom: 15px;
+        }
+        .stream-item:last-child {
+            border-bottom: none;
+        }
+
+        .stream-thumb {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            margin-right: 10px;
+            border: 1px solid var(--text-primary);
+            image-rendering: pixelated;
+        }
+        .stream-content a {
+            font-family: var(--modern-font);
+            color: var(--text-primary);
+            font-size: 0.9em;
+            text-decoration: none;
+        }
+        .stream-content a:hover {
+            color: var(--header-yellow);
+            text-decoration: underline;
+        }
+        
+        /* Responsif */
+        @media (max-width: 900px) {
+            #article-index-grid {
+                grid-template-columns: 1fr; /* Jadi satu kolom di layar kecil */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+            <a href="projects.html" class="nav-link"><i class="fas fa-code"></i> Projects</a>
+            <a href="article-index.html" class="nav-link"><i class="fas fa-pen-nib"></i> Articles</a> <a href="about.html" class="nav-link"><i class="fas fa-book"></i> About</a>
+        </nav>
+        <div class="header-content">
+            <h1>&lt; NEWS  STREAM  HUB &gt;</h1>
+            <p style="color: var(--accent-main) !important;">Latest tech updates and game design notes.</p>
+        </div>
+    </header>
+    
+    <div class="left-sidebar"></div>
+    <div class="right-sidebar"></div>
+    
+    <main>
+        
+        <section id="article-index-grid">
+            
+            <div class="main-articles-column">
+                
+                <div class="main-feature-card">
+                    <div class="feature-image-container">
+                        <img src="./images/cyber_city_main.jpg" alt="Featured Article Image" class="feature-image"> 
+                    </div>
+                    <div class="feature-content">
+                        <h2>TP-Link  Konfirmasi  Uji  Coba  Wi-Fi  8  Berhasil</h2>
+                        <p>
+                            Versi  Wi-Fi  berikutnya  akan  mengantarkan  kemajuan  dalam  keandalan  dan  latensi.  Tepat  ketika  kita  mulai  terbiasa  dengan  Wi-Fi  7...
+                        </p>
+                        <a href="article.html"><i class="fas fa-angle-right"></i> Baca Selengkapnya</a>
+                    </div>
+                </div>
+                
+                <div class="article-list">
+                    
+                    <div class="article-card">
+                        <h4><a href="#">The  Case  of  Unexplained  Disk  Usage  in  Win11</a></h4>
+                        <p style="font-size: 0.7em; color: var(--accent-main);">#Troubleshoot  |  10  OCT</p>
+                    </div>
+                    
+                    <div class="article-card">
+                        <h4><a href="#">New  Thunderbolt  5  eGPU  Dock  for  Creative  Professionals</a></h4>
+                         <p style="font-size: 0.7em; color: var(--accent-main);">#Hardware  |  08  OCT</p>
+                    </div>
+                    
+                    <div class="article-card">
+                        <h4><a href="#">Review:  Ryzen  9  vs  Intel  i9  -  Siapa  Rajanya  Rendering?</a></h4>
+                         <p style="font-size: 0.7em; color: var(--accent-main);">#Review  |  05  OCT</p>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+            <aside class="news-stream-column">
+                <h3>NEWS  STREAM  &lt;LIVE&gt;</h3>
+                
+                <div class="stream-item">
+                    <img src="./images/thumb1.png" alt="Stream Thumb" class="stream-thumb">
+                    <div class="stream-content">
+                        <a href="#">This  Thunderbolt  5  eGPU  dock  adalah  Swiss  Army  knife  untuk  semua  dok.</a>
+                    </div>
+                </div>
+
+                <div class="stream-item">
+                    <img src="./images/thumb2.png" alt="Stream Thumb" class="stream-thumb">
+                    <div class="stream-content">
+                        <a href="#">Michigan  township  dituntut  oleh  pengembang  AI  atas  penolakan  oposis.</a>
+                    </div>
+                </div>
+                
+                <div class="stream-item">
+                    <img src="./images/thumb3.png" alt="Stream Thumb" class="stream-thumb">
+                    <div class="stream-content">
+                        <a href="#">OpenAI  dan  Broadcom  untuk  bersama-sama  mengembangkan  COW.</a>
+                    </div>
+                </div>
+                
+                <div class="stream-item">
+                    <img src="./images/thumb4.png" alt="Stream Thumb" class="stream-thumb">
+                    <div class="stream-content">
+                        <a href="#">Game  Baru  “Cyberpunk  Racer”  Meluncur  Minggu  Depan!</a>
+                    </div>
+                </div>
+
+            </aside>
+            
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 My Code & Data Hub. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
