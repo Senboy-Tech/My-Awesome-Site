@@ -8,7 +8,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
-        /* Menggunakan VARIBEL & BASE LAYOUT DARI videos.html untuk KONSISTENSI */
+        /* === KOREKSI PENTING UNTUK MENGATASI OVERFLOW (ZOOM) === */
+        * {
+            box-sizing: border-box; 
+        }
+        /* ======================================================= */
+
+        /* Variabel Warna Kunci */
         :root {
             --pixel-font: 'Press Start 2P', cursive;
             --modern-font: 'Roboto Mono', monospace; 
@@ -30,6 +36,10 @@
             background-color: var(--bg-dark); 
             color: var(--text-primary); 
             margin: 0; padding: 0; min-height: 100vh;
+            
+            /* KOREKSI INTI: Sembunyikan Scroll Horizontal agar tidak "nge-zoom" */
+            overflow-x: hidden; 
+            
             display: grid;
             grid-template-areas:  "header header header"
                                   "left main right"
@@ -56,21 +66,34 @@
         .header-content h1 { font-family: var(--pixel-font); font-size: 2em; color: var(--text-primary); text-shadow: 3px 3px 0px var(--shadow-subtle); margin: 0; }
         .header-content p { font-family: var(--modern-font); font-size: 0.9em; color: var(--text-secondary); margin-top: 5px; }
 
-        /* SIDEBARS: GAMBAR KESATRIA & MIN-HEIGHT */
+        /* === PERBAIKAN KRITIS SIDEBAR LAYOUT (Knight Penuh) === */
         .left-sidebar { 
-            grid-area: left; padding: 0 !important; z-index: 5; 
+            grid-area: left; 
+            padding: 0 !important; 
+            z-index: 5; 
             background-image: url('Photoleft.png'); 
-            background-size: cover; background-repeat: no-repeat; background-position: center top; 
-            min-height: 800px; 
+            background-size: cover; 
+            background-repeat: no-repeat; 
+            background-position: center top; 
+            min-height: 100vh; 
         }
         .right-sidebar { 
-            grid-area: right; padding: 0 !important; z-index: 5; 
+            grid-area: right; 
+            padding: 0 !important; 
+            z-index: 5; 
             background-image: url('Photoright.png'); 
-            background-size: cover; background-repeat: no-repeat; background-position: center top; 
-            min-height: 800px; 
+            background-size: cover; 
+            background-repeat: no-repeat; 
+            background-position: center top; 
+            min-height: 100vh; 
         }
 
-        .left-sidebar, .right-sidebar { background-color: transparent !important; border: none !important; }
+        .left-sidebar, .right-sidebar { 
+            background-color: transparent !important; 
+            border: none !important; 
+            padding-top: 10px !important; 
+        }
+        /* ======================================= */
 
         /* ========================================================= */
         /* MAIN CONTENT AREA */
@@ -85,7 +108,6 @@
             background-size: 10px 10px;
         }
 
-        /* Styling untuk Judul H2 di main content */
         main h2 { 
             font-family: var(--pixel-font); 
             font-size: 1.6em; 
@@ -98,8 +120,7 @@
             letter-spacing: 1px;
         }
 
-        /* Styling untuk Section Konten (My Story, My Superpowers) */
-        .intro-section, .featured-projects-section, .cyber-carousel-section { 
+        .intro-section, .featured-projects-section, .video-showcase-section, .cyber-carousel-section { 
             background-color: rgba(26, 26, 26, 0.9); 
             border: 1px solid var(--accent-main); 
             padding: 25px 30px; 
@@ -111,13 +132,11 @@
             overflow: hidden; 
         }
         
-        /* Animasi subtle saat hover */
-        .intro-section:hover, .featured-projects-section:hover, .cyber-carousel-section:hover { 
+        .intro-section:hover, .featured-projects-section:hover, .video-showcase-section:hover, .cyber-carousel-section:hover { 
             transform: translateY(-5px); 
             box-shadow: 0 5px 20px var(--glow-strong); 
         }
 
-        /* Styling untuk Paragraf */
         .intro-section p {
             font-family: var(--modern-font); 
             font-size: 1em; 
@@ -127,7 +146,6 @@
             text-align: justify; 
         }
 
-        /* Styling untuk List (My Superpowers) */
         .featured-projects-section ul {
             list-style: none; 
             padding: 0;
@@ -165,14 +183,16 @@
             transform: translateX(5px);
         }
         
-        /* Gaya Sidebar List (My Stuff & Socials) */
         .sidebar-list { 
-            padding-top: 200px; 
+            margin-top: 50px; 
             background-color: rgba(26, 26, 26, 0.8); 
-            padding: 15px; border: 1px solid var(--accent-main); box-shadow: 0 0 10px var(--accent-glow); margin-top: 50px; 
+            padding: 15px; 
+            border: 1px solid var(--accent-main); 
+            box-shadow: 0 0 10px var(--accent-glow); 
             margin-bottom: 20px;
+            position: relative; 
         }
-        /* PERBAIKAN: JUDUL MY STUFF */
+        
         .sidebar-list h2 { 
             font-family: var(--pixel-font); 
             font-size: 1em; 
@@ -184,7 +204,6 @@
         .sidebar-list ul { list-style: none; padding: 0; }
         .sidebar-list ul li { margin-bottom: 5px; position: relative; }
 
-        /* GAYA LINK DEFAULT */
         .sidebar-list ul li a { 
             text-decoration: none; 
             color: var(--text-secondary); 
@@ -194,14 +213,12 @@
             transition: all 0.2s ease-in-out; 
         }
 
-        /* Ikon & Warna */
         .sidebar-list ul li a i { 
             margin-right: 8px; 
             color: var(--header-yellow); 
             transition: color 0.2s;
         }
 
-        /* PERBAIKAN: EFEK HOVER BARU (Animasi & Warna Neon) */
         .sidebar-list ul li a:hover { 
             color: var(--accent-main); 
             transform: translateX(5px); 
@@ -219,7 +236,60 @@
 
         @media (max-width: 600px) { .search-module { display: none; } body { grid-template-columns: 0 1fr 0; } .left-sidebar, .right-sidebar { display: none; } }
         
-        /* --- CAROUSEL STYLES UNTUK TAMPILAN 2 KOTAK/GRID PER SLIDE --- */
+        /* --- STYLING VIDEO SHOWCASE SEDERHANA (GRID 2 KOLOM) --- */
+        .video-showcase-section {
+            background-color: #0d0d14; 
+            border: 1px solid var(--header-yellow); 
+            box-shadow: 0 0 10px rgba(204, 204, 0, 0.5); 
+            padding: 25px;
+            text-align: center;
+        }
+
+        .video-showcase-section h2 {
+            color: var(--accent-main); 
+            border-bottom: 2px dashed var(--accent-main);
+            padding-bottom: 10px;
+            font-size: 1.2em;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        
+        /* KOREKSI INTI: Memaksa video muncul dalam 2 kolom */
+        .video-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* DUA KOLOM SAMA BESAR */
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .video-card-item {
+            padding: 0;
+            text-align: center;
+        }
+        
+        .video-container-simple {
+            width: 100%;
+            margin: 0 auto;
+            border: 3px solid var(--text-primary);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            display: block;
+        }
+
+        .video-container-simple video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .video-card-item p {
+            font-family: var(--pixel-font);
+            font-size: 0.7em;
+            color: var(--text-secondary);
+            margin-top: 10px;
+        }
+        /* --- AKHIR STYLING VIDEO SHOWCASE --- */
+
+        /* --- CAROUSEL STYLES UNTUK PROJECT SHOWCASE --- */
         .cyber-carousel-section {
             margin-top: 50px;
         }
@@ -232,7 +302,6 @@
             width: 100%;
             overflow: hidden; 
             position: relative;
-            /* Container mencakup seluruh lebar main content */
             max-width: none; 
             margin: 0 auto;
             border: none;
@@ -245,32 +314,29 @@
             transition: transform 0.8s ease-in-out; 
         }
 
-        /* Setip slide carousel sekarang mewakili satu BINGKAI yang berisi dua proyek */
         .carousel-slide {
-            min-width: 100%; /* Setiap slide memenuhi 100% lebar container (main content) */
+            min-width: 100%; 
             flex-shrink: 0; 
             overflow: hidden;
             background-color: transparent; 
-            padding: 10px 0; /* Memberi sedikit padding vertikal */
+            padding: 10px 0; 
         }
         
-        /* GRID untuk menampung 2 proyek di dalam 1 SLIDE */
         .slide-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr; /* 2 kolom yang sama lebar */
-            gap: var(--card-gap); /* Jarak antar kotak */
+            grid-template-columns: 1fr 1fr; 
+            gap: var(--card-gap); 
         }
         
-        /* Gaya untuk KOTAK PROYEK di dalam grid (Inilah yang merupakan "kartu" proyek) */
         .project-card {
             background-color: var(--bg-medium);
             border: 2px solid var(--accent-main);
             box-shadow: 0 0 15px var(--accent-glow);
             border-radius: 5px;
-            height: 450px; /* Tinggi kartu ditetapkan */
+            height: 450px; 
             transition: all 0.3s ease-in-out;
             position: relative;
-            cursor: pointer; /* Menandakan bahwa kartu bisa di-klik */
+            cursor: pointer; 
         }
         
         .project-card:hover {
@@ -279,7 +345,7 @@
         }
 
         .card-image-container {
-            height: 70%; /* Gambar mengisi 70% bagian atas kartu */
+            height: 70%; 
             overflow: hidden;
             border-bottom: 1px solid var(--accent-border);
         }
@@ -287,27 +353,23 @@
         .card-image {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Memastikan gambar memenuhi area */
+            object-fit: cover; 
             transition: transform 0.5s;
-            /* TRANSFORM DEFAULT DIHAPUS DARI HOVER CSS */
             transform: scale(1); 
         }
         
-        /* [1] KELAS KHUSUS UNTUK ZOOM IN DENGAN CLICK */
         .project-card.is-zoomed .card-image {
-             transform: scale(2); /* Zoom in saat di-klik (200%) */
+             transform: scale(2); 
         }
 
-        /* [2] Pengaturan Awal Gambar Knight (Perlu disesuaikan agar tidak hanya berlaku untuk Knight) */
         #project-knight .card-image {
-            object-position:  center; /* PERTAHANKAN HANYA JIKA MEMANG KNIGHT PERLU POSISI SPESIFIK */
+            object-position:  center; 
         }
-         /* --- KODE UNTUK HANYA MENGUBAH POSISI KNIGHT 4 --- */
+         
         #project-new-knight4 .card-image {
-            /* Nilai negatif akan menggeser fokus gambar ke KANAN, sehingga teks muncul. */
-            object-position: -50px center; /* Anda bisa menyesuaikan nilai -80px ini */
+            object-position: -50px center; 
         }
-        /* [3] Default scale saat mouse meninggalkan (untuk memastikan transisi kembali halus) */
+        
         .card-image:not(.is-zoomed) { 
              transform: scale(1); 
         }
@@ -317,9 +379,8 @@
             bottom: 0; left: 0; width: 100%;
             padding: 15px;
             background-color: rgba(0, 0, 0, 0.7);
-            /* border-top: 1px solid var(--accent-main); */
             box-sizing: border-box;
-            height: 30%; /* Overlay mengisi 30% bagian bawah kartu */
+            height: 30%; 
         }
         
         .card-overlay h3 {
@@ -360,14 +421,19 @@
             background-color: var(--accent-main); 
             box-shadow: 0 0 8px var(--accent-main);
         }
-
+        
         @media (max-width: 900px) { 
              .slide-grid {
-                 grid-template-columns: 1fr; /* Ubah menjadi 1 kolom di layar kecil */
+                 grid-template-columns: 1fr; 
              }
              .project-card {
                  margin-bottom: var(--card-gap);
              }
+        }
+        @media (max-width: 600px) { 
+            .video-grid {
+                grid-template-columns: 1fr; /* Di mobile, kembali ke 1 kolom */
+            }
         }
     </style>
 </head>
@@ -382,6 +448,7 @@
         <nav>
             <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
             <a href="projects.html" class="nav-link"><i class="fas fa-code"></i> Projects</a>
+            <a href="article.html" class="nav-link"><i class="fas fa-pen-nib"></i> Articles</a>
             <a href="photos.html" class="nav-link"><i class="fas fa-camera"></i> Photos</a>
             <a href="videos.html" class="nav-link"><i class="fas fa-video"></i> Videos</a>
             <a href="meshes.html" class="nav-link"><i class="fas fa-cube"></i> Meshes</a>
@@ -401,6 +468,7 @@
                 <li><a href="videos.html"><i class="fas fa-video"></i> My Videos</a></li>
                 <li><a href="projects.html"><i class="fas fa-project-diagram"></i> My Projects</a></li>
                 <li><a href="ideas.html"><i class="fas fa-lightbulb"></i> My Ideas</a></li>
+                <li><a href="article.html"><i class="fas fa-pen-nib"></i> My Articles</a></li>
             </ul>
         </section>
     </div>
@@ -433,6 +501,33 @@
             </ul>
         </section>
         
+        <section class="video-showcase-section">
+            <h2>&lt; DEV  CLIPS &gt;</h2>
+            
+            <div class="video-grid">
+                
+                <div class="video-card-item">
+                    <div class="video-container-simple">
+                        <video autoplay muted loop playsinline poster="./images/video_thumbnail_1.jpg">
+                            <source src="./videos/your_main_clip.mp4" type="video/mp4">
+                            Browser Anda tidak mendukung tag video.
+                        </video>
+                    </div>
+                    <p>ASSET  DEMO  #1</p>
+                </div>
+                
+                <div class="video-card-item">
+                    <div class="video-container-simple">
+                        <video autoplay muted loop playsinline poster="./images/video_thumbnail_2.jpg">
+                            <source src="./videos/video_baru_2.mp4" type="video/mp4">
+                            Browser Anda tidak mendukung tag video.
+                        </video>
+                    </div>
+                    <p>TEST  RENDER  #2</p>
+                </div>
+                
+                </div>
+        </section>
         <section class="cyber-carousel-section">
             <h2>&lt; PROJECT  SHOWCASE  &gt;</h2>
             
@@ -466,7 +561,7 @@
                     </div>
 
                     <div class="carousel-slide">
-                         <div class="slide-grid">
+                        <div class="slide-grid">
                             
                             <div class="project-card" id="project-gamedev">
                                 <div class="card-image-container">
@@ -494,50 +589,34 @@
                     </div>
             </div>
             
-            <div class="carousel-dots">
+            <div class="carousel-dots" id="project-dots-container">
                 <span class="dot active" data-slide="0"></span>
                 <span class="dot" data-slide="1"></span>
                 </div>
             
         </section>
-        </main>
+    </main>
 
     <footer>
         <p>&copy; 2025 My Code & Data Hub. All rights reserved.</p>
     </footer>
 
 <script>
-    // Menggunakan ID unik untuk halaman ini
-    const searchInput = document.getElementById('site-search-input-about');
-
-    // Tambahkan event listener untuk mendeteksi tombol Enter
-    searchInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            const query = searchInput.value;
-            if (query.length > 0) {
-                const encodedQuery = encodeURIComponent(query);
-                // Domain Anda
-                const siteDomain = 'my-awesome-site-chi.vercel.app'; 
-                
-                window.location.href = `https://www.google.com/search?q=${encodedQuery}+site:${siteDomain}`;
-            }
-        }
-    });
-
-    // --- LOGIC CAROUSEL (Auto-Sweep dihidupkan kembali) ---
-    const intervalTime = 5000; // Geser otomatis setiap 5 detik
-    let advanceInterval; // Variabel global untuk interval
+    // --- LOGIC CAROUSEL UNTUK PROJECT SHOWCASE ---
+    const intervalTime = 5000;
+    let advanceInterval; 
     
     document.addEventListener('DOMContentLoaded', () => {
-        const track = document.querySelector('.carousel-track');
-        const slides = Array.from(track.children);
-        const dotsContainer = document.querySelector('.carousel-dots');
-        const dots = Array.from(dotsContainer.children);
-        
-        if (slides.length === 0 || !track) return; 
+        const carouselSection = document.querySelector('.cyber-carousel-section');
+        const track = carouselSection.querySelector('.carousel-track');
+        const dotsContainer = carouselSection.querySelector('.carousel-dots');
 
+        if (!track || !dotsContainer) return; 
+
+        const slides = Array.from(track.children);
+        const dots = Array.from(dotsContainer.children);
         let slideIndex = 0;
-        
+
         const moveToSlide = (targetIndex) => {
             const slideWidth = slides[0].getBoundingClientRect().width;
             track.style.transform = 'translateX(-' + (targetIndex * slideWidth) + 'px)';
@@ -555,20 +634,17 @@
             moveToSlide(nextIndex);
         };
         
-        // Fungsi untuk memulai auto-sweep
         const startAutoAdvance = () => {
             if (!advanceInterval) {
                 advanceInterval = setInterval(autoAdvance, intervalTime);
             }
         };
 
-        // Fungsi untuk menghentikan auto-sweep
         const stopAutoAdvance = () => {
             clearInterval(advanceInterval);
             advanceInterval = null;
         };
 
-        // Event handler klik dot (menghentikan dan memulai ulang)
         dotsContainer.addEventListener('click', e => {
             if (!e.target.classList.contains('dot')) return;
             
@@ -581,7 +657,7 @@
         });
         
         window.addEventListener('resize', () => {
-             moveToSlide(slideIndex);
+              moveToSlide(slideIndex);
         });
         
         // MULAI OTOMATIS SAAT HALAMAN DIMUAT
@@ -591,73 +667,47 @@
 
         // --- INTEGRASI DENGAN MOUSE FOLLOW LOGIC ---
         const projectCards = document.querySelectorAll('.project-card');
-        
-        projectCards.forEach(card => {
-            // HENTIKAN CAROUSEL SAAT MOUSE MASUK KE AREA MANA PUN
-            card.addEventListener('mouseenter', stopAutoAdvance);
-            // JALANKAN CAROUSEL SAAT MOUSE KELUAR DARI AREA MANA PUN
-            card.addEventListener('mouseleave', startAutoAdvance);
-        });
-
-    });
-
-
-    // --- LOGIC BARU: MOUSE FOLLOW/PARALLAX PADA GAMBAR (Click Toggle) ---
-    document.addEventListener('DOMContentLoaded', () => {
-        const projectCards = document.querySelectorAll('.project-card');
-        const maxTilt = 200; // <--- DITINGKATKAN AGAR LEBIH SENSITIF
-        const zoomedScale = 2; 
+        const maxTilt = 200; 
+        const zoomedScale = 2;
 
         projectCards.forEach(card => {
             const image = card.querySelector('.card-image');
             
-            // Variabel untuk melacak apakah zoom aktif
+            // HENTIKAN CAROUSEL SAAT MOUSE MASUK KE AREA MANA PUN
+            card.addEventListener('mouseenter', stopAutoAdvance);
+            // JALANKAN CAROUSEL SAAT MOUSE KELUAR DARI AREA MANA PUN
+            card.addEventListener('mouseleave', startAutoAdvance);
+            
             let isZoomActive = false;
 
-            // Event saat kartu di-klik
             card.addEventListener('click', (e) => {
-                // Toggle status zoom
                 isZoomActive = !isZoomActive;
 
-                // Nonaktifkan semua kartu lain saat satu kartu di-zoom
                 projectCards.forEach(otherCard => {
                     if (otherCard !== card) {
                         otherCard.classList.remove('is-zoomed');
-                        // Hapus listener mousemove dari kartu lain yang mungkin aktif
                         otherCard.removeEventListener('mousemove', otherCard.handleMouseMove);
-                        // Kembalikan skala normal pada gambar kartu lain
                         const otherImage = otherCard.querySelector('.card-image');
                         otherImage.style.transition = 'transform 0.5s ease-out';
                         otherImage.style.transform = `scale(1)`;
                         setTimeout(() => {otherImage.style.transition = '';}, 500);
-                        otherCard.isZoomActive = false; // Reset status zoom kartu lain
+                        otherCard.isZoomActive = false; 
                     }
                 });
 
                 if (isZoomActive) {
-                    // 1. Zoom In (aktifkan kelas CSS)
                     card.classList.add('is-zoomed');
-                    // 2. Terapkan skala awal di JS (sebelum mousemove)
                     image.style.transform = `scale(${zoomedScale})`;
-                    // 3. Aktifkan listener mousemove
                     card.addEventListener('mousemove', handleMouseMove);
                 } else {
-                    // 1. Zoom Out (hapus kelas CSS)
                     card.classList.remove('is-zoomed');
-                    // 2. Hapus listener mousemove
                     card.removeEventListener('mousemove', handleMouseMove);
-                    // 3. Kembalikan ke scale(1) dengan transisi halus
                     image.style.transition = 'transform 0.5s ease-out';
                     image.style.transform = `scale(1)`;
-                    
-                    // Reset transisi setelah selesai
-                    setTimeout(() => {
-                        image.style.transition = ''; 
-                    }, 500);
+                    setTimeout(() => { image.style.transition = ''; }, 500);
                 }
             });
 
-            // Fungsi Mouse Move (dipisah agar bisa di-add/remove)
             const handleMouseMove = (e) => {
                 const rect = card.getBoundingClientRect();
                 const width = rect.width;
@@ -669,17 +719,31 @@
                 const tiltX = (x * maxTilt) * 2 - maxTilt; 
                 const tiltY = (y * maxTilt) * 2 - maxTilt; 
                 
-                // Menerapkan pergeseran ke arah yang sama dengan mouse (tiltX, tiltY)
                 image.style.transform = `scale(${zoomedScale}) translate(${tiltX}px, ${tiltY}px)`;
-                image.style.transition = 'transform 0s'; // Hapus transisi agar responsif
+                image.style.transition = 'transform 0s'; 
             };
             
-            // Simpan referensi handleMouseMove ke kartu agar bisa dihapus dari kartu lain
             card.handleMouseMove = handleMouseMove; 
-            card.isZoomActive = isZoomActive; // Simpan status zoom
+            card.isZoomActive = isZoomActive;
         });
     });
+    
+    // MENGHAPUS LOGIC CAROUSEL VIDEO SEMENTARA UNTUK STABILITAS
 
+    // Menggunakan ID unik untuk halaman ini
+    const searchInput = document.getElementById('site-search-input-about');
+
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            const query = searchInput.value;
+            if (query.length > 0) {
+                const encodedQuery = encodeURIComponent(query);
+                const siteDomain = 'my-awesome-site-chi.vercel.app'; 
+                
+                window.location.href = `https://www.google.com/search?q=${encodedQuery}+site:${siteDomain}`;
+            }
+        }
+    });
 </script>
 
 </body>
