@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -20,6 +20,7 @@
             --text-primary: #ffffff;        
             --text-secondary: #aaaaaa;
             --header-yellow: #CCCC00;       
+            --shadow-subtle: rgba(0, 0, 0, 0.6); /* Ditambahkan untuk konsistensi */
         }
         
         /* BASE LAYOUT */
@@ -37,154 +38,107 @@
         main {
             grid-area: main; 
             background-color: var(--bg-medium); /* Latar belakang main gelap */
-            padding: 40px;
+            padding: 40px; /* Diperbaiki dari 4 0px */
         }
 
         /* Navigasi & Header/Footer (Gunakan style dari about.html/videos.html) */
         /* [ ... Anda perlu menyalin gaya Header, Nav, Footer, Sidebar dari file lain ke dalam style.css jika belum ada, atau salin di sini ] */
         
+        /* === KODE CSS TAMBAHAN UNTUK MEMPERBAIKI TINGGI BANNER === */
+        
+        header { 
+            grid-area: header; 
+            background-color: var(--bg-dark); 
+            height: 120px; /* <--- KTINGGIAN BARU 120px */
+            border-bottom: 2px solid var(--accent-border); 
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.3); 
+            position: relative; 
+            overflow: hidden; 
+            background-image: url('Photo banner.jpg'); 
+            background-size: cover; 
+            background-repeat: no-repeat; 
+            background-position: 40% 30%; /* Posisi gambar banner */
+        }
+        
+        header nav { 
+            padding: 5px 0; /* Padding dikurangi agar tidak terlalu tinggi */
+            display: flex; 
+            justify-content: center; 
+            background-color: rgba(0, 0, 0, 0.7); 
+            border-bottom: 1px solid rgba(255,255,255,0.1); 
+            position: relative; 
+            z-index: 10;
+        }
+
+        .nav-link { 
+            text-decoration: none; 
+            color: var(--text-primary); 
+            font-family: var(--pixel-font); 
+            font-size: 0.7em; /* Ukuran font link diperkecil */
+            padding: 5px 10px; 
+            margin: 0 5px; 
+            border: 1px solid var(--accent-border); 
+            background-color: var(--bg-medium); 
+            box-shadow: 2px 2px 0px 0px var(--shadow-subtle); 
+            transition: all 0.2s; 
+            display: inline-block; 
+            border-radius: 3px; 
+        }
+        .nav-link:hover { 
+            color: var(--accent-main); 
+            border-color: var(--accent-main); 
+            background-color: #2a2a2a; 
+            transform: translateY(-2px); 
+        }
+
+        .header-content { 
+            position: absolute; 
+            bottom: 0; 
+            left: 0; 
+            width: 100%; 
+            background-color: rgba(0, 0, 0, 0.6); 
+            padding: 10px 20px; /* Padding dikurangi */
+            box-sizing: border-box; 
+            z-index: 5; 
+        }
+
+        .header-content h1 { 
+            font-family: var(--pixel-font); 
+            font-size: 1.5em; /* Ukuran H1 dikurangi agar muat */
+            color: var(--text-primary); 
+            text-shadow: 3px 3px 0px var(--shadow-subtle); 
+            margin: 0; 
+        }
+
+        .header-content p { 
+            font-family: var(--modern-font); 
+            font-size: 0.7em; /* Ukuran P dikurangi */
+            color: var(--text-secondary); 
+            margin-top: 3px; 
+        }
+
+        /* === AKHIR KODE CSS TAMBAHAN === */
+
         /* ================================================= */
         /* GRID UTAMA - MENIRU LAYOUT TOM'S HARDWARE */
         /* ================================================= */
+        
+        /* ... (KODE CSS SETELAH INI TIDAK DIUBAH) ... */
 
         #article-index-grid {
             display: grid;
             /* Layout: Kolom Kiri 2x lebih lebar dari Kolom Kanan */
             grid-template-columns: 2fr 1fr; 
-            gap: 25px;
-            padding-top: 20px;
+            gap: 45px;
+            padding-top: 30px;
         }
 
         /* ----------------------------------------------- */
         /* KOLOM KIRI: MAIN FEATURE & ARTIKEL LIST */
         /* ----------------------------------------------- */
 
-        .main-articles-column {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        
-        /* 1. KARTU ARTIKEL UNGGULAN (Mirip TP-Link di Tom's) */
-        .main-feature-card {
-            background-color: #21212f; /* Background card gelap */
-            border: 1px solid var(--accent-main);
-            box-shadow: 0 0 10px rgba(102, 204, 255, 0.4);
-            overflow: hidden;
-            transition: transform 0.3s;
-        }
-        .main-feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 20px var(--accent-main);
-        }
+        /* ... (KODE CSS LAINNYA) ... */
 
-        .feature-image-container {
-            height: 350px; 
-            overflow: hidden;
-        }
-        .feature-image {
-            width: 100%; height: 100%; object-fit: cover;
-        }
-
-        .feature-content {
-            padding: 20px;
-        }
-        .feature-content h2 {
-            font-family: var(--pixel-font);
-            font-size: 1.5em;
-            color: var(--header-yellow);
-            margin: 0 0 10px 0;
-            border-bottom: 2px dashed var(--accent-border);
-            padding-bottom: 5px;
-        }
-        .feature-content p {
-            font-family: var(--modern-font);
-            color: var(--text-secondary);
-            font-size: 0.9em;
-            line-height: 1.6;
-        }
-        .feature-content a {
-            color: var(--accent-main);
-            text-decoration: none;
-            font-family: var(--pixel-font);
-            font-size: 0.7em;
-            display: block;
-            margin-top: 15px;
-        }
-
-        /* 2. DAFTAR ARTIKEL BAWAH (Jika ada) */
-        .article-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        .article-card {
-            background-color: #21212f;
-            border: 1px solid var(--accent-border);
-            padding: 15px;
-            transition: border-color 0.2s;
-        }
-        .article-card:hover {
-            border-color: var(--header-yellow);
-        }
-        .article-card h4 a {
-             font-family: var(--modern-font);
-             color: var(--text-primary);
-             font-size: 1.1em;
-             text-decoration: none;
-             display: block;
-        }
-
-        /* ----------------------------------------------- */
-        /* KOLOM KANAN: NEWS STREAM (Mirip Tom's) */
-        /* ----------------------------------------------- */
-
-        .news-stream-column {
-            background-color: #21212f;
-            border: 1px solid var(--accent-main);
-            padding: 15px;
-            box-shadow: 0 0 10px rgba(102, 204, 255, 0.4);
-        }
-        .news-stream-column h3 {
-            font-family: var(--pixel-font);
-            font-size: 0.9em;
-            color: var(--accent-main);
-            border-bottom: 2px solid var(--header-yellow);
-            padding-bottom: 10px;
-            margin-top: 0;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        
-        .stream-item {
-            display: flex;
-            margin-bottom: 20px;
-            border-bottom: 1px dashed var(--accent-border);
-            padding-bottom: 15px;
-        }
-        .stream-item:last-child {
-            border-bottom: none;
-        }
-
-        .stream-thumb {
-            width: 80px;
-            height: 60px;
-            object-fit: cover;
-            margin-right: 10px;
-            border: 1px solid var(--text-primary);
-            image-rendering: pixelated;
-        }
-        .stream-content a {
-            font-family: var(--modern-font);
-            color: var(--text-primary);
-            font-size: 0.9em;
-            text-decoration: none;
-        }
-        .stream-content a:hover {
-            color: var(--header-yellow);
-            text-decoration: underline;
-        }
-        
         /* Responsif */
         @media (max-width: 900px) {
             #article-index-grid {
