@@ -1,4 +1,0 @@
-mkdir images
-git add images
-git commit -m "Add images folder for Netlify CMS media"
-git push
