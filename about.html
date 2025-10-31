@@ -44,7 +44,8 @@
             grid-template-areas:  "header header header"
                                   "left main right"
                                   "footer footer footer";
-            grid-template-columns: 200px 1fr 200px; 
+            /* Lebar kolom 220px */
+            grid-template-columns: 220px 1fr 220px; 
             grid-template-rows: auto 1fr auto;
             gap: 0;
             position: relative;
@@ -72,9 +73,10 @@
             padding: 0 !important; 
             z-index: 5; 
             background-image: url('Photoleft.png'); 
+            /* REVISI FINAL: Gunakan 'cover' untuk mengisi tinggi penuh tanpa distorsi */
             background-size: cover; 
             background-repeat: no-repeat; 
-            background-position: center top; 
+            background-position: center bottom; 
             min-height: 100vh; 
         }
         .right-sidebar { 
@@ -82,9 +84,10 @@
             padding: 0 !important; 
             z-index: 5; 
             background-image: url('Photoright.png'); 
+            /* REVISI FINAL: Gunakan 'cover' untuk mengisi tinggi penuh tanpa distorsi */
             background-size: cover; 
             background-repeat: no-repeat; 
-            background-position: center top; 
+            background-position: center bottom; 
             min-height: 100vh; 
         }
 
@@ -265,6 +268,7 @@
         .video-card-item {
             padding: 0;
             text-align: center;
+            min-height: 250px; /* Untuk menjaga konsistensi tinggi kartu video */
         }
         
         .video-container-simple {
@@ -455,20 +459,20 @@
             <a href="about.html" class="nav-link"><i class="fas fa-book"></i> About</a>
         </nav>
         <div class="header-content">
-            <h1>About Me</h1>
-            <p>A little about my journey and skills. So my name is kana i Like COllY</p>
+            <h1>About  Me</h1>
+            <p>A  little  about  my  journey  and  skills.  So  my  name  is  kana  i  Like  COllY</p>
         </div>
     </header>
     
     <div class="left-sidebar">
         <section class="sidebar-list">
-            <h2>My Stuff</h2>
+            <h2>My  Stuff</h2>
             <ul>
-                <li><a href="photos.html"><i class="fas fa-camera"></i> My Photos</a></li>
-                <li><a href="videos.html"><i class="fas fa-video"></i> My Videos</a></li>
-                <li><a href="projects.html"><i class="fas fa-project-diagram"></i> My Projects</a></li>
-                <li><a href="ideas.html"><i class="fas fa-lightbulb"></i> My Ideas</a></li>
-                <li><a href="article.html"><i class="fas fa-pen-nib"></i> My Articles</a></li>
+                <li><a href="photos.html"><i class="fas fa-camera"></i> My  Photos</a></li>
+                <li><a href="videos.html"><i class="fas fa-video"></i> My  Videos</a></li>
+                <li><a href="projects.html"><i class="fas fa-project-diagram"></i> My  Projects</a></li>
+                <li><a href="ideas.html"><i class="fas fa-lightbulb"></i> My  Ideas</a></li>
+                <li><a href="article.html"><i class="fas fa-pen-nib"></i> My  Articles</a></li>
             </ul>
         </section>
     </div>
@@ -487,22 +491,22 @@
     
     <main>
         <section class="intro-section">
-            <h2>My Story</h2>
-            <p>Jadi gini Cerita gua Dengerin nih gua pengangguran tanpa skill dan gua suka COLI COLI dan COLI</p>
+            <h2>My  Story</h2>
+            <p>Jadi  gini  Cerita  gua  Dengerin  nih  gua  pengangguran  tanpa  skill  dan  gua  suka  COLI  COLI  dan  COLI</p>
         </section>
         
         <section class="featured-projects-section">
-            <h2>My Superpowers</h2>
+            <h2>My  Superpowers</h2>
             <ul>
                 <li>Coli</li>
-                <li>Nonton Bokep</li>
+                <li>Nonton  Bokep</li>
                 <li>Coli</li>
-                <li>Google searching like my life depends on it</li>
+                <li>Google  searching  like  my  life  depends  on  it</li>
             </ul>
         </section>
         
         <section class="video-showcase-section">
-            <h2>&lt; DEV  CLIPS &gt;</h2>
+            <h2>&lt;  DEV  CLIPS  &gt;</h2>
             
             <div class="video-grid">
                 
@@ -510,7 +514,7 @@
                     <div class="video-container-simple">
                         <video autoplay muted loop playsinline poster="./images/video_thumbnail_1.jpg">
                             <source src="./videos/your_main_clip.mp4" type="video/mp4">
-                            Browser Anda tidak mendukung tag video.
+                            Browser  Anda  tidak  mendukung  tag  video.
                         </video>
                     </div>
                     <p>ASSET  DEMO  #1</p>
@@ -519,17 +523,26 @@
                 <div class="video-card-item">
                     <div class="video-container-simple">
                         <video autoplay muted loop playsinline poster="./images/video_thumbnail_2.jpg">
-                            <source src="./videos/video_baru_2.mp4" type="video/mp4">
-                            Browser Anda tidak mendukung tag video.
+                            <source src="./videos/Gemini_2.mp4" type="video/mp4">
+                            Browser  Anda  tidak  mendukung  tag  video.
                         </video>
                     </div>
                     <p>TEST  RENDER  #2</p>
                 </div>
                 
+                <div class="video-card-item">
+                    <div class="video-container-simple">
+                        <video autoplay muted loop playsinline poster="./images/video_thumbnail_3.jpg"> 
+                            <source src="./videos/kesatriapushupp.mp4" type="video/mp4">
+                            Browser  Anda  tidak  mendukung  tag  video.
+                        </video>
+                    </div>
+                    <p>KLIP  DEMO  BARU  #3</p>
+                </div>
                 </div>
         </section>
         <section class="cyber-carousel-section">
-            <h2>&lt; PROJECT  SHOWCASE  &gt;</h2>
+            <h2>&lt;  PROJECT  SHOWCASE  &gt;</h2>
             
             <div class="carousel-container">
                 <div class="carousel-track">
@@ -598,7 +611,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 My Code & Data Hub. All rights reserved.</p>
+        <p>&copy;  2025  My  Code  &  Data  Hub.  All  rights  reserved.</p>
     </footer>
 
 <script>
@@ -748,4 +761,3 @@
 
 </body>
 </html>
-
